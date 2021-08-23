@@ -6,10 +6,19 @@
         <entry key="..\:/A/Projects/MyMargdarshaka/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/A/Projects/MyMargdarshaka/app/src/main/res/layout/auth_login.xml" value="0.22" />
         <entry key="..\:/A/Projects/MyMargdarshaka/app/src/main/res/layout/auth_login_2.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_auth_login.xml" value="0.35" />
+        <entry key="app/src/main/res/layout/activity_auth_otp.xml" value="0.35" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.24909420289855072" />
+        <entry key="app/src/main/res/layout/activity_mentor_details1.xml" value="0.35" />
+        <entry key="app/src/main/res/layout/activity_my_students.xml" value="0.35" />
+        <entry key="app/src/main/res/layout/activity_mymentors.xml" value="0.35" />
+        <entry key="app/src/main/res/layout/activity_student_details1.xml" value="0.33489583333333334" />
+        <entry key="app/src/main/res/layout/auth_login.xml" value="0.35" />
+        <entry key="app/src/main/res/layout/auth_login_2.xml" value="0.35" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
