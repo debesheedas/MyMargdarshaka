@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">JavaPlayground</string>
+    <string name="student_login_text">I am a student</string>
+    <string name="mentor_login_text">I am a mentor</string>
+    <string name="hindi_chip">हिंदी</string>
+    <string name="english_chip">English</string>
+    <string name="welcome_string">WELCOME\nTO\nSCHOOLR</string>
+    <string name="login_text">To get started,\nenter your \nphone number</string>
+    <string name="login_phone_number">Phone Number</string>
+    <string name="get_otp_button_text">GET OTP</string>
+    <string name="verify">verify</string>
+    <string name="enter_the_otp">Enter the OTP</string>
+    <string name="otp">OTP</string>
+</resources>
