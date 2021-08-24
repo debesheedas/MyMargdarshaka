@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:backgroundTint="@color/pink"
-            android:text="@string/option_1"
+            android:text="@string/option"
             app:cornerRadius="50dp" />
 
         <Button
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:backgroundTint="@color/pink"
-            android:text="@string/option_1"
+            android:text="@string/option"
             app:cornerRadius="50dp" />
 
         <Button
@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:backgroundTint="@color/pink"
-            android:text="@string/option_1"
+            android:text="@string/option"
             app:cornerRadius="50dp" />
 
         <Button
@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:backgroundTint="@color/pink"
-            android:text="@string/option_1"
+            android:text="@string/option"
             app:cornerRadius="50dp" />
 
     </LinearLayout>
