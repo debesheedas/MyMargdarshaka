@@ -10,6 +10,19 @@
         android:theme="@style/Theme.MyMargdarshaka"
         android:fullBackupContent="true"
         android:allowBackup="true">
+        android:theme="@style/Theme.MyMargdarshaka">
+        <activity
+            android:name=".AuthSignupMentors2"
+            android:exported="true" />
+        <activity
+            android:name=".AuthSignupStudents2"
+            android:exported="true" />
+        <activity
+            android:name=".AuthSignupMentors1"
+            android:exported="true" />
+        <activity
+            android:name=".AuthSignupStudents1"
+            android:exported="true" />
         <activity
             android:name=".MyStudents"
             android:exported="true" />

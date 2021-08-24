@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MentorDetails1 extends AppCompatActivity {
+public class AuthSignupMentors1 extends AppCompatActivity {
 
     Button logout;
 
@@ -19,7 +19,7 @@ public class MentorDetails1 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mentor_details1);
+        setContentView(R.layout.activity_auth_signup_mentors1);
 
         logout=(Button) findViewById(R.id.logout_mentor);
 
@@ -32,7 +32,7 @@ public class MentorDetails1 extends AppCompatActivity {
                 editor.clear();
                 editor.commit();
 
-                Intent i = new Intent(MentorDetails1.this,MainActivity.class);
+                Intent i = new Intent(AuthSignupMentors1.this,MainActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
             }

@@ -74,10 +74,10 @@ public class AuthOtp extends AppCompatActivity {
 
                             Intent i;
                             if(getIntent().getStringExtra("type").equals("student")) {
-                                i = new Intent(AuthOtp.this, StudentDetails1.class);
+                                i = new Intent(AuthOtp.this, AuthSignupStudents1.class);
                             }
                             else{
-                                i = new Intent(AuthOtp.this, MentorDetails1.class);
+                                i = new Intent(AuthOtp.this, AuthSignupMentors1.class);
                             }
                             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(i);
