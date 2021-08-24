@@ -15,7 +15,7 @@
     <string name="question">Question</string>
     <string name="option">option</string>
     <string name="next">NEXT</string>
-    <string name="submit">submit</string>
+    <string name="submit">SUBMIT</string>
     <string name="guidelines_for_students">GUIDELINES FOR STUDENTS</string>
     <string name="guidelines_for_mentors">GUIDELINES FOR MENTORS</string>
 
@@ -23,5 +23,20 @@
     <string name="email_label">Email</string>
     <string name="name_label">Name</string>
     <string name="class_label">Class</string>
+    <string name="language_label">Preferred Language of Instruction</string>
+    <string name="time_label">Preferred Time Slot</string>
+    <string name="student_subjects">Which subjects do you want to learn?</string>
+    <string name="mentor_subjects">What do you want to teach?</string>
+    <string name="english">English</string>
+    <string name="hindi">Hindi</string>
+    <string name="math">Math</string>
+    <string name="telugu">Telugu</string>
+    <string name="science">Science</string>
+    <string name="social">Social Science</string>
+    <string name="physics">Physics</string>
+    <string name="chemistry">Chemistry</string>
+    <string name="biology">Biology</string>
+    <string name="history">History and Civis</string>
+    <string name="geography">Geography</string>
 
 </resources>

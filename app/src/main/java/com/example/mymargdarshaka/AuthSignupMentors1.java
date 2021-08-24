@@ -6,7 +6,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+
+import java.util.ArrayList;
 
 public class AuthSignupMentors1 extends AppCompatActivity {
 
@@ -21,7 +25,7 @@ public class AuthSignupMentors1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth_signup_mentors1);
 
-        logout=(Button) findViewById(R.id.logout_mentor);
+        logout=(Button) findViewById(R.id.mentorsSignupButton1);
 
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
 
@@ -37,5 +41,25 @@ public class AuthSignupMentors1 extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        AutoCompleteTextView text_view_language, text_view_time;// instantiating ac_text_view
+        text_view_language = findViewById(R.id.text_view_language);
+        text_view_time = findViewById(R.id.text_view_time);
+
+        ArrayList<String> languages = new ArrayList<>();
+        languages.add("English");
+        languages.add("Hindi");
+        languages.add("Telugu");
+
+        ArrayList<String> times = new ArrayList<>();
+        times.add("Morning");
+        times.add("Afternoon");
+        times.add("Evening");
+
+        ArrayAdapter<String> languagesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, languages);
+        text_view_language.setAdapter(languagesAdapter);
+
+        ArrayAdapter<String> timesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, times);
+        text_view_time.setAdapter(timesAdapter);
     }
 }

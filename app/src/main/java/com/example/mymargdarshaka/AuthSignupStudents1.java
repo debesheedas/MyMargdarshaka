@@ -22,58 +22,36 @@ import java.util.List;
 
 public class AuthSignupStudents1 extends AppCompatActivity {
 
-
-    Button logout;
-
+    Button next_button;
+    static AutoCompleteTextView text_view_class, text_view_language, text_view_time;// instantiating ac_text_view
     SharedPreferences sharedPreferences;
-
     private static final String SHARED_PREF_NAME = "login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth_signup_students1);
-
-        logout = (Button) findViewById(R.id.logout_student);
-
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
-        //List<String> list = Arrays.asList("Option 1", "Option 2");
-        //val items = listOf("Option 1", "Option 2", "Option 3", "Option 4")
-        //val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
-        //(textField.editText as? AutoCompleteTextView)?.setAdapter(adapter)
-        //menu = findViewById(R.id.class_select);
 
-//        ArrayAdapter<String> classesAdapter = new ArrayAdapter<>(
-//                this,
-//                android.R.layout.simple_list_item_1,
-//                classes);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
-                R.layout.list_item, classes);
-        //simpleListView.setAdapter(arrayAdapter);
-        //(AutoCompleteTextView)textField.editText.setAdapter(arrayAdapter);
-
-
-
-        logout=(Button) findViewById(R.id.studentSignupButton1);
+        next_button=(Button) findViewById(R.id.studentSignupButton1);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
-        logout.setOnClickListener(new View.OnClickListener() {
+        next_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.clear();
                 editor.commit();
 
-                Intent i = new Intent(AuthSignupStudents1.this, MainActivity.class);
+                Intent i = new Intent(AuthSignupStudents1.this, AuthSignupStudents2.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
             }
         });
 
 
-        AutoCompleteTextView ac_text_view;
-        // instantiating ac_text_view
-        ac_text_view = findViewById(R.id.ac_text_view);
-
+        text_view_class = findViewById(R.id.text_view_class);
+        text_view_language = findViewById(R.id.text_view_language);
+        text_view_time = findViewById(R.id.text_view_time);
         // creating a list of dropdown menu options
         ArrayList<String> classes = new ArrayList<>();
         classes.add("Class 6");
@@ -84,6 +62,16 @@ public class AuthSignupStudents1 extends AppCompatActivity {
         classes.add("Class 11");
         classes.add("Class 12");
 
+        ArrayList<String> languages = new ArrayList<>();
+        languages.add("English");
+        languages.add("Hindi");
+        languages.add("Telugu");
+
+        ArrayList<String> times = new ArrayList<>();
+        times.add("Morning");
+        times.add("Afternoon");
+        times.add("Evening");
+
         // creating a classAdapter, I'm not sure what this does but it works
         ArrayAdapter<String> classesAdapter = new ArrayAdapter<>(
                 this,
@@ -93,11 +81,18 @@ public class AuthSignupStudents1 extends AppCompatActivity {
         );
 
         // attaching the adapter to ac_text_view
-        ac_text_view.setAdapter(classesAdapter);
+        text_view_class.setAdapter(classesAdapter);
+
+        ArrayAdapter<String> languagesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, languages);
+        text_view_language.setAdapter(languagesAdapter);
+
+        ArrayAdapter<String> timesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, times);
+        text_view_time.setAdapter(timesAdapter);
 
         // adding a listener which responds to an option selection
         // using a toast to demonstrate
-        ac_text_view.setOnItemClickListener((parent, view, position, id) -> Toast.makeText(getApplicationContext(), "Selected Item: " + classes.get(position), Toast.LENGTH_SHORT).show());
+        text_view_class.setOnItemClickListener((parent, view, position, id) -> Toast.makeText(getApplicationContext(), "Selected Item: " + classes.get(position), Toast.LENGTH_SHORT).show());
+
 
     }
 }
