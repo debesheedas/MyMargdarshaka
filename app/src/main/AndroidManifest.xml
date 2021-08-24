@@ -3,18 +3,13 @@
     package="com.example.mymargdarshaka">
 
     <application
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyMargdarshaka">
-        <activity
-            android:name=".MentorDetails1"
-            android:exported="true" />
-        <activity
-            android:name=".StudentDetails1"
-            android:exported="true" />
+        android:theme="@style/Theme.MyMargdarshaka"
+        android:fullBackupContent="true"
+        android:allowBackup="true">
         <activity
             android:name=".MyStudents"
             android:exported="true" />
