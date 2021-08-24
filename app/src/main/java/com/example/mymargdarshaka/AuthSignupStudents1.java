@@ -8,7 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 public class AuthSignupStudents1 extends AppCompatActivity {
+
 
     Button logout;
 
