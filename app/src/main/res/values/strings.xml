@@ -11,4 +11,9 @@
     <string name="verify">verify</string>
     <string name="enter_the_otp">Enter the OTP</string>
     <string name="otp">OTP</string>
+    <string name="question_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </string>
+    <string name="question">Question</string>
+    <string name="option_1">option</string>
+    <string name="next">next</string>
+    <string name="submit">submit</string>
 </resources>
