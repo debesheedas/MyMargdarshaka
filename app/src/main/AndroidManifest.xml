@@ -10,6 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyMargdarshaka">
         <activity
+            android:name=".MentorDetails1"
+            android:exported="true" />
+        <activity
+            android:name=".StudentDetails1"
+            android:exported="true" />
+        <activity
+            android:name=".MyStudents"
+            android:exported="true" />
+        <activity
+            android:name=".Mymentors"
+            android:exported="true" />
+        <activity
+            android:name=".AuthOtp"
+            android:exported="true" />
+        <activity
+            android:name=".AuthLogin"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

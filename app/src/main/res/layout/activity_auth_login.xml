@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    >
 
     <TextView
         android:id="@+id/textView2"
@@ -13,7 +13,7 @@
         android:layout_above="@id/phoneNumber"
         android:layout_centerInParent="true"
         android:layout_marginBottom="15dp"
-        android:text="@string/enter_the_otp"
+        android:text="@string/login_text"
         android:textColor="@color/purple_500"
         android:textSize="34sp"
         tools:layout_editor_absoluteX="181dp"
@@ -25,14 +25,19 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginHorizontal="50dp"
-        android:hint="@string/otp"
+        android:hint="@string/login_phone_number"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         >
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:id="@+id/phoneInput"
+            android:inputType="phone" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <Button
             android:id="@+id/getOTPButton"
@@ -42,23 +47,21 @@
             android:layout_centerInParent="true"
             android:backgroundTint="@color/purple_500"
             android:layout_marginTop="15dp"
-            android:text="@string/verify"
+            android:text="@string/get_otp_button_text"
             android:layout_below="@id/phoneNumber"
             app:cornerRadius="50dp" />
 
-        <Button
-            android:id="@+id/textButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_centerHorizontal="true"
-            android:text="NOT Phone number?"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            />
+            <ProgressBar
+                android:layout_width="57dp"
+                android:layout_height="57dp"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/spinner"
+                android:layout_marginTop="53dp"
+                android:visibility="gone"
+                android:layout_below="@+id/phoneNumber"/>
+
+        </FrameLayout>
 
     </com.google.android.material.textfield.TextInputLayout>
-
-
-
 
 </RelativeLayout>
