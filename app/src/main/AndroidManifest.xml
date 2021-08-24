@@ -10,10 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyMargdarshaka">
         <activity
-            android:name=".MentorDetails1"
+            android:name=".AuthSignupMentors2"
             android:exported="true" />
         <activity
-            android:name=".StudentDetails1"
+            android:name=".AuthSignupStudents2"
+            android:exported="true" />
+        <activity
+            android:name=".AuthSignupMentors1"
+            android:exported="true" />
+        <activity
+            android:name=".AuthSignupStudents1"
             android:exported="true" />
         <activity
             android:name=".MyStudents"
