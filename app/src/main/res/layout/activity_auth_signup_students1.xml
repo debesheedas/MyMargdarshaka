@@ -44,6 +44,97 @@
             android:text="Logout Student"
             tools:layout_editor_absoluteX="121dp"
             tools:layout_editor_absoluteY="162dp" />
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
 
-    </LinearLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailTextField"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="302dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="52dp"
+        android:hint="@string/email_label"
+        app:boxStrokeColor="#3A0CA3"
+        app:hintTextColor="#7209B7"
+        app:layout_constraintBottom_toTopOf="@+id/nameTextField"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColorHighlight="#3A0CA3"
+            android:textColorHint="#3A0CA3"
+            app:layout_constraintBottom_toBottomOf="@+id/emailTextField"
+            app:layout_constraintEnd_toEndOf="@+id/emailTextField"
+            app:layout_constraintStart_toStartOf="@+id/emailTextField"
+            app:layout_constraintTop_toTopOf="@+id/emailTextField" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nameTextField"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="302dp"
+        android:layout_height="64dp"
+        android:hint="@string/name_label"
+        app:boxStrokeColor="#3A0CA3"
+        app:hintTextColor="#7209B7"
+        app:layout_constraintBottom_toTopOf="@+id/class_select"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailTextField">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColorHighlight="#3A0CA3"
+            android:textColorHint="#3A0CA3"
+            app:layout_constraintBottom_toBottomOf="@+id/nameTextField"
+            app:layout_constraintEnd_toEndOf="@+id/nameTextField"
+            app:layout_constraintStart_toStartOf="@+id/nameTextField"
+            app:layout_constraintTop_toTopOf="@+id/nameTextField" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/class_select"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        android:layout_width="300dp"
+        android:layout_height="62dp"
+        android:hint="@string/class_label"
+        app:layout_constraintBottom_toTopOf="@+id/logout_student"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameTextField">
+
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/studentSignupButton1"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#00FFFFFF"
+        android:text="@string/next"
+        android:textColor="#4CC9F0"
+        app:cornerRadius="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/class_select"
+        app:strokeColor="#4CC9F0" />
+    <!--</LinearLayout>-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>

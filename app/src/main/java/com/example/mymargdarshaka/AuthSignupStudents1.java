@@ -14,7 +14,14 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class AuthSignupStudents1 extends AppCompatActivity {
+
 
     Button logout;
 
@@ -30,7 +37,25 @@ public class AuthSignupStudents1 extends AppCompatActivity {
         logout = (Button) findViewById(R.id.logout_student);
 
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        //List<String> list = Arrays.asList("Option 1", "Option 2");
+        //val items = listOf("Option 1", "Option 2", "Option 3", "Option 4")
+        //val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
+        //(textField.editText as? AutoCompleteTextView)?.setAdapter(adapter)
+        //menu = findViewById(R.id.class_select);
 
+//        ArrayAdapter<String> classesAdapter = new ArrayAdapter<>(
+//                this,
+//                android.R.layout.simple_list_item_1,
+//                classes);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
+                R.layout.list_item, classes);
+        //simpleListView.setAdapter(arrayAdapter);
+        //(AutoCompleteTextView)textField.editText.setAdapter(arrayAdapter);
+
+
+
+        logout=(Button) findViewById(R.id.studentSignupButton1);
+        sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

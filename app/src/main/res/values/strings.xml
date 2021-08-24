@@ -14,8 +14,14 @@
     <string name="question_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </string>
     <string name="question">Question</string>
     <string name="option">option</string>
-    <string name="next">next</string>
+    <string name="next">NEXT</string>
     <string name="submit">submit</string>
     <string name="guidelines_for_students">GUIDELINES FOR STUDENTS</string>
     <string name="guidelines_for_mentors">GUIDELINES FOR MENTORS</string>
+
+    <!--Sign Up UI Strings-->
+    <string name="email_label">Email</string>
+    <string name="name_label">Name</string>
+    <string name="class_label">Class</string>
+
 </resources>

@@ -45,10 +45,19 @@ public class MainActivity extends AppCompatActivity {
             startActivity(i);
         }
 
-        studentButton.setOnClickListener(new View.OnClickListener() {
+        /*studentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(MainActivity.this,AuthLogin.class);
+                i.putExtra("type","student");
+                startActivity(i);
+            }
+        });*/
+
+        studentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(MainActivity.this,AuthSignupStudents1.class);
                 i.putExtra("type","student");
                 startActivity(i);
             }
