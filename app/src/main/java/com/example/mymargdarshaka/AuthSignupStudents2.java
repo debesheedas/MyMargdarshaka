@@ -23,7 +23,7 @@ public class AuthSignupStudents2 extends AppCompatActivity {
 
         a = AuthSignupStudents1.text_view_class;
         String s = a.getEditableText().toString();
-        System.out.println(s);
+
         english = (CheckBox) findViewById(R.id.check_english);
         math = (CheckBox) findViewById(R.id.check_math);
         hindi = (CheckBox) findViewById(R.id.check_hindi);

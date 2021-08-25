@@ -15,6 +15,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,9 +43,47 @@ public class AuthSignupStudents1 extends AppCompatActivity {
                 editor.clear();
                 editor.commit();
 
-                Intent i = new Intent(AuthSignupStudents1.this, AuthSignupStudents2.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(i);
+                TextInputLayout nameInputLayout = findViewById(R.id.nameTextField);
+                String name = nameInputLayout.getEditText().getText().toString();
+
+                TextInputLayout emailInputLayout = findViewById(R.id.emailTextField);
+                String email = emailInputLayout.getEditText().getText().toString();
+
+                AutoCompleteTextView classInput = (AutoCompleteTextView)findViewById(R.id.text_view_class);
+                String class_selected = classInput.getEditableText().toString();
+
+                AutoCompleteTextView languageInput = (AutoCompleteTextView)findViewById(R.id.text_view_language);
+                String language_selected = languageInput.getEditableText().toString();
+
+                AutoCompleteTextView timeInput = (AutoCompleteTextView)findViewById(R.id.text_view_time);
+                String time_selected = timeInput.getEditableText().toString();
+
+                if(name.equals(""))
+                {
+                    Toast.makeText(getApplicationContext(), "Please Enter Name", Toast.LENGTH_SHORT).show();
+                }
+                else if(email.equals(""))
+                {
+                    Toast.makeText(getApplicationContext(), "Please Enter Email Address ", Toast.LENGTH_SHORT).show();
+                }
+                else if(class_selected.equals(""))
+                {
+                    Toast.makeText(getApplicationContext(), "Please Select a Class ", Toast.LENGTH_SHORT).show();
+                }
+                else if(language_selected.equals(""))
+                {
+                    Toast.makeText(getApplicationContext(), "Please Select a Preferred Language ", Toast.LENGTH_SHORT).show();
+                }
+                else if(time_selected.equals(""))
+                {
+                    Toast.makeText(getApplicationContext(), "Please Select a Preferred Time ", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Intent i = new Intent(AuthSignupStudents1.this, AuthSignupStudents2.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(i);
+                }
             }
         });
 
@@ -91,7 +130,7 @@ public class AuthSignupStudents1 extends AppCompatActivity {
 
         // adding a listener which responds to an option selection
         // using a toast to demonstrate
-        text_view_class.setOnItemClickListener((parent, view, position, id) -> Toast.makeText(getApplicationContext(), "Selected Item: " + classes.get(position), Toast.LENGTH_SHORT).show());
+        //text_view_class.setOnItemClickListener((parent, view, position, id) -> Toast.makeText(getApplicationContext(), "Selected Item: " + classes.get(position), Toast.LENGTH_SHORT).show());
 
 
     }

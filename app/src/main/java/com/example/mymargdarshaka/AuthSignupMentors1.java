@@ -9,12 +9,15 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 
 public class AuthSignupMentors1 extends AppCompatActivity {
 
-    Button logout;
+    Button next;
 
     SharedPreferences sharedPreferences;
 
@@ -25,20 +28,51 @@ public class AuthSignupMentors1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth_signup_mentors1);
 
-        logout=(Button) findViewById(R.id.mentorsSignupButton1);
+        next=(Button) findViewById(R.id.mentorsSignupButton1);
 
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
 
-        logout.setOnClickListener(new View.OnClickListener() {
+        next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.clear();
                 editor.commit();
 
-                Intent i = new Intent(AuthSignupMentors1.this,MainActivity.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(i);
+                TextInputLayout nameInputLayout = findViewById(R.id.nameTextField);
+                String name = nameInputLayout.getEditText().getText().toString();
+
+                TextInputLayout emailInputLayout = findViewById(R.id.emailTextField);
+                String email = emailInputLayout.getEditText().getText().toString();
+
+                AutoCompleteTextView languageInput = (AutoCompleteTextView)findViewById(R.id.text_view_language);
+                String language_selected = languageInput.getEditableText().toString();
+
+                AutoCompleteTextView timeInput = (AutoCompleteTextView)findViewById(R.id.text_view_time);
+                String time_selected = timeInput.getEditableText().toString();
+
+                if(name.equals(""))
+                {
+                    Toast.makeText(getApplicationContext(), "Please Enter Name", Toast.LENGTH_SHORT).show();
+                }
+                else if(email.equals(""))
+                {
+                    Toast.makeText(getApplicationContext(), "Please Enter Email Address ", Toast.LENGTH_SHORT).show();
+                }
+                else if(language_selected.equals(""))
+                {
+                    Toast.makeText(getApplicationContext(), "Please Select a Preferred Language ", Toast.LENGTH_SHORT).show();
+                }
+                else if(time_selected.equals(""))
+                {
+                    Toast.makeText(getApplicationContext(), "Please Select a Preferred Time ", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Intent i = new Intent(AuthSignupMentors1.this,AuthSignupMentors2.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(i);
+                }
             }
         });
 

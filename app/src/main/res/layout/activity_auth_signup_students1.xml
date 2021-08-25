@@ -31,6 +31,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColorHighlight="#3A0CA3"
@@ -58,6 +59,7 @@
             app:layout_constraintTop_toBottomOf="@+id/emailTextField">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nameText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColorHighlight="#3A0CA3"
