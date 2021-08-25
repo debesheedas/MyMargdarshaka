@@ -1,50 +1,98 @@
 package com.example.mymargdarshaka;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Pair;
+import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
-
 public class MyMentors extends AppCompatActivity {
 
-    Button logout;
-
     SharedPreferences sharedPreferences;
-
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+
+    com.google.android.material.appbar.MaterialToolbar topAppBar;
+    androidx.drawerlayout.widget.DrawerLayout drawerLayout;
+    NavigationView navigationView;
 
     private static final String SHARED_PREF_NAME = "login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mymentors);
-
-        logout=(Button) findViewById(R.id.logout_mentor);
-
+        setContentView(R.layout.activity_my_mentors);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
 
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.clear();
-                editor.commit();
+        topAppBar = findViewById(R.id.topAppBar);
+        drawerLayout = findViewById(R.id.drawerLayout);
+        navigationView = findViewById(R.id.navigationView);
 
-                Intent i = new Intent(MyMentors.this,MainActivity.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(i);
+        topAppBar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(Gravity.LEFT);
+            }
+        });
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Toast.makeText(getApplicationContext(), "menu item selected "+item.toString(), Toast.LENGTH_SHORT).show();
+
+                String choice = item.toString();
+                if(choice.equals("Guidelines"))
+                {
+                    Intent i = new Intent(MyMentors.this,GuidelinesForStudents.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(i);
+                }
+                else if(choice.equals("My Mentors"))
+                {
+                    //code to shift to Mentor Details Page
+                }
+                else if(choice.equals("Feedback"))
+                {
+                    //code for Feedback
+                }
+                else if(choice.equals("Logout"))
+                {
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.clear();
+                    editor.commit();
+
+                    Intent i = new Intent(MyMentors.this,MainActivity.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(i);
+                }
+
+                drawerLayout.closeDrawer(Gravity.START, true);
+                return true;
+            }
+        });
+
+
+
+//        logout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                SharedPreferences.Editor editor = sharedPreferences.edit();
+//                editor.clear();
+//                editor.commit();
+//
+//                Intent i = new Intent(MyMentors.this,MainActivity.class);
+//                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//                startActivity(i);
 
 //                firebaseDatabase=FirebaseDatabase.getInstance();
 //                databaseReference=firebaseDatabase.getReference("users");
@@ -93,8 +141,8 @@ public class MyMentors extends AppCompatActivity {
 //                MentorDetails mentorSchema = new MentorDetails("MyName","abc@gmail.com","9898989888",classes,prefLangs,times,regStudents,teachSubjects);
 //                databaseReference.setValue(mentorSchema);
 
-            }
-        });
+//            }
+//        });
 
     }
 }

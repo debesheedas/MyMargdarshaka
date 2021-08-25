@@ -63,21 +63,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        mentorButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i=new Intent(MainActivity.this,AuthLogin.class);
-//                i.putExtra("type","mentor");
-//                startActivity(i);
-//            }
-//        });
         mentorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(MainActivity.this,AuthSignupMentors1.class);
+                Intent i=new Intent(MainActivity.this,AuthLogin.class);
                 i.putExtra("type","mentor");
                 startActivity(i);
             }
         });
+//        mentorButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i=new Intent(MainActivity.this,AuthSignupMentors1.class);
+//                i.putExtra("type","mentor");
+//                startActivity(i);
+//            }
+//        });
     }
 }
