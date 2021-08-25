@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             Log.e("type: ",type);
 
             if(type.equals("student")) {
-                i = new Intent(MainActivity.this, Mymentors.class);
+                i = new Intent(MainActivity.this, MyMentors.class);
             }
             else{
                 i = new Intent(MainActivity.this, MyStudents.class);
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         studentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(MainActivity.this,AuthSignupStudents1.class);
+                Intent i=new Intent(MainActivity.this,GuidelinesForStudents.class);
                 i.putExtra("type","student");
                 startActivity(i);
             }
