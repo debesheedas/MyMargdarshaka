@@ -15,7 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class Mymentors extends AppCompatActivity {
+public class MyMentors extends AppCompatActivity {
 
     Button logout;
 
@@ -42,7 +42,7 @@ public class Mymentors extends AppCompatActivity {
                 editor.clear();
                 editor.commit();
 
-                Intent i = new Intent(Mymentors.this,MainActivity.class);
+                Intent i = new Intent(MyMentors.this,MainActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
 
