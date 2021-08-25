@@ -47,4 +47,11 @@
     <string name="class11">Class 11</string>
     <string name="class12">Class 12</string>
 
+    <!--Homepage UI Strings-->
+    <string name="guidelines_label">Guidelines</string>
+    <string name="my_mentors_label">My Mentors</string>
+    <string name="my_students_label">My Students</string>
+    <string name="feedback_label">Feedback</string>
+    <string name="logout_label">Logout</string>
+
 </resources>
