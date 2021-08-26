@@ -50,52 +50,61 @@
 
     <!--Options are filled with the same placeholder text-->
 
-    <LinearLayout
+    <RadioGroup
+        android:id="@+id/radio_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/card_question"
-        android:orientation="vertical">
+        android:layout_below="@+id/card_question"
+        android:layout_marginTop="15dp"
+        android:checkedButton="@+id/radio_button_1">
 
-        <Button
-            android:id="@+id/button_option_1"
+        <RadioButton
+            android:id="@+id/radio_button_1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="15dp"
-            android:backgroundTint="@color/pink"
-            android:text="@string/option"
-            app:cornerRadius="50dp" />
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:text="@string/option_1"
+            android:textAlignment="center"
+            android:textColor="@drawable/text_color" />
 
-        <Button
-            android:id="@+id/button_option_2"
+        <RadioButton
+            android:id="@+id/radio_button_2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="15dp"
-            android:backgroundTint="@color/pink"
-            android:text="@string/option"
-            app:cornerRadius="50dp" />
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:text="@string/option_2"
+            android:textAlignment="center"
+            android:textColor="@drawable/text_color" />
 
-        <Button
-            android:id="@+id/button_option_3"
+        <RadioButton
+            android:id="@+id/radio_button_3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="15dp"
-            android:backgroundTint="@color/pink"
-            android:text="@string/option"
-            app:cornerRadius="50dp" />
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:text="@string/option_3"
+            android:textAlignment="center"
+            android:textColor="@drawable/text_color" />
 
-        <Button
-            android:id="@+id/button_option_4"
+        <RadioButton
+            android:id="@+id/radio_button_4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="15dp"
-            android:backgroundTint="@color/pink"
-            android:text="@string/option"
-            app:cornerRadius="50dp" />
-
-    </LinearLayout>
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:text="@string/option_4"
+            android:textAlignment="center"
+            android:textColor="@drawable/text_color" />
+    </RadioGroup>
 
     <Button
-        android:id="@+id/outlinedButton"
+        android:id="@+id/button_next"
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -13,7 +13,11 @@
     <string name="otp">OTP</string>
     <string name="question_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </string>
     <string name="question">Question</string>
-    <string name="option">option</string>
+    <string name="option">OPTION</string>
+    <string name="option_1">OPTION 1</string>
+    <string name="option_2">OPTION 2</string>
+    <string name="option_3">OPTION 3</string>
+    <string name="option_4">OPTION 4</string>
     <string name="next">NEXT</string>
     <string name="submit">SUBMIT</string>
     <string name="guidelines_for_students">GUIDELINES FOR STUDENTS</string>
@@ -46,5 +50,12 @@
     <string name="class10">Class 10</string>
     <string name="class11">Class 11</string>
     <string name="class12">Class 12</string>
+
+    <!--Homepage UI Strings-->
+    <string name="guidelines_label">Guidelines</string>
+    <string name="my_mentors_label">My Mentors</string>
+    <string name="my_students_label">My Students</string>
+    <string name="feedback_label">Feedback</string>
+    <string name="logout_label">Logout</string>
 
 </resources>
