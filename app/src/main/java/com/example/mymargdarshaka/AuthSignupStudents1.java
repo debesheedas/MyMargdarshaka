@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -80,10 +81,26 @@ public class AuthSignupStudents1 extends AppCompatActivity {
                 }
                 else
                 {
+                    Log.e("margaApp", name);
+                    Log.e("margaApp", email);
+                    Log.e("margaApp", class_selected);
+                    Log.e("margaApp", language_selected);
+                    Log.e("margaApp", time_selected);
+
                     Intent i = new Intent(AuthSignupStudents1.this, AuthSignupStudents2.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                    // to send collected data to the next activity
+                    i.putExtra("name", name);
+                    i.putExtra("email", email);
+                    i.putExtra("class_selected", class_selected);
+                    i.putExtra("language_selected", language_selected);
+                    i.putExtra("time_selected", time_selected);
+
                     startActivity(i);
                 }
+
+
             }
         });
 

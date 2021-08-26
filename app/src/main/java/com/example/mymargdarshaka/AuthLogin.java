@@ -83,7 +83,7 @@ public class AuthLogin extends AppCompatActivity {
         });
     }
 
-    public void check(ProgressBar pBar){
+    public void check(ProgressBar pBar){    
         firebaseDatabase=FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference("users");
 
