@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String SHARED_PREF_NAME = "myMargdarshaka";
     private static final String TYPE="userType";
 
-    ImageSwitcher imageSwitcher;
     ImageView imageView;
 
     static int count=1;
@@ -34,6 +33,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //To make the default Action Bar on top with the App name disappear
+        //need to add this on every page
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
         studentButton=(Button) findViewById(R.id.studentLoginButton);
         mentorButton=(Button) findViewById(R.id.mentorLoginButton);
         rightButton=(ImageButton) findViewById(R.id.rightButton);
@@ -112,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         studentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(MainActivity.this,AuthLogin.class);
+                Intent i=new Intent(MainActivity.this,GuidelinesForMentors.class);
                 i.putExtra("userType","student");
                 startActivity(i);
             }

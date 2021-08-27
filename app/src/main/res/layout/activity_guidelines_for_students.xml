@@ -41,34 +41,6 @@
             <!-- Use app:layout_behavior="@string/appbar_scrolling_view_behavior" to fit below top app bar -->
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
-        <!--    <androidx.coordinatorlayout.widget.CoordinatorLayout-->
-        <!--        android:id="@+id/coordinatorLayout"-->
-        <!--        android:layout_width="match_parent"-->
-        <!--        android:layout_height="match_parent">-->
-
-        <!--        <com.google.android.material.appbar.AppBarLayout-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content">-->
-
-        <!--            <com.google.android.material.appbar.MaterialToolbar-->
-        <!--                android:id="@+id/topAppBar"-->
-        <!--                style="@style/Widget.MaterialComponents.Toolbar.Primary"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="?attr/actionBarSize"-->
-        <!--                app:menu="@menu/top_app_bar"-->
-        <!--                app:navigationIcon="@drawable/ic_menu_24dp"-->
-        <!--                app:title="Title" />-->
-
-        <!--        </com.google.android.material.appbar.AppBarLayout>-->
-
-        <!--        &lt;!&ndash; Note: A RecyclerView can also be used &ndash;&gt;-->
-        <!--        <androidx.core.widget.NestedScrollView-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="match_parent"-->
-        <!--            app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
-
         <!-- Scrollable content -->
 
         <ScrollView
@@ -98,79 +70,130 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     app:contentPadding="10dp">
-
                     <TextView
+                        android:id="@+id/s_guideline1"
+                        android:text="@string/s_guideline1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/question_text"
                         android:textAppearance="?attr/textAppearanceBody2"
                         android:textColor="?android:attr/textColorSecondary" />
-
-
                 </com.google.android.material.card.MaterialCardView>
-
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     app:contentPadding="10dp">
-
                     <TextView
+                        android:id="@+id/s_guideline2"
+                        android:text="@string/s_guideline2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/question_text"
                         android:textAppearance="?attr/textAppearanceBody2"
                         android:textColor="?android:attr/textColorSecondary" />
-
-
                 </com.google.android.material.card.MaterialCardView>
-
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     app:contentPadding="10dp">
-
                     <TextView
+                        android:id="@+id/s_guideline3"
+                        android:text="@string/s_guideline3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/question_text"
                         android:textAppearance="?attr/textAppearanceBody2"
                         android:textColor="?android:attr/textColorSecondary" />
-
-
                 </com.google.android.material.card.MaterialCardView>
-
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     app:contentPadding="10dp">
-
                     <TextView
+                        android:id="@+id/s_guideline4"
+                        android:text="@string/s_guideline4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/question_text"
                         android:textAppearance="?attr/textAppearanceBody2"
                         android:textColor="?android:attr/textColorSecondary" />
-
-
                 </com.google.android.material.card.MaterialCardView>
-
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     app:contentPadding="10dp">
-
                     <TextView
+                        android:id="@+id/s_guideline5"
+                        android:text="@string/s_guideline5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/question_text"
                         android:textAppearance="?attr/textAppearanceBody2"
                         android:textColor="?android:attr/textColorSecondary" />
-
-
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    app:contentPadding="10dp">
+                    <TextView
+                        android:id="@+id/s_guideline6"
+                        android:text="@string/s_guideline6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        android:textColor="?android:attr/textColorSecondary" />
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    app:contentPadding="10dp">
+                    <TextView
+                        android:id="@+id/s_guideline7"
+                        android:text="@string/s_guideline7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        android:textColor="?android:attr/textColorSecondary" />
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    app:contentPadding="10dp">
+                    <TextView
+                        android:id="@+id/s_guideline8"
+                        android:text="@string/s_guideline8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        android:textColor="?android:attr/textColorSecondary" />
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    app:contentPadding="10dp">
+                    <TextView
+                        android:id="@+id/s_guideline9"
+                        android:text="@string/s_guideline9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        android:textColor="?android:attr/textColorSecondary" />
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    app:contentPadding="10dp">
+                    <TextView
+                        android:id="@+id/s_guideline10"
+                        android:text="@string/s_guideline10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        android:textColor="?android:attr/textColorSecondary" />
                 </com.google.android.material.card.MaterialCardView>
 
             </LinearLayout>
@@ -178,7 +201,7 @@
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigationView"
-            app:menu="@menu/navigation_drawer"
+            app:menu="@menu/navigation_drawer_student"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start" />
