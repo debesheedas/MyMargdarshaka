@@ -63,10 +63,10 @@ public class AuthSignupStudents1 extends AppCompatActivity {
                 {
                     Toast.makeText(getApplicationContext(), "Please Enter Name", Toast.LENGTH_SHORT).show();
                 }
-                else if(email.equals(""))
-                {
-                    Toast.makeText(getApplicationContext(), "Please Enter Email Address ", Toast.LENGTH_SHORT).show();
-                }
+//                else if(email.equals(""))
+//                {
+//                    Toast.makeText(getApplicationContext(), "Please Enter Email Address ", Toast.LENGTH_SHORT).show();
+//                }
                 else if(class_selected.equals(""))
                 {
                     Toast.makeText(getApplicationContext(), "Please Select a Class ", Toast.LENGTH_SHORT).show();

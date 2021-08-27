@@ -68,6 +68,7 @@ public class AuthLogin extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
 
                 if(editable.toString().length() == 10){
+                    setLoading(true);
                     check();
                 }
             }
@@ -103,8 +104,9 @@ public class AuthLogin extends AppCompatActivity {
         usersRef.orderByChild("phone").equalTo(phoneInput.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                setLoading(true);
                 for(DataSnapshot users: snapshot.getChildren()){
+                    setLoading(true);
                     Log.e("User key", users.getKey());
                     Log.e("User val", users.getValue().toString());
 
@@ -112,7 +114,9 @@ public class AuthLogin extends AppCompatActivity {
                     if(!getIntent().getStringExtra("userType").equals("student")){
                         fine=false;
                     }
+                    setLoading(false);
                 }
+                setLoading(false);
             }
 
             @Override
@@ -130,13 +134,17 @@ public class AuthLogin extends AppCompatActivity {
             mentorsRef.orderByChild("phone").equalTo(phoneInput.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    setLoading(true);
                     for(DataSnapshot child: snapshot.getChildren()){
+                        setLoading(true);
                         Log.e("User key", child.getKey());
                         Log.e("User val", child.getValue().toString());
                         if(getIntent().getStringExtra("userType").equals("student")){
                             fine=false;
                         }
+                        setLoading(false);
                     }
+                    setLoading(false);
                 }
 
                 @Override

@@ -39,6 +39,7 @@ public class AuthOtp extends AppCompatActivity {
         setContentView(R.layout.activity_auth_otp);
 
         verificationId = getIntent().getStringExtra("verificationId");
+        Log.e("verificationId: ",verificationId);
         otpInput = (com.google.android.material.textfield.TextInputEditText) findViewById(R.id.otp_input);
         verify = (Button) findViewById(R.id.verifyOTPButton);
         resend = (Button) findViewById(R.id.resend_otp);
@@ -68,12 +69,12 @@ public class AuthOtp extends AppCompatActivity {
                             editor.putString(TYPE,getIntent().getStringExtra("type"));
                             editor.apply();
 
-                            Log.e("Auth otp type: ",getIntent().getStringExtra("type"));
+                            Log.e("Auth otp type: ",getIntent().getStringExtra("userType"));
 
                             Toast.makeText(AuthOtp.this,"Successful",Toast.LENGTH_SHORT).show();
 
                             Intent i;
-                            if(getIntent().getStringExtra("type").equals("student"))
+                            if(getIntent().getStringExtra("userType").equals("student"))
                                 i = new Intent(AuthOtp.this, AuthSignupStudents1.class);
                             else
                                 i = new Intent(AuthOtp.this, AuthSignupMentors1.class);
