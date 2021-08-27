@@ -1,5 +1,6 @@
 package com.example.mymargdarshaka;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,9 +12,13 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -23,6 +28,7 @@ public class AuthSignupStudents2 extends AppCompatActivity {
 
     CheckBox english, math, hindi, telugu, physics, chemistry, biology, history, geography, science, social;
     Button submit_button;
+    private DatabaseReference rootRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,7 +124,7 @@ public class AuthSignupStudents2 extends AppCompatActivity {
 
                 DatabaseReference newStudentRef = FirebaseDatabase.getInstance().getReference("users").push();
 
-                newStudentRef.setValue(new UserSchema(newStudentRef.getKey(), name, email, phone, class_selected, language_selected, subjects, time_selected, regSub));
+//                newStudentRef.setValue(new UserSchema(newStudentRef.getKey(), name, email, phone, class_selected, language_selected, subjects, time_selected, regSub));
 
                 //newStudentRef.child("name").setValue(name);
                 //newStudentRef.child("email").setValue(email);
@@ -127,7 +133,36 @@ public class AuthSignupStudents2 extends AppCompatActivity {
                 //newStudentRef.child("timeSlots").setValue(time_selected);
                 //newStudentRef.child("intrSubjects").setValue(subjects);
 
-                Intent i = new Intent(AuthSignupStudents2.this, MainActivity.class);
+//                firebaseDatabase=FirebaseDatabase.getInstance();
+//                databaseReference=firebaseDatabase.getReference("users");
+                String key=newStudentRef.getKey();
+//                newStudentRef=newStudentRef.child(key);
+
+                UserDetails userSchema = new UserDetails(name,email,phone,class_selected,language_selected,subjects,time_selected,regSub);
+                newStudentRef.setValue(userSchema);
+
+
+//                DatabaseReference mentorsRef = rootRef.child("mentors");
+//                mentorsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        for(DataSnapshot child: snapshot.getChildren()){
+//                            Log.e("Mentor key", child.getKey());
+//                            Log.e("Mentor val", child.getValue().toString());
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//                        Toast.makeText(AuthLogin.this,error.getMessage().toString(),Toast.LENGTH_LONG).show();
+//                        Intent i = new Intent(AuthLogin.this,MainActivity.class);
+//                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        startActivity(i);
+//                    }
+//                });
+
+
+                Intent i = new Intent(AuthSignupStudents2.this, MyMentors.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
             }
