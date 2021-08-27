@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -73,31 +74,58 @@ public class AuthSignupStudents2 extends AppCompatActivity {
                 String email  = extras.getString("email");
                 String class_selected = extras.getString("class_selected");
                 String language_selected  = extras.getString("language_selected");
+                String phone = extras.getString("phone");
                 String time_selected  = extras.getString("time_selected");
-
                 ArrayList<String> subjects = new ArrayList<>();
+                ArrayList<Pair<String, String>> regSub = new ArrayList<>();
 
                 if(english.isChecked()){
                     subjects.add("english");
+                    regSub.add(new Pair<>("english", "mentorid1"));
                 }
                 if(hindi.isChecked()){
                     subjects.add("hindi");
+                    regSub.add(new Pair<>("english", "mentorid2"));
                 }
                 if(telugu.isChecked()){
                     subjects.add("telugu");
+                    regSub.add(new Pair<>("english", "mentorid3"));
                 }
-                if(maths.isChecked()){
-                    subjects.add("hindi");
+                if(math.isChecked()){
+                    subjects.add("math");
+                }
+                if(physics.isChecked()){
+                    subjects.add("physics");
+                }
+                if(chemistry.isChecked()){
+                    subjects.add("chemistry");
+                }
+                if(biology.isChecked()){
+                    subjects.add("biology");
+                }
+                if(history.isChecked()){
+                    subjects.add("history");
+                }
+                if(geography.isChecked()){
+                    subjects.add("geography");
+                }
+                if(social.isChecked()){
+                    subjects.add("social");
+                }
+                if(science.isChecked()){
+                    subjects.add("science");
                 }
 
-                FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                DatabaseReference newStudentRef = firebaseDatabase.getReference("users").push();
-                newStudentRef.child("name").setValue(name);
-                newStudentRef.child("email").setValue(email);
-                newStudentRef.child("standard").setValue(class_selected);
-                newStudentRef.child("prefLang").setValue(language_selected);
-                newStudentRef.child("timeSlots").setValue(time_selected);
-                newStudentRef.child("intrSubjects").setValue(subjects);
+                DatabaseReference newStudentRef = FirebaseDatabase.getInstance().getReference("users").push();
+
+                newStudentRef.setValue(new UserSchema(newStudentRef.getKey(), name, email, phone, class_selected, language_selected, subjects, time_selected, regSub));
+
+                //newStudentRef.child("name").setValue(name);
+                //newStudentRef.child("email").setValue(email);
+                //newStudentRef.child("standard").setValue(class_selected);
+                //newStudentRef.child("prefLang").setValue(language_selected);
+                //newStudentRef.child("timeSlots").setValue(time_selected);
+                //newStudentRef.child("intrSubjects").setValue(subjects);
 
                 Intent i = new Intent(AuthSignupStudents2.this, MainActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

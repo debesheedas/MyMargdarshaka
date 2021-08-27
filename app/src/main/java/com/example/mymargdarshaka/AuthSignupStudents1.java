@@ -96,6 +96,7 @@ public class AuthSignupStudents1 extends AppCompatActivity {
                     i.putExtra("class_selected", class_selected);
                     i.putExtra("language_selected", language_selected);
                     i.putExtra("time_selected", time_selected);
+                    i.putExtra("phone", getIntent().getStringExtra("phone"));
 
                     startActivity(i);
                 }

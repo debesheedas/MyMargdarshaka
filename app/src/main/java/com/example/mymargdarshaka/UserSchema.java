@@ -10,9 +10,9 @@ public class UserSchema {
 
     public UserSchema(){}
 
-    public UserSchema(String id, String name, String email, String phone, String standard, String prefLang, ArrayList<String> intrSubjects, ArrayList<String> timeSlots, ArrayList<Pair<String,String>> regSubjects){
+    public UserSchema(String id, String name, String email, String phone, String standard, String prefLang, ArrayList<String> intrSubjects, String timeSlot, ArrayList<Pair<String,String>> regSubjects){
         this.id=id;
-        this.userDetails=new UserDetails(name,email,phone,standard,prefLang,intrSubjects,timeSlots,regSubjects);
+        this.userDetails=new UserDetails(name,email,phone,standard,prefLang,intrSubjects,timeSlot,regSubjects);
     }
 
     public String getId(){

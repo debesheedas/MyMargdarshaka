@@ -28,7 +28,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="0px" >
+            android:padding="0px">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -57,8 +57,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/english"
-                                android:textAppearance="?attr/textAppearanceHeadline6"
-                                />
+                                android:textAppearance="?attr/textAppearanceHeadline6" />
+
                             <CheckBox
                                 android:id="@+id/check_english6"
                                 android:layout_width="match_parent"
@@ -66,10 +66,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class6"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_english7"
                                 android:layout_width="match_parent"
@@ -77,10 +78,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class7"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_english8"
                                 android:layout_width="match_parent"
@@ -88,10 +90,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class8"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_english9"
                                 android:layout_width="match_parent"
@@ -99,10 +102,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class9"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_english10"
                                 android:layout_width="match_parent"
@@ -110,10 +114,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class10"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_english11"
                                 android:layout_width="match_parent"
@@ -121,10 +126,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class11"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_english12"
                                 android:layout_width="match_parent"
@@ -132,15 +138,16 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class12"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
 
                         </LinearLayout>
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/card_hind"
                     android:layout_width="match_parent"
@@ -163,8 +170,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/hindi"
-                                android:textAppearance="?attr/textAppearanceHeadline6"
-                                />
+                                android:textAppearance="?attr/textAppearanceHeadline6" />
+
                             <CheckBox
                                 android:id="@+id/check_hindi6"
                                 android:layout_width="match_parent"
@@ -172,10 +179,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class6"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_hindi7"
                                 android:layout_width="match_parent"
@@ -183,10 +191,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class7"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_hindi8"
                                 android:layout_width="match_parent"
@@ -194,10 +203,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class8"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_hindi9"
                                 android:layout_width="match_parent"
@@ -205,10 +215,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class9"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_hindi10"
                                 android:layout_width="match_parent"
@@ -216,10 +227,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class10"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_hindi11"
                                 android:layout_width="match_parent"
@@ -227,10 +239,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class11"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_hindi12"
                                 android:layout_width="match_parent"
@@ -238,15 +251,16 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class12"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
 
                         </LinearLayout>
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/card_telugu"
                     android:layout_width="match_parent"
@@ -269,8 +283,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/telugu"
-                                android:textAppearance="?attr/textAppearanceHeadline6"
-                                />
+                                android:textAppearance="?attr/textAppearanceHeadline6" />
+
                             <CheckBox
                                 android:id="@+id/check_telugu6"
                                 android:layout_width="match_parent"
@@ -278,10 +292,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class6"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_telugu7"
                                 android:layout_width="match_parent"
@@ -289,10 +304,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class7"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_telugu8"
                                 android:layout_width="match_parent"
@@ -300,10 +316,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class8"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_telugu9"
                                 android:layout_width="match_parent"
@@ -311,10 +328,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class9"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_telugu10"
                                 android:layout_width="match_parent"
@@ -322,10 +340,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class10"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_telugu11"
                                 android:layout_width="match_parent"
@@ -333,10 +352,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class11"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_telugu12"
                                 android:layout_width="match_parent"
@@ -344,15 +364,16 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class12"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
 
                         </LinearLayout>
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/card_math"
                     android:layout_width="match_parent"
@@ -375,8 +396,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/math"
-                                android:textAppearance="?attr/textAppearanceHeadline6"
-                                />
+                                android:textAppearance="?attr/textAppearanceHeadline6" />
+
                             <CheckBox
                                 android:id="@+id/check_math6"
                                 android:layout_width="match_parent"
@@ -384,10 +405,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class6"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_math7"
                                 android:layout_width="match_parent"
@@ -395,10 +417,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class7"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_math8"
                                 android:layout_width="match_parent"
@@ -406,10 +429,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class8"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_math9"
                                 android:layout_width="match_parent"
@@ -417,10 +441,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class9"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_math10"
                                 android:layout_width="match_parent"
@@ -428,10 +453,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class10"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_math11"
                                 android:layout_width="match_parent"
@@ -439,10 +465,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class11"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_math12"
                                 android:layout_width="match_parent"
@@ -450,15 +477,16 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class12"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
 
                         </LinearLayout>
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/card_physics"
                     android:layout_width="match_parent"
@@ -481,8 +509,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/physics"
-                                android:textAppearance="?attr/textAppearanceHeadline6"
-                                />
+                                android:textAppearance="?attr/textAppearanceHeadline6" />
+
                             <CheckBox
                                 android:id="@+id/check_physics11"
                                 android:layout_width="match_parent"
@@ -490,10 +518,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class11"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_physics12"
                                 android:layout_width="match_parent"
@@ -501,15 +530,16 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class12"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
 
                         </LinearLayout>
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/card_chemistry"
                     android:layout_width="match_parent"
@@ -532,8 +562,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/chemistry"
-                                android:textAppearance="?attr/textAppearanceHeadline6"
-                                />
+                                android:textAppearance="?attr/textAppearanceHeadline6" />
+
                             <CheckBox
                                 android:id="@+id/check_chemistry11"
                                 android:layout_width="match_parent"
@@ -541,10 +571,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class11"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_chemistry12"
                                 android:layout_width="match_parent"
@@ -552,15 +583,16 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class12"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
 
                         </LinearLayout>
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/card_biology"
                     android:layout_width="match_parent"
@@ -583,8 +615,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/biology"
-                                android:textAppearance="?attr/textAppearanceHeadline6"
-                                />
+                                android:textAppearance="?attr/textAppearanceHeadline6" />
+
                             <CheckBox
                                 android:id="@+id/check_biology11"
                                 android:layout_width="match_parent"
@@ -592,10 +624,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class11"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_biology12"
                                 android:layout_width="match_parent"
@@ -603,15 +636,16 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class12"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
 
                         </LinearLayout>
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/card_history"
                     android:layout_width="match_parent"
@@ -634,8 +668,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/history"
-                                android:textAppearance="?attr/textAppearanceHeadline6"
-                                />
+                                android:textAppearance="?attr/textAppearanceHeadline6" />
+
                             <CheckBox
                                 android:id="@+id/check_history11"
                                 android:layout_width="match_parent"
@@ -643,10 +677,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class11"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_history12"
                                 android:layout_width="match_parent"
@@ -654,15 +689,16 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class12"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
 
                         </LinearLayout>
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/card_geography"
                     android:layout_width="match_parent"
@@ -685,8 +721,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/geography"
-                                android:textAppearance="?attr/textAppearanceHeadline6"
-                                />
+                                android:textAppearance="?attr/textAppearanceHeadline6" />
+
                             <CheckBox
                                 android:id="@+id/check_geography11"
                                 android:layout_width="match_parent"
@@ -694,10 +730,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class11"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_geography12"
                                 android:layout_width="match_parent"
@@ -705,15 +742,16 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class12"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
 
                         </LinearLayout>
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/card_science"
                     android:layout_width="match_parent"
@@ -736,8 +774,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/science"
-                                android:textAppearance="?attr/textAppearanceHeadline6"
-                                />
+                                android:textAppearance="?attr/textAppearanceHeadline6" />
+
                             <CheckBox
                                 android:id="@+id/check_science6"
                                 android:layout_width="match_parent"
@@ -745,10 +783,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class6"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_science7"
                                 android:layout_width="match_parent"
@@ -756,10 +795,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class7"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_science8"
                                 android:layout_width="match_parent"
@@ -767,10 +807,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class8"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_science9"
                                 android:layout_width="match_parent"
@@ -778,10 +819,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class9"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_science10"
                                 android:layout_width="match_parent"
@@ -789,15 +831,16 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class10"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
 
                         </LinearLayout>
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/card_social"
                     android:layout_width="match_parent"
@@ -820,8 +863,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/social"
-                                android:textAppearance="?attr/textAppearanceHeadline6"
-                                />
+                                android:textAppearance="?attr/textAppearanceHeadline6" />
+
                             <CheckBox
                                 android:id="@+id/check_social6"
                                 android:layout_width="match_parent"
@@ -829,10 +872,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class6"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_social7"
                                 android:layout_width="match_parent"
@@ -840,10 +884,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class7"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_social8"
                                 android:layout_width="match_parent"
@@ -851,10 +896,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class8"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_social9"
                                 android:layout_width="match_parent"
@@ -862,10 +908,11 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class9"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
+
                             <CheckBox
                                 android:id="@+id/check_social10"
                                 android:layout_width="match_parent"
@@ -873,9 +920,9 @@
                                 android:buttonTint="#B5179E"
                                 android:checked="false"
                                 android:text="@string/class10"
-                                android:textColorLink="#B5179E"
                                 android:textAppearance="?attr/textAppearanceBody2"
                                 android:textColor="?android:attr/textColorSecondary"
+                                android:textColorLink="#B5179E"
                                 app:useMaterialThemeColors="false" />
 
                         </LinearLayout>
