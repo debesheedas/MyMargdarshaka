@@ -6,14 +6,13 @@ import java.util.ArrayList;
 
 public class UserDetails {
 
-    String name,email,phone,standard,prefLang;
+    String name,email,phone,standard,prefLang, timeSlot;
     ArrayList<String> intrSubjects;
-    ArrayList<String> timeSlots;
     ArrayList<Pair<String,String>> regSubjects;
 
     public UserDetails(){}
 
-    public UserDetails(String name, String email, String phone, String standard, String prefLang, ArrayList<String> intrSubjects, ArrayList<String> timeSlots, ArrayList<Pair<String,String>> regSubjects){
+    public UserDetails(String name, String email, String phone, String standard, String prefLang, ArrayList<String> intrSubjects, String timeSlot, ArrayList<Pair<String,String>> regSubjects){
         this.name=name;
         this.email=email;
         this.phone=phone;
@@ -21,7 +20,7 @@ public class UserDetails {
         this.prefLang=prefLang;
         this.intrSubjects=intrSubjects;
         this.regSubjects=regSubjects;
-        this.timeSlots=timeSlots;
+        this.timeSlot=timeSlot;
     }
 
     public String getName(){
@@ -42,9 +41,7 @@ public class UserDetails {
     public ArrayList<String> getIntrSubjects(){
         return intrSubjects;
     }
-    public ArrayList<String> getTimeSlots(){
-        return timeSlots;
-    }
+    public String getTimeSlot(){ return timeSlot; }
     public ArrayList<Pair<String,String>> getRegSubjects(){
         return regSubjects;
     }

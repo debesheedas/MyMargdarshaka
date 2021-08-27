@@ -24,25 +24,23 @@ import java.util.concurrent.TimeUnit;
 
 public class AuthOtp extends AppCompatActivity {
 
-    String otp_original;
-
+    String verificationId;
     com.google.android.material.textfield.TextInputEditText otpInput;
-    Button verify;
-    Button resend;
+    Button verify, resend;
 
     SharedPreferences sharedPreferences;
 
-    private static final String SHARED_PREF_NAME = "login";
-    private static final String TYPE="";
+    private static final String SHARED_PREF_NAME = "myMargdarshaka";
+    private static final String TYPE = "userType";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth_otp);
 
-        otp_original = getIntent().getStringExtra("otp_orig");
+        verificationId = getIntent().getStringExtra("verificationId");
         otpInput = (com.google.android.material.textfield.TextInputEditText) findViewById(R.id.otp_input);
-        verify = (Button) findViewById(R.id.getOTPButton);
+        verify = (Button) findViewById(R.id.verifyOTPButton);
         resend = (Button) findViewById(R.id.resend_otp);
         final ProgressBar pBar2=(ProgressBar) findViewById(R.id.spinner2);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
@@ -50,15 +48,17 @@ public class AuthOtp extends AppCompatActivity {
         verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(otp_original==null){
+                if(verificationId == null){
                     Toast.makeText(AuthOtp.this,"Check Your Internet Connection",Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Toast.makeText(AuthOtp.this,otp_original,Toast.LENGTH_LONG).show();
+                    Toast.makeText(AuthOtp.this,verificationId,Toast.LENGTH_LONG).show();
                 }
+
                 PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.getCredential(
-                        otp_original,otpInput.getText().toString()
+                        verificationId,otpInput.getText().toString()
                 );
+
                 FirebaseAuth.getInstance().signInWithCredential(phoneAuthCredential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -73,12 +73,13 @@ public class AuthOtp extends AppCompatActivity {
                             Toast.makeText(AuthOtp.this,"Successful",Toast.LENGTH_SHORT).show();
 
                             Intent i;
-                            if(getIntent().getStringExtra("type").equals("student")) {
+                            if(getIntent().getStringExtra("type").equals("student"))
                                 i = new Intent(AuthOtp.this, AuthSignupStudents1.class);
-                            }
-                            else{
+                            else
                                 i = new Intent(AuthOtp.this, AuthSignupMentors1.class);
-                            }
+
+                            i.putExtra("phone", getIntent().getStringExtra("phone"));
+                            //clears the previous app stack
                             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(i);
                         }
@@ -104,7 +105,7 @@ public class AuthOtp extends AppCompatActivity {
                         AuthOtp.this,
                         new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                             @Override
-                            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                            public void onVerificationCompleted(@NonNull PhoneAuthCredential credential) {
                                 pBar2.setVisibility(View.GONE);
                                 resend.setVisibility(View.GONE);
                                 Toast.makeText(AuthOtp.this,"Phone number verified",Toast.LENGTH_SHORT).show();
@@ -118,8 +119,8 @@ public class AuthOtp extends AppCompatActivity {
                             }
 
                             @Override
-                            public void onCodeSent(@NonNull String str, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                                otp_original=str;
+                            public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                                verificationId = s;
                                 pBar2.setVisibility(View.GONE);
                                 resend.setVisibility(View.GONE);
                             }

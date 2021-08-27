@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,6 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.Semaphore;
@@ -32,22 +34,24 @@ import com.google.android.gms.tasks.Tasks;
 
 public class AuthLogin extends AppCompatActivity {
 
-    com.google.android.material.textfield.TextInputEditText phoneInput;
-    Button getOtpButton;
+    private com.google.android.material.textfield.TextInputEditText phoneInput;
+    private ProgressBar pBar;
+    private Button getOtpButton;
 
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
+    private DatabaseReference rootRef;
 
-    boolean fine=true;
+    private boolean fine = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth_login);
 
+        // initializing variables
         phoneInput = (com.google.android.material.textfield.TextInputEditText) findViewById(R.id.phoneInput);
-        final ProgressBar pBar=(ProgressBar) findViewById(R.id.spinner);
+        pBar = (ProgressBar) findViewById(R.id.spinner);
         getOtpButton = (Button) findViewById(R.id.getOTPButton);
+        rootRef = FirebaseDatabase.getInstance().getReference();
 
         phoneInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -62,11 +66,9 @@ public class AuthLogin extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(editable.toString().length()==10){
-                    Log.e("helloheoold: ",editable.toString());
-                    pBar.setVisibility(View.VISIBLE);
-                    getOtpButton.setVisibility(View.GONE);
-                    check(pBar);
+
+                if(editable.toString().length() == 10){
+                    check();
                 }
             }
         });
@@ -74,35 +76,42 @@ public class AuthLogin extends AppCompatActivity {
         getOtpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pBar.setVisibility(View.VISIBLE);
-                getOtpButton.setVisibility(View.GONE);
-
-                generateOtp(pBar);
+                setLoading(true);
+                generateOtp();
 
             }
         });
     }
 
-    public void check(ProgressBar pBar){
-        firebaseDatabase=FirebaseDatabase.getInstance();
-        databaseReference=firebaseDatabase.getReference("users");
+    void setLoading(boolean b){
+        if(b){
+            pBar.setVisibility(View.VISIBLE);
+            getOtpButton.setVisibility(View.GONE);
+        }else{
+            pBar.setVisibility(View.GONE);
+            getOtpButton.setVisibility(View.VISIBLE);
+        }
+    }
 
-        databaseReference.orderByChild("phone").equalTo(phoneInput.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+    // checks if the phone number is in the database and for the right type of user and sets the "fine" variable.
+    public void check(){
+
+        setLoading(true);
+
+        // checking in the users
+        DatabaseReference usersRef = rootRef.child("users");
+        usersRef.orderByChild("phone").equalTo(phoneInput.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                for(DataSnapshot child: snapshot.getChildren()){
-                    pBar.setVisibility(View.VISIBLE);
-                    getOtpButton.setVisibility(View.GONE);
-                    Log.e("User key", child.getKey());
-                    Log.e("User val", child.getValue().toString());
+                for(DataSnapshot users: snapshot.getChildren()){
+                    Log.e("User key", users.getKey());
+                    Log.e("User val", users.getValue().toString());
 
-                    if(getIntent().getStringExtra("type").equals("mentor")){
+                    //
+                    if(!getIntent().getStringExtra("userType").equals("student")){
                         fine=false;
-                        Log.e("abc:::::::","hello");
                     }
-                    pBar.setVisibility(View.GONE);
-                    getOtpButton.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -116,22 +125,17 @@ public class AuthLogin extends AppCompatActivity {
         });
 
         if(fine){
-            databaseReference=firebaseDatabase.getReference("mentors");
 
-            databaseReference.orderByChild("phone").equalTo(phoneInput.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+            DatabaseReference mentorsRef = rootRef.child("mentors");
+            mentorsRef.orderByChild("phone").equalTo(phoneInput.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for(DataSnapshot child: snapshot.getChildren()){
-                        pBar.setVisibility(View.VISIBLE);
-                        getOtpButton.setVisibility(View.GONE);
                         Log.e("User key", child.getKey());
                         Log.e("User val", child.getValue().toString());
-                        if(getIntent().getStringExtra("type").equals("student")){
-                            Log.e("xyz:::::::","hello");
+                        if(getIntent().getStringExtra("userType").equals("student")){
                             fine=false;
                         }
-                        pBar.setVisibility(View.GONE);
-                        getOtpButton.setVisibility(View.VISIBLE);
                     }
                 }
 
@@ -144,11 +148,13 @@ public class AuthLogin extends AppCompatActivity {
                 }
             });
         }
+        setLoading(false);
     }
 
-    public void generateOtp(ProgressBar pBar){
-        if(fine) {
+    public void generateOtp(){
 
+        if(fine) {
+            //PhoneAuthOptions authOptions = new PhoneAuthOptions();
             PhoneAuthProvider.getInstance().verifyPhoneNumber(
                     "+91" + phoneInput.getText().toString(),
                     60,
@@ -157,33 +163,32 @@ public class AuthLogin extends AppCompatActivity {
                     new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                         @Override
                         public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                            pBar.setVisibility(View.GONE);
-                            getOtpButton.setVisibility(View.VISIBLE);
-                            Toast.makeText(AuthLogin.this, "Phone number verified", Toast.LENGTH_SHORT).show();
+                            //pBar.setVisibility(View.GONE);
+                            //getOtpButton.setVisibility(View.VISIBLE);
+                            //setLoading(false);
+                            //Toast.makeText(AuthLogin.this, "Phone number verified", Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
                         public void onVerificationFailed(@NonNull FirebaseException e) {
-                            pBar.setVisibility(View.GONE);
-                            getOtpButton.setVisibility(View.VISIBLE);
+                            setLoading(false);
                             Toast.makeText(AuthLogin.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }
 
                         @Override
-                        public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                            pBar.setVisibility(View.GONE);
-                            getOtpButton.setVisibility(View.VISIBLE);
+                        public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                             Intent i = new Intent(AuthLogin.this, AuthOtp.class);
                             i.putExtra("phone", phoneInput.getText().toString());
-                            i.putExtra("otp_orig", s);
-                            i.putExtra("type", getIntent().getStringExtra("type"));
+                            i.putExtra("verificationId", verificationId);
+                            i.putExtra("userType", getIntent().getStringExtra("userType"));
                             startActivity(i);
                         }
                     }
             );
-        }
-        else{
-            if(getIntent().getStringExtra("type").equals("student")){
+
+        }else{
+
+            if(getIntent().getStringExtra("userType").equals("student")){
                 Toast.makeText(AuthLogin.this,"You have previously signed in as a mentor. You cannot sign in as a student.",Toast.LENGTH_LONG).show();
             }
             else{
@@ -192,6 +197,7 @@ public class AuthLogin extends AppCompatActivity {
             Intent i = new Intent(AuthLogin.this,MainActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(i);
+
         }
     }
 

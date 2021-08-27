@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -71,6 +72,11 @@ public class AuthSignupMentors1 extends AppCompatActivity {
                 {
                     Intent i = new Intent(AuthSignupMentors1.this,AuthSignupMentors2.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    i.putExtra("name", name);
+                    i.putExtra("email", email);
+                    i.putExtra("phone", getIntent().getStringExtra("phone"));
+                    i.putExtra("language_selected", language_selected);
+                    i.putExtra("time_selected", time_selected);
                     startActivity(i);
                 }
             }

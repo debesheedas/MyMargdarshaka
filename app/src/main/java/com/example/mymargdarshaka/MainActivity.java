@@ -22,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
     ImageButton rightButton, leftButton;
     SharedPreferences sharedPreferences;
 
-    private static final String SHARED_PREF_NAME = "login";
-    private static final String TYPE="";
+    private static final String SHARED_PREF_NAME = "myMargdarshaka";
+    private static final String TYPE="userType";
 
     ImageSwitcher imageSwitcher;
     ImageView imageView;
@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
         String type=sharedPreferences.getString(TYPE,null);
 
+        // if already logged in, users and mentors will be redirected to MyMentors and MyStudents repectively.
         if(type!=null){
             Toast.makeText(MainActivity.this,"You are already logged in",Toast.LENGTH_SHORT).show();
             Intent i;
@@ -108,29 +109,29 @@ public class MainActivity extends AppCompatActivity {
             startActivity(i);
         }
 
+        studentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(MainActivity.this,AuthLogin.class);
+                i.putExtra("userType","student");
+                startActivity(i);
+            }
+        });
+
 //        studentButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-//                Intent i=new Intent(MainActivity.this,AuthLogin.class);
+//                Intent i=new Intent(MainActivity.this,GuidelinesForStudents.class);
 //                i.putExtra("type","student");
 //                startActivity(i);
 //            }
 //        });
 
-        studentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i=new Intent(MainActivity.this,GuidelinesForStudents.class);
-                i.putExtra("type","student");
-                startActivity(i);
-            }
-        });
-
         mentorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(MainActivity.this,AuthLogin.class);
-                i.putExtra("type","mentor");
+                i.putExtra("userType","mentor");
                 startActivity(i);
             }
         });
