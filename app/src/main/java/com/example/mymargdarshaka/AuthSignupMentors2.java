@@ -1,5 +1,6 @@
 package com.example.mymargdarshaka;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -101,11 +104,26 @@ public class AuthSignupMentors2 extends AppCompatActivity {
                 if(((CheckBox)findViewById(R.id.check_social10)).isChecked()) teachSubjects.add("social10");
 
                 DatabaseReference newMentorRef = FirebaseDatabase.getInstance().getReference("mentors").push();
-                newMentorRef.setValue(new MentorSchema(newMentorRef.getKey(), name, email, phone, classes, prefLangs, timeSlots, regStudents, teachSubjects));
-
-                Intent i = new Intent(AuthSignupMentors2.this, MainActivity.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(i);
+                newMentorRef.setValue(new MentorSchema(
+                        newMentorRef.getKey(),
+                        name,
+                        email,
+                        phone,
+                        classes,
+                        prefLangs,
+                        timeSlots,
+                        regStudents,
+                        teachSubjects)
+                )
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Intent i = new Intent(
+                                AuthSignupMentors2.this, Test.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(i);
+                    }
+                });
             }
         });
     }

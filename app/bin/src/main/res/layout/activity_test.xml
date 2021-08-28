@@ -32,6 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:text="@string/question_text"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary" />
 
@@ -64,6 +65,7 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/radio_selector"
             android:button="@android:color/transparent"
+            android:text="@string/option_1"
             android:textAlignment="center"
             android:textColor="@drawable/text_color" />
 
@@ -74,6 +76,7 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/radio_selector"
             android:button="@android:color/transparent"
+            android:text="@string/option_2"
             android:textAlignment="center"
             android:textColor="@drawable/text_color" />
 
@@ -84,6 +87,7 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/radio_selector"
             android:button="@android:color/transparent"
+            android:text="@string/option_3"
             android:textAlignment="center"
             android:textColor="@drawable/text_color" />
 
@@ -94,6 +98,7 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/radio_selector"
             android:button="@android:color/transparent"
+            android:text="@string/option_4"
             android:textAlignment="center"
             android:textColor="@drawable/text_color" />
     </RadioGroup>

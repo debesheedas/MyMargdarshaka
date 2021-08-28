@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AuthSignupStudents2">
+
+    <LinearLayout
+        android:layout_width="302dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/studentWhichSubjects"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/student_subjects"
+            android:textAlignment="center"
+            android:textColor="#B5179E"
+            android:textSize="30sp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="0px" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+        <CheckBox
+            android:id="@+id/check_english"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:buttonTint="#B5179E"
+            android:checked="false"
+            android:text="@string/english"
+            android:textColorLink="#B5179E"
+            android:visibility="gone"
+            app:useMaterialThemeColors="false" />
+        <CheckBox
+            android:id="@+id/check_math"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:buttonTint="#B5179E"
+            android:checked="false"
+            android:text="@string/math"
+            android:textColorLink="#B5179E"
+            android:visibility="gone"
+            app:useMaterialThemeColors="false" />
+        <CheckBox
+            android:id="@+id/check_hindi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:buttonTint="#B5179E"
+            android:checked="false"
+            android:text="@string/hindi"
+            android:textColorLink="#B5179E"
+            android:visibility="gone"
+            app:useMaterialThemeColors="false" />
+        <CheckBox
+            android:id="@+id/check_telugu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:buttonTint="#B5179E"
+            android:checked="false"
+            android:text="@string/telugu"
+            android:textColorLink="#B5179E"
+            android:visibility="gone"
+            app:useMaterialThemeColors="false" />
+
+        <CheckBox
+            android:id="@+id/check_physics"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:buttonTint="#B5179E"
+            android:checked="false"
+            android:text="@string/physics"
+            android:textColorLink="#B5179E"
+            android:visibility="gone"
+            app:useMaterialThemeColors="false" />
+        <CheckBox
+            android:id="@+id/check_chemistry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:buttonTint="#B5179E"
+            android:checked="false"
+            android:text="@string/chemistry"
+            android:textColorLink="#B5179E"
+            android:visibility="gone"
+            app:useMaterialThemeColors="false" />
+        <CheckBox
+            android:id="@+id/check_biology"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:buttonTint="#B5179E"
+            android:checked="false"
+            android:text="@string/biology"
+            android:textColorLink="#B5179E"
+            android:visibility="gone"
+            app:useMaterialThemeColors="false" />
+        <CheckBox
+            android:id="@+id/check_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:buttonTint="#B5179E"
+            android:checked="false"
+            android:text="@string/history"
+            android:textColorLink="#B5179E"
+            android:visibility="gone"
+            app:useMaterialThemeColors="false" />
+        <CheckBox
+            android:id="@+id/check_geography"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:buttonTint="#B5179E"
+            android:checked="false"
+            android:text="@string/geography"
+            android:textColorLink="#B5179E"
+            android:visibility="gone"
+            app:useMaterialThemeColors="false" />
+
+        <CheckBox
+            android:id="@+id/check_science"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:buttonTint="#B5179E"
+            android:checked="false"
+            android:text="@string/science"
+            android:textColorLink="#B5179E"
+            android:visibility="gone"
+            app:useMaterialThemeColors="false" />
+        <CheckBox
+            android:id="@+id/check_social"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:buttonTint="#B5179E"
+            android:checked="false"
+            android:text="@string/social"
+            android:textColorLink="#B5179E"
+            android:visibility="gone"
+            app:useMaterialThemeColors="false" />
+
+        <Button
+            android:id="@+id/studentSignupButton2"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="#4CC9F0"
+            android:text="@string/submit"
+            android:textColor="#FFFFFF"
+            app:cornerRadius="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/class_select"
+            app:strokeColor="#4CC9F0" />
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
