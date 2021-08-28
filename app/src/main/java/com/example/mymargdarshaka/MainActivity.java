@@ -1,10 +1,12 @@
 package com.example.mymargdarshaka;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.JsonReader;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -15,6 +17,19 @@ import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONArray;
+
+import java.io.StringReader;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,10 +45,62 @@ public class MainActivity extends AppCompatActivity {
 
     static int count=1;
 
+//    FirebaseDatabase firebaseDatabase;
+//    DatabaseReference databaseReference;
+    private DatabaseReference rootRef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Gson g = new Gson();
+
+        rootRef = FirebaseDatabase.getInstance().getReference();
+
+        DatabaseReference mentorsRef = rootRef.child("mentors");
+        mentorsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot child: snapshot.getChildren()){
+                    Log.e("Mentor key", child.getKey());
+                    Log.e("Mentor val", child.getValue().toString());
+//                    System.out.println(child.getValue(MentorSchema.class).getDetails().phone);
+                    System.out.println(child.getValue().toString());
+
+
+//                    JsonReader reader = new JsonReader(new StringReader(child.getValue().toString()));
+//                    reader.setLenient(true);
+
+//                    MentorSchema m=g.fromJson(child.getValue().toString().trim(), MentorSchema.class);
+//                    System.out.println(m.getDetails().phone);
+
+                    try {
+//                        JSONArray array = new JSONArray(String.valueOf(child.getValue().getJSONObject()));
+//                        for(int i=0;i<array.length();i++){
+                            JSONObject object = new JSONObject(String.valueOf(child.getValue().getJSONObject()));
+                            System.out.println(object.getString("phone"));
+//                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+
+
+
+
         studentButton=(Button) findViewById(R.id.studentLoginButton);
         mentorButton=(Button) findViewById(R.id.mentorLoginButton);
         rightButton=(ImageButton) findViewById(R.id.rightButton);

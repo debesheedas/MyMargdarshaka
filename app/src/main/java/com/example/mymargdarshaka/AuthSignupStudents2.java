@@ -154,10 +154,7 @@ public class AuthSignupStudents2 extends AppCompatActivity {
 //
 //                    @Override
 //                    public void onCancelled(@NonNull DatabaseError error) {
-//                        Toast.makeText(AuthLogin.this,error.getMessage().toString(),Toast.LENGTH_LONG).show();
-//                        Intent i = new Intent(AuthLogin.this,MainActivity.class);
-//                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-//                        startActivity(i);
+//
 //                    }
 //                });
 
