@@ -44,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
 
     static int count=1;
 
-//    FirebaseDatabase firebaseDatabase;
-//    DatabaseReference databaseReference;
     private DatabaseReference rootRef;
 
     @Override
@@ -53,54 +51,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//<<<<<<< HEAD
-//        Gson g = new Gson();
-//
-//        rootRef = FirebaseDatabase.getInstance().getReference();
-//
-//        DatabaseReference mentorsRef = rootRef.child("mentors");
-//        mentorsRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for(DataSnapshot child: snapshot.getChildren()){
-//                    Log.e("Mentor key", child.getKey());
-//                    Log.e("Mentor val", child.getValue().toString());
-////                    System.out.println(child.getValue(MentorSchema.class).getDetails().phone);
-//                    System.out.println(child.getValue().toString());
-//
-//
-////                    JsonReader reader = new JsonReader(new StringReader(child.getValue().toString()));
-////                    reader.setLenient(true);
-//
-////                    MentorSchema m=g.fromJson(child.getValue().toString().trim(), MentorSchema.class);
-////                    System.out.println(m.getDetails().phone);
-//
-//                    try {
-////                        JSONArray array = new JSONArray(String.valueOf(child.getValue().getJSONObject()));
-////                        for(int i=0;i<array.length();i++){
-//                            JSONObject object = new JSONObject(String.valueOf(child.getValue().getJSONObject()));
-//                            System.out.println(object.getString("phone"));
-////                        }
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//
-//
-//
-//
-//
-//
-//
-//=======
         //To make the default Action Bar on top with the App name disappear
         //need to add this on every page
         if (getSupportActionBar() != null) {

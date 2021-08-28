@@ -43,6 +43,12 @@ public class MyMentors extends AppCompatActivity {
         setContentView(R.layout.activity_my_mentors);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
 
+        boolean x=getIntent().getBooleanExtra("noMentorsAssignedHere",true);
+
+        if(x){
+            Toast.makeText(MyMentors.this,"No mentors are available at this time",Toast.LENGTH_LONG).show();
+        }
+
         topAppBar = findViewById(R.id.topAppBar);
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationView);
