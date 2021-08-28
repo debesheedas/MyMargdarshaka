@@ -30,6 +30,7 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 
 import java.io.StringReader;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,19 +45,19 @@ public class MainActivity extends AppCompatActivity {
 
     static int count=1;
 
-    private DatabaseReference rootRef;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent i1=new Intent(MainActivity.this,AuthSignupStudents1.class);
+        startActivity(i1);
 
         //To make the default Action Bar on top with the App name disappear
         //need to add this on every page
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
-
 
         studentButton=(Button) findViewById(R.id.studentLoginButton);
         mentorButton=(Button) findViewById(R.id.mentorLoginButton);

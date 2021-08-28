@@ -29,6 +29,39 @@ public class UserDetails {
     public String getEmail(){
         return email;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setStandard(String standard) {
+        this.standard = standard;
+    }
+
+    public void setPrefLang(String prefLang) {
+        this.prefLang = prefLang;
+    }
+
+    public void setTimeSlot(String timeSlot) {
+        this.timeSlot = timeSlot;
+    }
+
+    public void setIntrSubjects(ArrayList<String> intrSubjects) {
+        this.intrSubjects = intrSubjects;
+    }
+
+    public void setRegSubjects(ArrayList<Pair<String, String>> regSubjects) {
+        this.regSubjects = regSubjects;
+    }
+
     public String getPhone(){
         return phone;
     }

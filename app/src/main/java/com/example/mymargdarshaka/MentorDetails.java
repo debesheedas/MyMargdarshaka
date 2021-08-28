@@ -1,6 +1,11 @@
 package com.example.mymargdarshaka;
 
+import android.util.Pair;
+
+import com.google.firebase.database.snapshot.StringNode;
+
 import java.util.ArrayList;
+import java.util.Map;
 
 public class MentorDetails {
 
@@ -8,12 +13,12 @@ public class MentorDetails {
     private ArrayList<String> classes;
     private ArrayList<String> prefLangs;
     private ArrayList<String> timeSlots;
-    private ArrayList<String> regStudents;
+    private ArrayList<Map<String,String>> regStudents;
     private ArrayList<String> teachSubjects;
 
     public MentorDetails(){}
 
-    public MentorDetails(String name, String email, String phone, ArrayList<String> classes, ArrayList<String> prefLangs, ArrayList<String> timeSlots, ArrayList<String> regStudents, ArrayList<String> teachSubjects){
+    public MentorDetails(String name, String email, String phone, ArrayList<String> classes, ArrayList<String> prefLangs, ArrayList<String> timeSlots, ArrayList<Map<String,String>> regStudents, ArrayList<String> teachSubjects){
         this.name=name;
         this.email=email;
         this.phone=phone;
@@ -40,7 +45,7 @@ public class MentorDetails {
         return classes;
     }
 
-    public ArrayList<String> getRegStudents(){
+    public ArrayList<Map<String,String>> getRegStudents(){
         return regStudents;
     }
 
@@ -80,7 +85,7 @@ public class MentorDetails {
         this.timeSlots = timeSlots;
     }
 
-    public void setRegStudents(ArrayList<String> regStudents) {
+    public void setRegStudents(ArrayList<Map<String,String>> regStudents) {
         this.regStudents = regStudents;
     }
 

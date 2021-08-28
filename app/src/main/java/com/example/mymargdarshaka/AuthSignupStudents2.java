@@ -39,13 +39,14 @@ public class AuthSignupStudents2 extends AppCompatActivity {
     ArrayList<String> subjects = new ArrayList<>();
     ArrayList<Pair<String, String>> regSub = new ArrayList<>();
 
-    Bundle extras = getIntent().getExtras();
-    String name  = extras.getString("name");
-    String email  = extras.getString("email");
-    String class_selected = extras.getString("class_selected");
-    String language_selected  = extras.getString("language_selected");
-    String phone = extras.getString("phone");
-    String time_selected  = extras.getString("time_selected");
+    Bundle extras;
+    String name;
+    String email;
+    String class_selected;
+    String language_selected;
+    String phone;
+    String time_selected;
+    ArrayList<Map<String,String>> regs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,102 +152,149 @@ public class AuthSignupStudents2 extends AppCompatActivity {
                 //newStudentRef.child("timeSlots").setValue(time_selected);
                 //newStudentRef.child("intrSubjects").setValue(subjects);
 
-//                firebaseDatabase=FirebaseDatabase.getInstance();
-//                databaseReference=firebaseDatabase.getReference("users");
                 String key=newStudentRef.getKey();
-//                newStudentRef=newStudentRef.child(key);
-
 
                 ArrayList<Pair<Integer,Pair<String,ArrayList<String>>>> arr = new ArrayList<>();
 
                 rootRef = FirebaseDatabase.getInstance().getReference();
 
                 DatabaseReference mentorsRef = rootRef.child("mentors");
-                mentorsRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        long l=snapshot.getChildrenCount();
-                        long k=0;
-                        for(DataSnapshot child: snapshot.getChildren()){
-                            Log.e("Mentor key", child.getKey());
-                            Log.e("Mentor val", child.getValue().toString());
+                try {
+                    mentorsRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            long l = snapshot.getChildrenCount();
+                            long k = 0;
+                            for (DataSnapshot child : snapshot.getChildren()) {
+                                Log.e("hello: ", child.getValue().toString());
+                                try {
+                                    MentorDetails mentor = child.getValue(MentorDetails.class);
 
-                            MentorDetails mentor=child.getValue(MentorDetails.class);
-
-                            ArrayList<String> classes=mentor.getClasses();
-                            ArrayList<String> prefLangs=mentor.getPrefLangs();
-                            ArrayList<String> teachSubjects=mentor.getTeachSubjects();
-                            ArrayList<String> timeSlots=mentor.getTimeSlots();
-                            ArrayList<String> regStudents=mentor.getRegStudents();
-                            boolean fine=false;
-                            if(classes.contains(s)){
-                                fine=true;
-                            }
-                            if(fine){
-                                if(prefLangs.contains(language_selected)){
-                                    fine=true;
-                                }
-                            }
-                            if(fine){
-                                if(timeSlots.contains(time_selected)){
-                                    fine=true;
-                                }
-                            }
-                            ArrayList<String> t=new ArrayList<>();
-                            if(fine){
-                                fine=false;
-                                for(int i=0;i<subjects.size();i++){
-                                    if(teachSubjects.contains(subjects.get(i))){
-                                        fine=true;
-                                        t.add(subjects.get(i));
+                                    ArrayList<String> classes = mentor.getClasses();
+                                    ArrayList<String> prefLangs = mentor.getPrefLangs();
+                                    ArrayList<String> teachSubjects = mentor.getTeachSubjects();
+                                    ArrayList<String> timeSlots = mentor.getTimeSlots();
+                                    ArrayList<Map<String, String>> regStudents = mentor.getRegStudents();
+                                    if (regStudents == null) {
+                                        regStudents = new ArrayList<>();
                                     }
+                                    boolean fine = false;
+                                    if (classes.contains(s)) {
+                                        fine = true;
+                                    }
+                                    else{
+                                        fine=false;
+                                    }
+                                    Log.e("1: ", String.valueOf(fine));
+                                    if (fine) {
+                                        if (prefLangs.contains(language_selected)) {
+                                            fine = true;
+                                        }
+                                        else{
+                                            fine=false;
+                                        }
+                                    }
+                                    Log.e("2: ", String.valueOf(fine));
+                                    if (fine) {
+                                        for(String i:timeSlots){
+                                            Log.e("fds",i);
+                                        }
+                                        Log.e("fds2",time_selected);
+                                        if (timeSlots.contains(time_selected)) {
+                                            fine = true;
+                                        }
+                                        else{
+                                            fine=false;
+                                        }
+                                    }
+                                    Log.e("3: ", String.valueOf(fine));
+                                    ArrayList<String> t = new ArrayList<>();
+
+                                    for (String i : teachSubjects) {
+                                        System.out.println(i);
+                                    }
+                                    System.out.println();
+                                    for (String i : subjects) {
+                                        System.out.println(i);
+                                    }
+
+                                    if (fine) {
+                                        fine = false;
+                                        for (int i = 0; i < subjects.size(); i++) {
+                                            if (teachSubjects.contains(subjects.get(i))) {
+                                                fine = true;
+                                                t.add(subjects.get(i));
+                                            }
+                                        }
+                                    }
+                                    Log.e("4: ", String.valueOf(fine));
+                                    if (fine) {
+                                        arr.add(Pair.create(regStudents.size(), Pair.create(child.getKey(), t)));
+                                    }
+
+                                    Log.e("k: ", String.valueOf(k));
+
+                                    if (k >= l - 1) {
+                                        assignMentors(arr, key, newStudentRef);
+                                        Intent i = new Intent(AuthSignupStudents2.this, MyMentors.class);
+                                        i.putExtra("noMentorsAssignedHere",x);
+                                        i.putExtra("userid",key);
+                                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(i);
+                                        break;
+                                    }
+
+                                    k++;
+                                }
+                                catch (Exception e){
+
                                 }
                             }
-                            if(fine){
-                                arr.add(Pair.create(regStudents.size(),Pair.create(child.getKey(),t)));
-                            }
-
-                            if(k==l-1 && fine){
-                                assignMentors(arr,key,newStudentRef);
-                            }
-
-                            k++;
                         }
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
-                    }
-                });
+                        }
+                    });
+                }
+                catch (Exception e){
+                    Log.e("Error ---- ",e.getMessage());
+                }
 
             }
 
             public void assignMentors(ArrayList<Pair<Integer,Pair<String,ArrayList<String>>>> arr, String key, DatabaseReference newStudentRef){
-                if(arr.size()>0){
-                    Collections.sort(arr,new Comparator<Pair<Integer,Pair<String,ArrayList<String>>>>(){
+                ArrayList<Pair<String,Pair<String, String>>> forMentors = new ArrayList<>();
+                if(arr.size()>0) {
+                    Collections.sort(arr, new Comparator<Pair<Integer, Pair<String, ArrayList<String>>>>() {
                         @Override
-                        public int compare(Pair<Integer,Pair<String,ArrayList<String>>> p1, Pair<Integer,Pair<String,ArrayList<String>>> p2) {
-                            return p1.first-p2.first;
+                        public int compare(Pair<Integer, Pair<String, ArrayList<String>>> p1, Pair<Integer, Pair<String, ArrayList<String>>> p2) {
+                            return p1.first - p2.first;
                         }
                     });
-                    ArrayList<String> tempSub=new ArrayList<>();
-                    for(int i=0;i<subjects.size();i++){
+                    ArrayList<String> tempSub = new ArrayList<>();
+                    for (int i = 0; i < subjects.size(); i++) {
                         tempSub.add(subjects.get(i));
                     }
-                    ArrayList<Pair<String,String>> forMentors=new ArrayList<>();
-                    for(int i=0;i<arr.size();i++){
-                        for(int j=0;j<arr.get(i).second.second.size();j++){
-                            if(tempSub.contains(arr.get(i).second.second.get(j))){
-                                regSub.add(Pair.create(arr.get(i).second.first,arr.get(i).second.second.get(j)));
+
+                    for (int i = 0; i < arr.size(); i++) {
+                        for (int j = 0; j < arr.get(i).second.second.size(); j++) {
+                            if (tempSub.contains(arr.get(i).second.second.get(j))) {
+                                regSub.add(Pair.create(arr.get(i).second.first, arr.get(i).second.second.get(j)));
                                 tempSub.remove(arr.get(i).second.second.get(j));
-                                forMentors.add(Pair.create(key,arr.get(i).second.first));
+                                forMentors.add(Pair.create(arr.get(i).second.second.get(j),Pair.create(key, arr.get(i).second.first)));
+//                                System.out.println(arr.get(i).second.second.get(j));
                             }
                         }
-                        if(tempSub.size()==0){
+                        if (tempSub.size() == 0) {
                             break;
                         }
                     }
+                }
+                else{
+                    x=true;
+                }
                     UserDetails userSchema = new UserDetails(name,email,phone,class_selected,language_selected,subjects,time_selected,regSub);
                     newStudentRef.setValue(userSchema);
 
@@ -254,55 +302,87 @@ public class AuthSignupStudents2 extends AppCompatActivity {
                         rootRef = FirebaseDatabase.getInstance().getReference();
 
                         DatabaseReference mentorsRef = rootRef.child("mentors");
-                        mentorsRef.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                for(DataSnapshot child: snapshot.getChildren()){
-                                    for(int i=0;i<forMentors.size();i++){
-                                        if(forMentors.get(i).second.equals(child.getKey())){
-                                            MentorDetails mentor=child.getValue(MentorDetails.class);
 
-                                            ArrayList<String> classes=mentor.getClasses();
-                                            ArrayList<String> prefLangs=mentor.getPrefLangs();
-                                            ArrayList<String> teachSubjects=mentor.getTeachSubjects();
-                                            ArrayList<String> timeSlots=mentor.getTimeSlots();
-                                            ArrayList<String> regStudents=mentor.getRegStudents();
-                                            String name=mentor.getName();
-                                            String email=mentor.getEmail();
-                                            String phone=mentor.getPhone();
+                        for(int i=0;i<forMentors.size();i++){
+                            System.out.println("ajflakjflkjafkljk;lsklsdafl;aklsfkladsklsfjklaj;l" + forMentors.get(i).first);
+                            System.out.println("safsadfsdafasfsadfsf" + forMentors.get(i).second.first);
+                            System.out.println(" asfsafasfasdfdsafsafsfdsa" + forMentors.get(i).second.second);
+                            Map<String,String> m=new HashMap<>();
+                            m.put(forMentors.get(i).first, forMentors.get(i).second.first);
+                            Map<String, Object> childUpdates = new HashMap<>();
 
-                                            regStudents.add(forMentors.get(i).first);
 
-                                            rootRef.child(child.getKey()).child("name").setValue(name);
-                                            rootRef.child(child.getKey()).child("phone").setValue(phone);
-                                            rootRef.child(child.getKey()).child("email").setValue(email);
-                                            rootRef.child(child.getKey()).child("name").setValue(name);
-                                            rootRef.child(child.getKey()).child("classes").setValue(classes);
-                                            rootRef.child(child.getKey()).child("prefLangs").setValue(prefLangs);
-                                            rootRef.child(child.getKey()).child("teachSubjects").setValue(teachSubjects);
-                                            rootRef.child(child.getKey()).child("regStudents").setValue(regStudents);
-                                            rootRef.child(child.getKey()).child("timeSlots").setValue(timeSlots);
+                            mentorsRef.orderByChild(forMentors.get(i).second.second).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    regs=snapshot.getValue(MentorDetails.class).getRegStudents();
+//                                    if(regs==null){
 
-                                        }
-                                    }
+//                                    }
                                 }
-                            }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
 
-                            }
-                        });
+                                }
+                            });
+//                            regs.add(m);
+                            childUpdates.put("regStudents", m);
+                            mentorsRef.child(forMentors.get(i).second.second).setValue(childUpdates);
+                        }
+
+//                        mentorsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//                            @Override
+//                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                                for(DataSnapshot child: snapshot.getChildren()){
+//                                    for(int i=0;i<forMentors.size();i++){
+//                                        if(forMentors.get(i).second.second.equals(child.getKey())){
+//                                                MentorDetails mentor = child.getValue(MentorDetails.class);
+//
+//                                                ArrayList<String> classes = mentor.getClasses();
+//                                                ArrayList<String> prefLangs = mentor.getPrefLangs();
+//                                                ArrayList<String> teachSubjects = mentor.getTeachSubjects();
+//                                                ArrayList<String> timeSlots = mentor.getTimeSlots();
+//                                                ArrayList<Map<String, String>> regStudents = mentor.getRegStudents();
+//                                                if (regStudents == null) {
+//                                                    regStudents = new ArrayList<>();
+//                                                }
+//
+//                                                String name = mentor.getName();
+//                                                String email = mentor.getEmail();
+//                                                String phone = mentor.getPhone();
+//
+//                                                Map<String,String> m=new HashMap<>();
+//                                                m.put(forMentors.get(i).first, forMentors.get(i).second.first);
+//
+//                                                regStudents.add(m);
+//
+//                                                mentorsRef.child(child.getKey()).child("name").setValue(name);
+//                                                mentorsRef.child(child.getKey()).child("phone").setValue(phone);
+//                                                mentorsRef.child(child.getKey()).child("email").setValue(email);
+//                                                mentorsRef.child(child.getKey()).child("name").setValue(name);
+//                                                mentorsRef.child(child.getKey()).child("classes").setValue(classes);
+//                                                mentorsRef.child(child.getKey()).child("prefLangs").setValue(prefLangs);
+//                                                mentorsRef.child(child.getKey()).child("teachSubjects").setValue(teachSubjects);
+//                                                mentorsRef.child(child.getKey()).child("regStudents").setValue(regStudents);
+//                                                mentorsRef.child(child.getKey()).child("timeSlots").setValue(timeSlots);
+//
+//                                        }
+//                                    }
+//                                }
+//                            }
+//
+//                            @Override
+//                            public void onCancelled(@NonNull DatabaseError error) {
+//
+//                            }
+//                        });
 
                     }
 
-                }
-                else{
-                    x=true;
-                }
-
                 Intent i = new Intent(AuthSignupStudents2.this, MyMentors.class);
                 i.putExtra("noMentorsAssignedHere",x);
+                i.putExtra("userid",key);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
 

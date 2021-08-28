@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class AuthSignupMentors2 extends AppCompatActivity {
 
@@ -40,7 +41,7 @@ public class AuthSignupMentors2 extends AppCompatActivity {
                 ArrayList<String> classes = new ArrayList<>();
                 ArrayList<String> prefLangs = new ArrayList<>();
                 ArrayList<String> timeSlots = new ArrayList<>();
-                ArrayList<String> regStudents = new ArrayList<>();
+                ArrayList<Map<String,String>> regStudents = new ArrayList<>();
                 ArrayList<String> teachSubjects = new ArrayList<>();
 
                 prefLangs.add(extras.getString("language_selected"));
