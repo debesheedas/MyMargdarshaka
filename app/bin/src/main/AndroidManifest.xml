@@ -11,9 +11,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyMargdarshaka">
         <activity
-            android:name=".MyMentors"
-            android:exported="true" />
-        <activity
             android:name=".GuidelinesForMentors"
             android:exported="true" />
         <activity
@@ -35,7 +32,7 @@
             android:name=".MyStudents"
             android:exported="true" />
         <activity
-            android:name=".Test"
+            android:name=".Mymentors"
             android:exported="true" />
         <activity
             android:name=".AuthOtp"
