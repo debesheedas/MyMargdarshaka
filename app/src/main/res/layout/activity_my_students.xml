@@ -6,30 +6,90 @@
     android:layout_height="match_parent"
     tools:context=".MyStudents">
 
-
-
-    <LinearLayout
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawerLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:openDrawer="start">
 
-        <TextView
-            android:id="@+id/textView4"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
+
+            <com.google.android.material.appbar.AppBarLayout
+                style="@style/Widget.MaterialComponents.AppBarLayout.PrimarySurface"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/topAppBar"
+                    style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@android:color/transparent"
+                    android:elevation="0dp"
+                    app:navigationIcon="@drawable/ic_menu_24dp"
+                    app:title="@string/my_students_label" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <!-- Screen content -->
+            <!-- Use app:layout_behavior="@string/appbar_scrolling_view_behavior" to fit below top app bar -->
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+        <ScrollView
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="140dp"
+            android:padding="15dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/my_students"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/my_students"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/my_students_label"
+                    android:textAlignment="center"
+                    android:textColor="@color/text"
+                    android:textSize="40sp" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    app:contentPadding="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/question_text"
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        android:textColor="?android:attr/textColorSecondary" />
+
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+        </ScrollView>
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigationView"
+            app:menu="@menu/navigation_drawer_mentor"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="My Students"
-            tools:layout_editor_absoluteX="184dp"
-            tools:layout_editor_absoluteY="131dp" />
+            android:layout_height="match_parent"
+            android:layout_gravity="start"/>
 
-        <Button
-            android:id="@+id/logout_student"
-            android:layout_marginTop="200dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Logout Mentor"
-            tools:layout_editor_absoluteX="121dp"
-            tools:layout_editor_absoluteY="162dp" />
+    </androidx.drawerlayout.widget.DrawerLayout>
 
-    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

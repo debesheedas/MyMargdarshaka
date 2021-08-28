@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/guidelines"
+            android:icon="@drawable/outline_info_24dp"
+            android:title="@string/guidelines_label"
+            android:checked="true" />
+        <item
+            android:id="@+id/my_mentors"
+            android:icon="@drawable/outline_perm_identity_24dp"
+            android:title="@string/my_students_label" />
+        <item
+            android:id="@+id/feedback"
+            android:icon="@drawable/outline_contact_support_24dp"
+            android:title="@string/feedback_label" />
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/outline_logout_24dp"
+            android:title="@string/logout_label" />
+
+    </group>
+</menu>

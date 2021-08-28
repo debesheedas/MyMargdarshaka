@@ -6,10 +6,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -17,6 +24,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class GuidelinesForStudents extends AppCompatActivity {
+
+
+    TextView niosLink, resources;
 
     SharedPreferences sharedPreferences;
     FirebaseDatabase firebaseDatabase;
@@ -33,6 +43,13 @@ public class GuidelinesForStudents extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guidelines_for_students);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
+
+        //hyperlink for NIOS website
+        niosLink =(TextView) findViewById(R.id.s_guideline6);
+        niosLink.setMovementMethod(LinkMovementMethod.getInstance());
+        //hyperlink for resources document
+        resources =(TextView) findViewById(R.id.s_guideline8);
+        resources.setMovementMethod(LinkMovementMethod.getInstance());
 
         topAppBar = findViewById(R.id.topAppBar);
         drawerLayout = findViewById(R.id.drawerLayout);
@@ -58,12 +75,31 @@ public class GuidelinesForStudents extends AppCompatActivity {
                 else if(choice.equals("My Mentors"))
                 {
                     Intent i = new Intent(GuidelinesForStudents.this,MyMentors.class);
-                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);
                 }
                 else if(choice.equals("Feedback"))
-                {
-                    //code for Feedback
+                {   //code for Feedback
+                    LayoutInflater inflater = (LayoutInflater)
+                            getSystemService(LAYOUT_INFLATER_SERVICE);
+                    View popupView = inflater.inflate(R.layout.feedback_popup, null);
+
+                    // create the popup window
+                    int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+                    int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                    boolean focusable = true; // lets taps outside the popup also dismiss it
+                    final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+                    // show the popup window, which view you pass in doesn't matter, it is only used for the window token
+                    View view = findViewById(android.R.id.content).getRootView();
+                    popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+                    // dismiss the popup window when touched
+                    popupView.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            popupWindow.dismiss();
+                            return true;
+                        }
+                    });
                 }
                 else if(choice.equals("Logout"))
                 {
