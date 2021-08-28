@@ -192,6 +192,7 @@ public class AuthSignupStudents2 extends AppCompatActivity {
                                     fine=true;
                                 }
                             }
+                            // t is an array of matched subjects
                             ArrayList<String> t=new ArrayList<>();
                             if(fine){
                                 fine=false;
@@ -234,6 +235,7 @@ public class AuthSignupStudents2 extends AppCompatActivity {
                     for(int i=0;i<subjects.size();i++){
                         tempSub.add(subjects.get(i));
                     }
+                    //
                     ArrayList<Pair<String,String>> forMentors=new ArrayList<>();
                     for(int i=0;i<arr.size();i++){
                         for(int j=0;j<arr.get(i).second.second.size();j++){

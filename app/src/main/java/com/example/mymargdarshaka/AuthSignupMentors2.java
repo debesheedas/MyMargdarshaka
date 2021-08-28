@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
@@ -12,10 +13,15 @@ import android.widget.CheckBox;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class AuthSignupMentors2 extends AppCompatActivity {
 
@@ -31,8 +37,6 @@ public class AuthSignupMentors2 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
-
                 Bundle extras = getIntent().getExtras();
                 String name  = extras.getString("name");
                 String email  = extras.getString("email");
@@ -40,7 +44,7 @@ public class AuthSignupMentors2 extends AppCompatActivity {
                 ArrayList<String> classes = new ArrayList<>();
                 ArrayList<String> prefLangs = new ArrayList<>();
                 ArrayList<String> timeSlots = new ArrayList<>();
-                ArrayList<String> regStudents = new ArrayList<>();
+                HashMap<String,ArrayList<String>> regStudents = new HashMap<>();
                 ArrayList<String> teachSubjects = new ArrayList<>();
 
                 prefLangs.add(extras.getString("language_selected"));
@@ -104,6 +108,64 @@ public class AuthSignupMentors2 extends AppCompatActivity {
                 if(((CheckBox)findViewById(R.id.check_social10)).isChecked()) teachSubjects.add("social10");
 
                 DatabaseReference newMentorRef = FirebaseDatabase.getInstance().getReference("mentors").push();
+                String newMentorKey = newMentorRef.getKey();
+
+                // START MATCHING-------------------------------------------------------------------------------------
+
+                ArrayList<ArrayList<String>> matches = new ArrayList<ArrayList<String>>();
+                DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
+                usersRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        for(DataSnapshot child : dataSnapshot.getChildren()){
+
+                            UserDetails student = child.getValue(UserDetails.class);
+                            if(classes.contains(student.getStandard()) && timeSlots.contains(student.getTimeSlot()) && prefLangs.contains(student.getPrefLang())){
+                                // this student is applicable
+                                for(String intrSub : student.getIntrSubjects()){
+                                    if(teachSubjects.contains(intrSub)){
+                                        matches.add(new ArrayList<String>(){
+                                                {
+                                                        add(child.getKey());
+                                                        //add(newMentorKey);
+                                                        add(intrSub);
+                                                }
+                                        });
+                                    }
+                                }
+                            }
+                        }
+
+                        for(ArrayList<String> match : matches){
+
+                            String studentId = match.get(0);
+                            String subject = match.get(1);
+
+                            // adding {mentor, subject} to student regSubjects
+                            Pair<String,String> p = new Pair<String,String>(newMentorKey, subject);
+                            usersRef.child(studentId).child("regSubjects").push().setValue(p);
+
+                            // adding student to mentor regStudents
+                            regStudents.get(subject).add(studentId);
+
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        System.out.println("The read failed: " + databaseError.getCode());
+                    }
+                });
+
+
+
+
+                // END MATCHING ----------------------------------------------------------------------------
+
+
                 newMentorRef.setValue(new MentorSchema(
                         newMentorRef.getKey(),
                         name,
