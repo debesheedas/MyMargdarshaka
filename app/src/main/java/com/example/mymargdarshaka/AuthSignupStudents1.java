@@ -51,7 +51,7 @@ public class AuthSignupStudents1 extends AppCompatActivity {
                 String email = emailInputLayout.getEditText().getText().toString();
 
                 AutoCompleteTextView classInput = (AutoCompleteTextView)findViewById(R.id.text_view_class);
-                String class_selected = classInput.getEditableText().toString();
+                String class_selected = classInput.getEditableText().toString().substring(6);
 
                 AutoCompleteTextView languageInput = (AutoCompleteTextView)findViewById(R.id.text_view_language);
                 String language_selected = languageInput.getEditableText().toString();

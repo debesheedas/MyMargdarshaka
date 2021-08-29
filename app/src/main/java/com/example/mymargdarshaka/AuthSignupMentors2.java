@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
@@ -12,11 +14,16 @@ import android.widget.CheckBox;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.HashMap;
 
 public class AuthSignupMentors2 extends AppCompatActivity {
 
@@ -32,8 +39,6 @@ public class AuthSignupMentors2 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
-
                 Bundle extras = getIntent().getExtras();
                 String name  = extras.getString("name");
                 String email  = extras.getString("email");
@@ -41,9 +46,10 @@ public class AuthSignupMentors2 extends AppCompatActivity {
                 ArrayList<String> classes = new ArrayList<>();
                 ArrayList<String> prefLangs = new ArrayList<>();
                 ArrayList<String> timeSlots = new ArrayList<>();
-                ArrayList<Map<String,String>> regStudents = new ArrayList<>();
+                HashMap<String,ArrayList<String>> regStudents = new HashMap<String, ArrayList<String>>();
                 ArrayList<String> teachSubjects = new ArrayList<>();
 
+                classes.add("6");
                 prefLangs.add(extras.getString("language_selected"));
                 timeSlots.add(extras.getString("time_selected"));
 
@@ -105,26 +111,116 @@ public class AuthSignupMentors2 extends AppCompatActivity {
                 if(((CheckBox)findViewById(R.id.check_social10)).isChecked()) teachSubjects.add("social10");
 
                 DatabaseReference newMentorRef = FirebaseDatabase.getInstance().getReference("mentors").push();
-                newMentorRef.setValue(new MentorSchema(
-                        newMentorRef.getKey(),
-                        name,
-                        email,
-                        phone,
-                        classes,
-                        prefLangs,
-                        timeSlots,
-                        regStudents,
-                        teachSubjects)
-                )
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                String newMentorKey = newMentorRef.getKey();
+
+                // START MATCHING -------------------------------------------------------------------------------------
+
+
+                ArrayList<ArrayList<String>> matches = new ArrayList<ArrayList<String>>();
+                DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
+                usersRef.addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Intent i = new Intent(
-                                AuthSignupMentors2.this, Test.class);
-                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(i);
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        for(DataSnapshot child : dataSnapshot.getChildren()){
+
+                            Log.e("AAAAAAAAAAAAAAAAAAAAa", child.getValue().toString() );
+
+                            UserDetails student = child.getValue(UserDetails.class);
+
+                            Log.e("Standard : ",student.getStandard() );
+
+                            Log.e("bool1 : ", String.valueOf(classes.contains(student.getStandard())));
+                            Log.e("bool2 : ", String.valueOf(timeSlots.contains(student.getTimeSlot())));
+                            Log.e("bool3 : ", String.valueOf(prefLangs.contains(student.getPrefLang())));
+
+
+
+
+                            if(classes.contains(student.getStandard()) && timeSlots.contains(student.getTimeSlot()) && prefLangs.contains(student.getPrefLang())){
+                                // this student is applicable
+                                for(String intrSub : student.getIntrSubjects()){
+
+                                    Log.e("interested subjects : ", intrSub);
+
+                                    if(teachSubjects.contains(intrSub)){
+                                        matches.add(new ArrayList<String>(){
+                                                {
+                                                        add(child.getKey());
+                                                        //add(newMentorKey);
+                                                        add(intrSub);
+                                                }
+                                        });
+                                    }
+                                }
+                            }
+                        }
+
+                        Log.e("SIZE OF The Matches : ", String.valueOf(matches.size()));
+
+                        if(matches.size() > 0){
+
+                            for(String s : matches.get(0)){
+                                Log.e("************* : ", s);
+                            }
+                        }
+
+                        // matches with the students
+                        for(ArrayList<String> match : matches){
+
+                            String studentId = match.get(0);
+                            String subject = match.get(1);
+
+                            // adding {mentor, subject} to student regSubjects
+                            Pair<String,String> p = new Pair<String,String>(newMentorKey, subject);
+
+
+                            // adding student to mentor regStudents
+
+                            Log.e("regStudents : ", String.valueOf(regStudents == null));
+
+                            if(regStudents.get(subject) == null){
+                                regStudents.put(subject, new ArrayList<String>());
+                            }
+                            regStudents.get(subject).add(studentId);
+
+                            // leads to infinite loop
+                            usersRef.child(studentId).child("regSubjects").child(subject).setValue(newMentorKey);
+
+                        }
+
+                        newMentorRef.setValue(new MentorDetails(
+                                name,
+                                email,
+                                phone,
+                                classes,
+                                prefLangs,
+                                timeSlots,
+                                regStudents,
+                                teachSubjects)
+                        ).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        Intent i = new Intent(AuthSignupMentors2.this, Test.class);
+                                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(i);
+                                    }
+                        });
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        System.out.println("The read failed: " + databaseError.getCode());
                     }
                 });
+
+
+
+
+                // END MATCHING ----------------------------------------------------------------------------
+
+
             }
         });
     }

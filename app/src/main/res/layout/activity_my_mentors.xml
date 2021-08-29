@@ -65,21 +65,32 @@
                     android:textColor="@color/text"
                     android:textSize="40sp" />
 
-                <com.google.android.material.card.MaterialCardView
+                <LinearLayout
+                    android:id="@+id/root_linear"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    app:contentPadding="10dp">
+                    android:orientation="vertical"
+                    tools:ignore="UselessParent">
 
-                    <TextView
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/question_text"
-                        android:textAppearance="?attr/textAppearanceBody2"
-                        android:textColor="?android:attr/textColorSecondary" />
+                        android:layout_margin="8dp"
+                        app:cardElevation="10dp">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="20dp"
+                            android:background="@color/purple_200"
+                            android:textColor="@color/white"
+                            android:textAlignment="center"
+                            android:textSize="34sp"
+                            android:text="Below you'll find the mentors assigned to you! Talk to them and get started with your learning!" />
 
-                </com.google.android.material.card.MaterialCardView>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
             </LinearLayout>
         </ScrollView>
 

@@ -6,6 +6,7 @@ import com.google.firebase.database.snapshot.StringNode;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.HashMap;
 
 public class MentorDetails {
 
@@ -13,12 +14,12 @@ public class MentorDetails {
     private ArrayList<String> classes;
     private ArrayList<String> prefLangs;
     private ArrayList<String> timeSlots;
-    private ArrayList<Map<String,String>> regStudents;
+    private HashMap<String, ArrayList<String>> regStudents;
     private ArrayList<String> teachSubjects;
 
     public MentorDetails(){}
 
-    public MentorDetails(String name, String email, String phone, ArrayList<String> classes, ArrayList<String> prefLangs, ArrayList<String> timeSlots, ArrayList<Map<String,String>> regStudents, ArrayList<String> teachSubjects){
+    public MentorDetails(String name, String email, String phone, ArrayList<String> classes, ArrayList<String> prefLangs, ArrayList<String> timeSlots, HashMap<String,ArrayList<String>> regStudents, ArrayList<String> teachSubjects){
         this.name=name;
         this.email=email;
         this.phone=phone;
@@ -45,7 +46,7 @@ public class MentorDetails {
         return classes;
     }
 
-    public ArrayList<Map<String,String>> getRegStudents(){
+    public HashMap<String,ArrayList<String>> getRegStudents(){
         return regStudents;
     }
 
@@ -85,7 +86,7 @@ public class MentorDetails {
         this.timeSlots = timeSlots;
     }
 
-    public void setRegStudents(ArrayList<Map<String,String>> regStudents) {
+    public void setRegStudents(HashMap<String,ArrayList<String>> regStudents) {
         this.regStudents = regStudents;
     }
 

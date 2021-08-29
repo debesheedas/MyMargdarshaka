@@ -2,8 +2,10 @@ package com.example.mymargdarshaka;
 
 import android.util.Pair;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.HashMap;
 
 public class MentorSchema {
     private String id;
@@ -11,7 +13,7 @@ public class MentorSchema {
 
     public MentorSchema(){}
 
-    public MentorSchema(String id, String name, String email, String phone, ArrayList<String> classes, ArrayList<String> prefLangs, ArrayList<String> timeSlots, ArrayList<Map<String,String>> regStudents, ArrayList<String> teachSubjects){
+    public MentorSchema(String id, String name, String email, String phone, ArrayList<String> classes, ArrayList<String> prefLangs, ArrayList<String> timeSlots, HashMap<String, ArrayList<String>> regStudents, ArrayList<String> teachSubjects){
         this.id=id;
         this.mentorDetails=new MentorDetails(name,email,phone,classes,prefLangs,timeSlots,regStudents,teachSubjects);
     }
@@ -32,7 +34,6 @@ public class MentorSchema {
         return this.mentorDetails;
     }
 
-
     public String getName(){
         return this.mentorDetails.getName();
     }
@@ -49,7 +50,7 @@ public class MentorSchema {
         return this.mentorDetails.getClasses();
     }
 
-    public ArrayList<Map<String,String>> getRegStudents(){
+    public HashMap<String,ArrayList<String>> getRegStudents(){
         return this.mentorDetails.getRegStudents();
     }
 
