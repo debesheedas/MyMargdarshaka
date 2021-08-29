@@ -102,4 +102,6 @@
 <string name="m_guideline10">Please use the Feedback option to report any undesirable activity and our moderators will look into it.
 </string>
 <string name="m_guideline11">Remember that education is a human right with immense power to transform! More power to you for doing your part!</string>
+    <string name="EMAIL">EMAIL</string>
+    <string name="PHONE">PHONE</string>
 </resources>
