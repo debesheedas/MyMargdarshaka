@@ -36,7 +36,6 @@ public class AuthSignupStudents1 extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
 
         next_button=(Button) findViewById(R.id.studentSignupButton1);
-        sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         next_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,10 +62,6 @@ public class AuthSignupStudents1 extends AppCompatActivity {
                 {
                     Toast.makeText(getApplicationContext(), "Please Enter Name", Toast.LENGTH_SHORT).show();
                 }
-//                else if(email.equals(""))
-//                {
-//                    Toast.makeText(getApplicationContext(), "Please Enter Email Address ", Toast.LENGTH_SHORT).show();
-//                }
                 else if(class_selected.equals(""))
                 {
                     Toast.makeText(getApplicationContext(), "Please Select a Class ", Toast.LENGTH_SHORT).show();
@@ -88,7 +83,7 @@ public class AuthSignupStudents1 extends AppCompatActivity {
                     Log.e("margaApp", time_selected);
 
                     Intent i = new Intent(AuthSignupStudents1.this, AuthSignupStudents2.class);
-                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    i.putExtra("phone",getIntent().getStringExtra("phone"));
 
                     // to send collected data to the next activity
                     i.putExtra("name", name);

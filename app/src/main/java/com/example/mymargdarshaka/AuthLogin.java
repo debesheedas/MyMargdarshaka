@@ -41,6 +41,7 @@ public class AuthLogin extends AppCompatActivity {
     private DatabaseReference rootRef;
 
     private boolean fine = true;
+    boolean found=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,19 +105,28 @@ public class AuthLogin extends AppCompatActivity {
         usersRef.orderByChild("phone").equalTo(phoneInput.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                setLoading(true);
-                for(DataSnapshot users: snapshot.getChildren()){
-                    setLoading(true);
-                    Log.e("User key", users.getKey());
-                    Log.e("User val", users.getValue().toString());
-
-                    //
-                    if(!getIntent().getStringExtra("userType").equals("student")){
-                        fine=false;
-                    }
+                long l=snapshot.getChildrenCount();
+                long k=0;
+                if(l==0){
                     setLoading(false);
                 }
-                setLoading(false);
+                else {
+                    setLoading(true);
+                    for (DataSnapshot users : snapshot.getChildren()) {
+                        Log.e("User key", users.getKey());
+
+                        if (!getIntent().getStringExtra("userType").equals("student")) {
+                            fine = false;
+                        }
+                        else{
+                            found=true;
+                        }
+                        k++;
+                        if(k==l) {
+                            setLoading(false);
+                        }
+                    }
+                }
             }
 
             @Override
@@ -134,17 +144,28 @@ public class AuthLogin extends AppCompatActivity {
             mentorsRef.orderByChild("phone").equalTo(phoneInput.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    setLoading(true);
-                    for(DataSnapshot child: snapshot.getChildren()){
-                        setLoading(true);
-                        Log.e("User key", child.getKey());
-                        Log.e("User val", child.getValue().toString());
-                        if(getIntent().getStringExtra("userType").equals("student")){
-                            fine=false;
-                        }
+                    long l=snapshot.getChildrenCount();
+                    long k=0;
+                    if(l==0){
                         setLoading(false);
                     }
-                    setLoading(false);
+                    else {
+                        setLoading(true);
+                        for (DataSnapshot child : snapshot.getChildren()) {
+                            setLoading(true);
+                            Log.e("User key", child.getKey());
+                            if (getIntent().getStringExtra("userType").equals("student")) {
+                                fine = false;
+                            }
+                            else{
+                                found=true;
+                            }
+                            k++;
+                            if(k==l) {
+                                setLoading(false);
+                            }
+                        }
+                    }
                 }
 
                 @Override
@@ -156,7 +177,6 @@ public class AuthLogin extends AppCompatActivity {
                 }
             });
         }
-        setLoading(false);
     }
 
     public void generateOtp(){
@@ -189,6 +209,7 @@ public class AuthLogin extends AppCompatActivity {
                             i.putExtra("phone", phoneInput.getText().toString());
                             i.putExtra("verificationId", verificationId);
                             i.putExtra("userType", getIntent().getStringExtra("userType"));
+                            i.putExtra("found",found);
                             startActivity(i);
                         }
                     }
