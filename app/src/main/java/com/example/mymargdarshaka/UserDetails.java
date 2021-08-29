@@ -3,16 +3,17 @@ package com.example.mymargdarshaka;
 import android.util.Pair;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class UserDetails {
 
     String name,email,phone,standard,prefLang, timeSlot;
     ArrayList<String> intrSubjects;
-    ArrayList<Pair<String,String>> regSubjects;
+    HashMap<String,String> regSubjects;
 
     public UserDetails(){}
 
-    public UserDetails(String name, String email, String phone, String standard, String prefLang, ArrayList<String> intrSubjects, String timeSlot, ArrayList<Pair<String,String>> regSubjects){
+    public UserDetails(String name, String email, String phone, String standard, String prefLang, ArrayList<String> intrSubjects, String timeSlot, HashMap<String,String> regSubjects){
         this.name=name;
         this.email=email;
         this.phone=phone;
@@ -32,9 +33,7 @@ public class UserDetails {
     public String getPhone(){
         return phone;
     }
-    public String getStandard(){
-        return standard;
-    }
+    public String getStandard(){ return standard; }
     public String getPrefLang(){
         return prefLang;
     }
@@ -42,7 +41,11 @@ public class UserDetails {
         return intrSubjects;
     }
     public String getTimeSlot(){ return timeSlot; }
-    public ArrayList<Pair<String,String>> getRegSubjects(){
+    //public ArrayList<Pair<String,String>> getRegSubjects(){
+    //    return regSubjects;
+    //}
+
+    public HashMap<String, String> getRegSubjects(){
         return regSubjects;
     }
 

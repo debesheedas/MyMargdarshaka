@@ -50,44 +50,6 @@ public class MyMentors extends AppCompatActivity {
 
         String userid= FirebaseAuth.getInstance().getCurrentUser().toString();
 
-        DatabaseReference usersRef = rootRef;
-        usersRef.orderByChild("id").equalTo(userid).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                setLoading(true);
-                for(DataSnapshot users: snapshot.getChildren()){
-//                    setLoading(true);
-                    Log.e("User key", users.getKey());
-                    Log.e("User val", users.getValue().toString());
-//                    setLoading(false);
-
-                    UserSchema user=users.getValue(UserSchema.class);
-
-                    UserDetails details=user.getDetails();
-                    int registered = details.regSubjects.size();
-                    int total = details.intrSubjects.size();
-
-                    if(total<registered){
-                        ArrayList<String> remainingSubjects=new ArrayList<>();
-                        for(int i=0;i<details.intrSubjects.size();i++){
-                            if(!details.regSubjects.contains(details.intrSubjects.get(i))){
-                                remainingSubjects.add(details.intrSubjects.get(i));
-                            }
-                        }
-
-                    }
-                }
-//                setLoading(false);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(MyMentors.this,error.getMessage().toString(),Toast.LENGTH_LONG).show();
-                Intent i = new Intent(MyMentors.this,MainActivity.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(i);
-            }
-        });
 
         if(x){
             Toast.makeText(MyMentors.this,"No mentors are available at this time",Toast.LENGTH_LONG).show();
@@ -156,7 +118,7 @@ public class MyMentors extends AppCompatActivity {
                     startActivity(i);
                 }
 
-                drawerLayout.closeDrawer(Gravity.START, true);
+                //drawerLayout.closeDrawer(Gravity.START, true);
                 return true;
             }
         });

@@ -140,7 +140,8 @@ public class AuthSignupStudents2 extends AppCompatActivity {
                     subjects.add("science");
                 }
 
-                DatabaseReference newStudentRef = FirebaseDatabase.getInstance().getReference("users").push();
+                // uncomment this !!
+                //DatabaseReference newStudentRef = FirebaseDatabase.getInstance().getReference("users").push();
 
 //                newStudentRef.setValue(new UserSchema(newStudentRef.getKey(), name, email, phone, class_selected, language_selected, subjects, time_selected, regSub));
 
@@ -153,7 +154,10 @@ public class AuthSignupStudents2 extends AppCompatActivity {
 
 //                firebaseDatabase=FirebaseDatabase.getInstance();
 //                databaseReference=firebaseDatabase.getReference("users");
-                String key=newStudentRef.getKey();
+
+                // uncomment this !!
+                //String key=newStudentRef.getKey();
+
 //                newStudentRef=newStudentRef.child(key);
 
 
@@ -162,7 +166,7 @@ public class AuthSignupStudents2 extends AppCompatActivity {
                 rootRef = FirebaseDatabase.getInstance().getReference();
 
                 DatabaseReference mentorsRef = rootRef.child("mentors");
-                mentorsRef.addValueEventListener(new ValueEventListener() {
+                /* mentorsRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         long l=snapshot.getChildrenCount();
@@ -302,6 +306,7 @@ public class AuthSignupStudents2 extends AppCompatActivity {
                 else{
                     x=true;
                 }
+                 */
 
                 Intent i = new Intent(AuthSignupStudents2.this, MyMentors.class);
                 i.putExtra("noMentorsAssignedHere",x);
