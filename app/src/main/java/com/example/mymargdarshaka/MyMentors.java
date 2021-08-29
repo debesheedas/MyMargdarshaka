@@ -78,14 +78,15 @@ public class MyMentors extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
 
-        boolean x=getIntent().getBooleanExtra("noMentorsAssignedHere",true);
+//        boolean x=getIntent().getBooleanExtra("noMentorsAssignedHere",true);
 
-        String userid= FirebaseAuth.getInstance().getCurrentUser().toString();
+//        String userid=getIntent().getStringExtra("userid");
+//        Log.e("userid: ",userid);
+// -MiBiXqLapLqVmUfmdXs
 
-
-        if(x){
-            Toast.makeText(MyMentors.this,"No mentors are available at this time",Toast.LENGTH_LONG).show();
-        }
+//        if(x){
+//            Toast.makeText(MyMentors.this,"No mentors are available at this time",Toast.LENGTH_LONG).show();
+//        }
 
         topAppBar = findViewById(R.id.topAppBar);
         drawerLayout = findViewById(R.id.drawerLayout);
