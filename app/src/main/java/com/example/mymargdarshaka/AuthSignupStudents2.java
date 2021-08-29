@@ -37,11 +37,13 @@ public class AuthSignupStudents2 extends AppCompatActivity {
     Button submit_button;
     boolean x;
     private DatabaseReference rootRef;
+    SharedPreferences sharedPreferences;
 
     ArrayList<String> subjects = new ArrayList<>();
     HashMap<String, String> regSub = new HashMap<>();
 
-    Integer it;
+    private static final String SHARED_PREF_NAME = "login";
+    private static final String TYPE="userType";
 
     Bundle extras;
     String name;
@@ -51,6 +53,8 @@ public class AuthSignupStudents2 extends AppCompatActivity {
     String phone;
     String time_selected;
     ArrayList<Map<String,String>> regs;
+
+    private static final String PHONE="userPhone";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -506,6 +510,13 @@ public class AuthSignupStudents2 extends AppCompatActivity {
                 tempSub.addAll(subjects);
                 UserDetails userSchema = new UserDetails(name, email, phone, class_selected, language_selected, tempSub1, time_selected, regSub);
                 newStudentRef.setValue(userSchema);
+
+                sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(TYPE,"student");
+                editor.putString(PHONE,phone);
+                editor.apply();
+
                 DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
                 ArrayList<Pair<String, String>> forMentors = new ArrayList<>();                 // <Mentorid, subject>
                 for (int i = 0; i < mentors.size(); i++) {
@@ -516,32 +527,14 @@ public class AuthSignupStudents2 extends AppCompatActivity {
                     tempSub.remove(mentors.get(i).second.second);
                     forMentors.add(Pair.create(mentors.get(i).second.first, mentors.get(i).second.second));
                 }
-
-                for(int i=0;i<forMentors.size();i++){
-                    Log.e("forMentors: "+i,forMentors.get(i).first+" : "+forMentors.get(i).second);
-                }
-
-//                for(int i=0;i<forMentors.size();i++){
-//                    x=false;
-//                    HashMap<String,String> m=new HashMap<>();
-//                    m.put(forMentors.get(i).second,"true");
-//                    mentorsRef.child(forMentors.get(i).first.first).child("regStudents").child(forMentors.get(i).first.second).setValue(m);
-//                }
-
-//                for(it=0;it<forMentors.size();it++){
-//                    Log.e("mentor",forMentors.get(it).first.first);
                 mentorsRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot child : snapshot.getChildren()) {
                             for (int j = 0; j < forMentors.size(); j++) {
                                 if (forMentors.get(j).first.equals(child.getKey())) {
-                                    Log.e("there", "there");
                                     MentorDetails details = child.getValue(MentorDetails.class);
-//                                    Log.e("mentor details",details.getPhone());
-//                                    Log.e("value",child.getValue().toString());
                                     if (details.getRegStudents() == null) {
-                                        Log.e("here", "here");
                                         HashMap<String, ArrayList<String>> regStudents = new HashMap<>();
                                         ArrayList<String> temp=new ArrayList<>();
                                         temp.add(key);
@@ -549,21 +542,11 @@ public class AuthSignupStudents2 extends AppCompatActivity {
                                         mentorsRef.child(forMentors.get(j).first).child("regStudents").child(forMentors.get(j).second).setValue(temp);
                                     }
                                     else if (details.getRegStudents().get(forMentors.get(j).second)==null) {
-//                                        Log.e("it is null here", "arr is null here");
-//                                        HashMap<String, ArrayList<String>> t = details.getRegStudents();
-//                                        ArrayList<String> x = new ArrayList<>();
-//                                        x.add(forMentors.get(j).second);
-//                                        t.put(forMentors.get(j).first.second, x);
-//                                        mentorsRef.child(forMentors.get(j).first.first).child("regStudents").setValue(t);
                                         ArrayList<String> temp=new ArrayList<>();
                                         temp.add(key);
                                         mentorsRef.child(forMentors.get(j).first).child("regStudents").child(forMentors.get(j).second).setValue(temp);
-
                                     } else {
                                         ArrayList<String> temp=new ArrayList<>();
-                                        for(String k:details.getRegStudents().get(forMentors.get(j).second)){
-                                            Log.e("kdsfjaklsflksda",k);
-                                        }
                                         temp.addAll(details.getRegStudents().get(forMentors.get(j).second));
                                         temp.add(key);
                                         mentorsRef.child(forMentors.get(j).first).child("regStudents").child(forMentors.get(j).second).setValue(temp);
@@ -581,7 +564,7 @@ public class AuthSignupStudents2 extends AppCompatActivity {
 
                 Intent i=new Intent(AuthSignupStudents2.this,MyMentors.class);
                 i.putExtra("noMentorsAssignedHere",x);
-                i.putExtra("userid",key);
+                i.putExtra("phone",getIntent().getStringExtra("phone"));
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
             }
