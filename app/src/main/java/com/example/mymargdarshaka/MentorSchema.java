@@ -3,6 +3,7 @@ package com.example.mymargdarshaka;
 import android.util.Pair;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MentorSchema {
     private String id;
@@ -10,7 +11,7 @@ public class MentorSchema {
 
     public MentorSchema(){}
 
-    public MentorSchema(String id, String name, String email, String phone, ArrayList<String> classes, ArrayList<String> prefLangs, ArrayList<String> timeSlots, ArrayList<String> regStudents, ArrayList<String> teachSubjects){
+    public MentorSchema(String id, String name, String email, String phone, ArrayList<String> classes, ArrayList<String> prefLangs, ArrayList<String> timeSlots, HashMap<String,ArrayList<String>> regStudents, ArrayList<String> teachSubjects){
         this.id=id;
         this.mentorDetails=new MentorDetails(name,email,phone,classes,prefLangs,timeSlots,regStudents,teachSubjects);
     }
@@ -48,9 +49,7 @@ public class MentorSchema {
         return this.mentorDetails.getClasses();
     }
 
-    public ArrayList<String> getRegStudents(){
-        return this.mentorDetails.getRegStudents();
-    }
+    public HashMap<String,ArrayList<String>>  getRegStudents(){ return this.mentorDetails.getRegStudents(); }
 
     public ArrayList<String> getTimeSlots(){
         return this.mentorDetails.getTimeSlots();

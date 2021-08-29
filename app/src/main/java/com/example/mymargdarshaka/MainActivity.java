@@ -23,7 +23,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -117,21 +116,27 @@ public class MainActivity extends AppCompatActivity {
         String type=sharedPreferences.getString(TYPE,null);
 
         // if already logged in, users and mentors will be redirected to MyMentors and MyStudents repectively.
-        if(type!=null){
-            Toast.makeText(MainActivity.this,"You are already logged in",Toast.LENGTH_SHORT).show();
-            Intent i;
+        //if(type!=null){
+        //    Toast.makeText(MainActivity.this,"You are already logged in",Toast.LENGTH_SHORT).show();
+        //    Intent i;
 
-            Log.e("type: ",type);
+        //    Log.e("type: ",type);
 
-            if(type.equals("student")) {
-                i = new Intent(MainActivity.this, MyMentors.class);
-            }
-            else{
-                i = new Intent(MainActivity.this, MyStudents.class);
-            }
-            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(i);
-        }
+        //    if(type.equals("student")) {
+        //        i = new Intent(MainActivity.this, MyMentors.class);
+        //    }
+        //    else{
+        //        i = new Intent(MainActivity.this, MyStudents.class);
+        //    }
+        //    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        //    startActivity(i);
+        //}
+
+        Intent i = new Intent(MainActivity.this, AuthSignupMentors1.class);
+        i.putExtra("userType", "mentor");
+        i.putExtra("phone", "9876543210");
+        startActivity(i);
+
 
         studentButton.setOnClickListener(new View.OnClickListener() {
             @Override

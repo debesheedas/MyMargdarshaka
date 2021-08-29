@@ -1,6 +1,7 @@
 package com.example.mymargdarshaka;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MentorDetails {
 
@@ -8,12 +9,13 @@ public class MentorDetails {
     private ArrayList<String> classes;
     private ArrayList<String> prefLangs;
     private ArrayList<String> timeSlots;
-    private ArrayList<String> regStudents;
+    //private ArrayList<String> regStudents;
+    private HashMap<String, ArrayList<String>> regStudents;
     private ArrayList<String> teachSubjects;
 
     public MentorDetails(){}
 
-    public MentorDetails(String name, String email, String phone, ArrayList<String> classes, ArrayList<String> prefLangs, ArrayList<String> timeSlots, ArrayList<String> regStudents, ArrayList<String> teachSubjects){
+    public MentorDetails(String name, String email, String phone, ArrayList<String> classes, ArrayList<String> prefLangs, ArrayList<String> timeSlots, HashMap<String,ArrayList<String>> regStudents, ArrayList<String> teachSubjects){
         this.name=name;
         this.email=email;
         this.phone=phone;
@@ -40,9 +42,7 @@ public class MentorDetails {
         return classes;
     }
 
-    public ArrayList<String> getRegStudents(){
-        return regStudents;
-    }
+    public HashMap<String,ArrayList<String>> getRegStudents(){ return regStudents; }
 
     public ArrayList<String> getTimeSlots(){
         return timeSlots;
@@ -80,9 +80,7 @@ public class MentorDetails {
         this.timeSlots = timeSlots;
     }
 
-    public void setRegStudents(ArrayList<String> regStudents) {
-        this.regStudents = regStudents;
-    }
+    //public void setRegStudents(ArrayList<String> regStudents) { this.regStudents = regStudents; }
 
     public void setTeachSubjects(ArrayList<String> teachSubjects) {
         this.teachSubjects = teachSubjects;
