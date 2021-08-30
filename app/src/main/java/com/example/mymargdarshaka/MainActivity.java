@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,6 +30,7 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 
 import java.io.StringReader;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,26 +38,27 @@ public class MainActivity extends AppCompatActivity {
     ImageButton rightButton, leftButton;
     SharedPreferences sharedPreferences;
 
-    private static final String SHARED_PREF_NAME = "myMargdarshaka";
+    private static final String SHARED_PREF_NAME = "login";
     private static final String TYPE="userType";
+    private static final String PHONE="userPhone";
 
     ImageView imageView;
 
     static int count=1;
-
-    private DatabaseReference rootRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+//        Intent i1=new Intent(MainActivity.this,MyMentors.class);
+//        startActivity(i1);
+
         //To make the default Action Bar on top with the App name disappear
         //need to add this on every page
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
-
 
         studentButton=(Button) findViewById(R.id.studentLoginButton);
         mentorButton=(Button) findViewById(R.id.mentorLoginButton);
@@ -114,47 +117,41 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
 
         String type=sharedPreferences.getString(TYPE,null);
+        String phone=sharedPreferences.getString(PHONE,null);
 
         // if already logged in, users and mentors will be redirected to MyMentors and MyStudents repectively.
-        //if(type!=null){
-        //    Toast.makeText(MainActivity.this,"You are already logged in",Toast.LENGTH_SHORT).show();
-        //    Intent i;
+        if(type!=null){
 
-        //    Log.e("type: ",type);
+            Toast.makeText(MainActivity.this,"You are already logged in",Toast.LENGTH_SHORT).show();
+            Intent i1;
 
-        //    if(type.equals("student")) {
-        //        i = new Intent(MainActivity.this, MyMentors.class);
-        //    }
-        //    else{
-        //        i = new Intent(MainActivity.this, MyStudents.class);
-        //    }
-        //    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        //    startActivity(i);
-        //}
+            Log.e("type: ",type);
 
-        Intent i = new Intent(MainActivity.this, AuthSignupMentors1.class);
-        i.putExtra("userType", "mentor");
-        i.putExtra("phone", "9876543210");
-        startActivity(i);
-
+            if(type.equals("student")) {
+                i1 = new Intent(MainActivity.this, MyMentors.class);
+                i1.putExtra("phone",phone);
+                i1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(i1);
+                return;
+            }
+            else{
+                i1 = new Intent(MainActivity.this, MyStudents.class);
+                i1.putExtra("phone",phone);
+                i1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(i1);
+                return;
+            }
+        }
 
         studentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(MainActivity.this,GuidelinesForMentors.class);
+//                Intent i=new Intent(MainActivity.this,GuidelinesForMentors.class);
+                Intent i=new Intent(MainActivity.this,AuthLogin.class);
                 i.putExtra("userType","student");
                 startActivity(i);
             }
         });
-
-//        studentButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i=new Intent(MainActivity.this,GuidelinesForStudents.class);
-//                i.putExtra("type","student");
-//                startActivity(i);
-//            }
-//        });
 
         mentorButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,13 +161,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-//        mentorButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i=new Intent(MainActivity.this,AuthSignupMentors1.class);
-//                i.putExtra("type","mentor");
-//                startActivity(i);
-//            }
-//        });
+
     }
 }

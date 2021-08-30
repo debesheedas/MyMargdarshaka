@@ -30,8 +30,9 @@ public class AuthOtp extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
 
-    private static final String SHARED_PREF_NAME = "myMargdarshaka";
+    private static final String SHARED_PREF_NAME = "login";
     private static final String TYPE = "userType";
+    private static final String PHONE="userPhone";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,9 @@ public class AuthOtp extends AppCompatActivity {
         resend = (Button) findViewById(R.id.resend_otp);
         final ProgressBar pBar2=(ProgressBar) findViewById(R.id.spinner2);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
+
+        Log.e("phone: ",getIntent().getStringExtra("phone"));
+        Log.e("found: ",String.valueOf(getIntent().getBooleanExtra("found",false)));
 
         verify.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,9 +69,37 @@ public class AuthOtp extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
 
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putString(TYPE,getIntent().getStringExtra("type"));
-                            editor.apply();
+                            if(getIntent().getBooleanExtra("found",false)){
+                                Intent i1;
+                                if(getIntent().getStringExtra("userType").equals("student")) {
+
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString(TYPE,"student");
+                                    editor.putString(PHONE,getIntent().getStringExtra("phone"));
+                                    editor.apply();
+
+                                    i1 = new Intent(AuthOtp.this, MyMentors.class);
+                                    i1.putExtra("phone",getIntent().getStringExtra("phone"));
+                                    i1.putExtra("noMentorsAssignedHere",false);
+                                    i1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(i1);
+                                    return;
+                                }
+                                else {
+
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString(TYPE,"mentor");
+                                    editor.putString(PHONE,getIntent().getStringExtra("phone"));
+                                    editor.apply();
+
+                                    i1 = new Intent(AuthOtp.this, MyStudents.class);
+                                    i1.putExtra("phone",getIntent().getStringExtra("phone"));
+                                    i1.putExtra("noMentorsAssignedHere",false);
+                                    i1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(i1);
+                                    return;
+                                }
+                            }
 
                             Log.e("Auth otp type: ",getIntent().getStringExtra("userType"));
 

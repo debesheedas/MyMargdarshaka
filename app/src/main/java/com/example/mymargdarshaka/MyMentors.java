@@ -31,7 +31,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 
 public class MyMentors extends AppCompatActivity {
 
@@ -45,6 +48,39 @@ public class MyMentors extends AppCompatActivity {
     NavigationView navigationView;
 
     private static final String SHARED_PREF_NAME = "login";
+    private static final String PHONE="userPhone";
+
+    public void display(HashMap<String,String> mentors, String prefLang, String timeSlot, LinearLayout root){
+        DatabaseReference mentorsRef=rootRef.child("mentors");
+        mentorsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Set keys=mentors.keySet();
+                for(DataSnapshot child: snapshot.getChildren()){
+                    for(Object key:keys){
+                        if(mentors.get(key.toString()).equals(child.getKey())){
+                            MentorDetails mentorDetails = child.getValue(MentorDetails.class);
+                            MaterialCardView card = getCard(
+                                    key.toString(),
+                                    mentorDetails.getName(),
+                                    mentorDetails.getPhone(),
+                                    mentorDetails.getEmail(),
+                                    prefLang,
+                                    timeSlot,
+                                    R.id.card_view
+                            );
+                            root.addView(card);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,39 +89,55 @@ public class MyMentors extends AppCompatActivity {
 
         LinearLayout root = findViewById(R.id.root_linear);
 
-        MaterialCardView card = getCard(
-                "Physics Grade 11",
-                "Someone Random",
-                "9876543210",
-                "test@test.com",
-                "English",
-                "Morning",
-                R.id.card_view
-        );
-
-        MaterialCardView card2 = getCard(
-                "Physics Grade 12",
-                "Someone Random 2",
-                "9876543211",
-                "test@test.con",
-                "Hindi",
-                "Afternoon",
-                card.getId()
-        );
-
-        root.addView(card);
-        root.addView(card2);
+        rootRef = FirebaseDatabase.getInstance().getReference();
 
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
 
-        boolean x=getIntent().getBooleanExtra("noMentorsAssignedHere",true);
+            String phone=getIntent().getStringExtra("phone");
+//            String phone=sharedPreferences.getString(PHONE,"");
+//            Log.e("phone from prev page: ", phone);
+//            String phone="9898989888";
+            HashMap<String,String> mentors=new HashMap<>();
+            rootRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for(DataSnapshot child:snapshot.getChildren()){
+                        UserDetails details = child.getValue(UserDetails.class);
+                        if(details.getPhone()!=null && details.getPhone().equals(phone)){
+                            display(details.getRegSubjects(),details.getPrefLang(),details.getTimeSlot(),root);
+                        }
+                    }
+                }
 
-        String userid= FirebaseAuth.getInstance().getCurrentUser().toString();
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
 
 
-        if(x){
-            Toast.makeText(MyMentors.this,"No mentors are available at this time",Toast.LENGTH_LONG).show();
-        }
+//        MaterialCardView card = getCard(
+//                "Physics Grade 11",
+//                "Someone Random",
+//                "9876543210",
+//                "test@test.com",
+//                "English",
+//                "Morning",
+//                R.id.card_view
+//        );
+//
+//        MaterialCardView card2 = getCard(
+//                "Physics Grade 12",
+//                "Someone Random 2",
+//                "9876543211",
+//                "test@test.con",
+//                "Hindi",
+//                "Afternoon",
+//                card.getId()
+//        );
+//
+//        root.addView(card);
+//        root.addView(card2);
 
         topAppBar = findViewById(R.id.topAppBar);
         drawerLayout = findViewById(R.id.drawerLayout);
@@ -142,8 +194,9 @@ public class MyMentors extends AppCompatActivity {
                 else if(choice.equals("Logout"))
                 {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
+                    FirebaseAuth.getInstance().signOut();
                     editor.clear();
-                    editor.commit();
+                    editor.apply();
 
                     Intent i = new Intent(MyMentors.this,MainActivity.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

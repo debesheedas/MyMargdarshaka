@@ -1,6 +1,11 @@
 package com.example.mymargdarshaka;
 
+import android.util.Pair;
+
+import com.google.firebase.database.snapshot.StringNode;
+
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.HashMap;
 
 public class MentorDetails {
@@ -9,7 +14,6 @@ public class MentorDetails {
     private ArrayList<String> classes;
     private ArrayList<String> prefLangs;
     private ArrayList<String> timeSlots;
-    //private ArrayList<String> regStudents;
     private HashMap<String, ArrayList<String>> regStudents;
     private ArrayList<String> teachSubjects;
 
@@ -42,7 +46,9 @@ public class MentorDetails {
         return classes;
     }
 
-    public HashMap<String,ArrayList<String>> getRegStudents(){ return regStudents; }
+    public HashMap<String,ArrayList<String>> getRegStudents(){
+        return regStudents;
+    }
 
     public ArrayList<String> getTimeSlots(){
         return timeSlots;
@@ -80,7 +86,9 @@ public class MentorDetails {
         this.timeSlots = timeSlots;
     }
 
-    //public void setRegStudents(ArrayList<String> regStudents) { this.regStudents = regStudents; }
+    public void setRegStudents(HashMap<String,ArrayList<String>> regStudents) {
+        this.regStudents = regStudents;
+    }
 
     public void setTeachSubjects(ArrayList<String> teachSubjects) {
         this.teachSubjects = teachSubjects;
