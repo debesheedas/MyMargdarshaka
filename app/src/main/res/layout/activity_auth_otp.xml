@@ -47,33 +47,29 @@
             android:layout_below="@id/phoneNumber"
             app:cornerRadius="50dp" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        <Button
-            android:id="@+id/resend_otp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_centerHorizontal="true"
-            app:cornerRadius="50dp"
-            android:text="RESEND OTP"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            />
-
-        <ProgressBar
-                android:layout_width="57dp"
-                android:layout_height="57dp"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/spinner2"
-                android:layout_marginTop="53dp"
-                android:visibility="gone"
-                android:layout_below="@+id/phoneNumber"/>
-
-        </FrameLayout>
-
     </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/resend_otp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        app:cornerRadius="50dp"
+        android:text="@string/resend_otp"
+        android:layout_below="@+id/phoneNumber"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        />
+
+    <!--    TODO: Change the color of the spinner   -->
+    <ProgressBar
+        android:layout_width="57dp"
+        android:layout_height="57dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/spinner2"
+        android:layout_marginTop="53dp"
+        android:visibility="gone"
+        android:layout_below="@+id/phoneNumber"/>
 
 
 </RelativeLayout>

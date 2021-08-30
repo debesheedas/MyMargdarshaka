@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -34,7 +35,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MyMentors extends AppCompatActivity {
 
@@ -200,28 +204,41 @@ public class MyMentors extends AppCompatActivity {
                 }
                 else if(choice.equals("Feedback"))
                 {
+                    Intent intent = new Intent(MyMentors.this, Feedback.class);
+                    intent.putExtra("activity", "my_mentors");
+                    startActivity(intent);
                     //code for Feedback
-                    LayoutInflater inflater = (LayoutInflater)
-                            getSystemService(LAYOUT_INFLATER_SERVICE);
-                    View popupView = inflater.inflate(R.layout.feedback_popup, null);
-
-                    // create the popup window
-                    int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-                    int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-                    boolean focusable = true; // lets taps outside the popup also dismiss it
-                    final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-
-                    // show the popup window, which view you pass in doesn't matter, it is only used for the window token
-                    View view = findViewById(android.R.id.content).getRootView();
-                    popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-                    // dismiss the popup window when touched
-                    popupView.setOnTouchListener(new View.OnTouchListener() {
-                        @Override
-                        public boolean onTouch(View v, MotionEvent event) {
-                            popupWindow.dismiss();
-                            return true;
-                        }
-                    });
+//                    LayoutInflater inflater = (LayoutInflater)
+//                            getSystemService(LAYOUT_INFLATER_SERVICE);
+//                    View popupView = inflater.inflate(R.layout.feedback_popup, null);
+//
+//                    // create the popup window
+//                    int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+//                    int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+//                    boolean focusable = true; // lets taps outside the popup also dismiss it
+//                    final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+//
+//                    // show the popup window, which view you pass in doesn't matter, it is only used for the window token
+//                    View view = findViewById(android.R.id.content).getRootView();
+//                    popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+//                    // dismiss the popup window when touched
+//                    popupView.setOnTouchListener(new View.OnTouchListener() {
+//                        @Override
+//                        public boolean onTouch(View v, MotionEvent event) {
+//                            Log.d("TOUCHED", "POPUP TOUCHED");
+//                            EditText feedback = popupView.findViewById(R.id.text_feedback);
+//                            Button submitButton = popupView.findViewById(R.id.feedback_submit);
+//                            submitButton.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View view) {
+//                                    String feedbackText = feedback.getText().toString();
+//                                    Toast.makeText(MyMentors.this, feedbackText, Toast.LENGTH_SHORT).show();
+//                                    popupWindow.dismiss();
+//                                }
+//                            });
+//                            return true;
+//                        }
+//                    });
                 }
                 else if(choice.equals("Logout"))
                 {
@@ -373,7 +390,13 @@ public class MyMentors extends AppCompatActivity {
                 RelativeLayout.LayoutParams.WRAP_CONTENT
         );
         titleTextView.setLayoutParams(titleTextViewParams);
-        titleTextView.setText(title);
+        Pattern courseLevel = Pattern.compile("([a-z]+)(\\d+)");
+        Matcher matcher = courseLevel.matcher(title);
+        if (matcher.find()) {
+            titleTextView.setText(matcher.group(1).toUpperCase(Locale.ROOT) + " " + matcher.group(2));
+        } else{
+            titleTextView.setText(title);
+        }
         int titlePadding = dpAsPixels(15);
         titleTextView.setPadding(titlePadding, titlePadding, titlePadding, titlePadding);
         titleTextView.setTextSize(25);

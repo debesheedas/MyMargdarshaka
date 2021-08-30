@@ -26,6 +26,12 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.Locale;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class MyStudents extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     FirebaseDatabase firebaseDatabase;
@@ -43,29 +49,6 @@ public class MyStudents extends AppCompatActivity {
         setContentView(R.layout.activity_my_students);
 
         LinearLayout root = findViewById(R.id.root_linear);
-
-        MaterialCardView card = getCard(
-                "Physics Grade 11",
-                "Someone Random",
-                "9876543210",
-                "test@test.com",
-                "English",
-                "Morning",
-                R.id.card_view
-        );
-
-        MaterialCardView card2 = getCard(
-                "Physics Grade 12",
-                "Someone Random 2",
-                "9876543211",
-                "test@test.con",
-                "Hindi",
-                "Afternoon",
-                card.getId()
-        );
-
-        root.addView(card);
-        root.addView(card2);
 
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
 
@@ -187,12 +170,8 @@ public class MyStudents extends AppCompatActivity {
     }
 
     private MaterialCardView getCard(
-            String title,
-            String name,
-            String phone,
-            String email,
-            String language,
-            String timeSlot,
+            String classLevel,
+            ArrayList<Map<String, String>> students,
             int aboveId
     ) {
         MaterialCardView card = new MaterialCardView(this);
@@ -215,113 +194,7 @@ public class MyStudents extends AppCompatActivity {
         linearLayoutCard.setOrientation(LinearLayout.VERTICAL);
         linearLayoutCard.setLayoutParams(linearLayoutCardParams);
 
-
-        LinearLayout linearLayoutPrimary = new LinearLayout(this);
-        LinearLayout.LayoutParams linearLayoutPrimaryParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        linearLayoutPrimary.setOrientation(LinearLayout.VERTICAL);
-        int linearLayoutPrimaryPadding = dpAsPixels(16);
-        linearLayoutPrimary.setPadding(linearLayoutPrimaryPadding, linearLayoutPrimaryPadding, linearLayoutPrimaryPadding, linearLayoutPrimaryPadding);
-        linearLayoutPrimary.setLayoutParams(linearLayoutPrimaryParams);
-
-
-        TextView titleTextView = new TextView(this);
-        RelativeLayout.LayoutParams titleTextViewParams = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT
-        );
-        titleTextView.setLayoutParams(titleTextViewParams);
-        titleTextView.setText(title);
-        int titlePadding = dpAsPixels(15);
-        titleTextView.setPadding(titlePadding, titlePadding, titlePadding, titlePadding);
-        titleTextView.setTextSize(25);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            titleTextView.setBackgroundColor(getColor(R.color.purple_500));
-            titleTextView.setTextColor(getColor(R.color.white));
-        }
-
-
-        LinearLayout linearLayoutPrimaryChild = new LinearLayout(this);
-        linearLayoutPrimaryChild.setOrientation(LinearLayout.VERTICAL);
-        linearLayoutPrimaryChild.setLayoutParams(linearLayoutCardParams);
-
-
-        TextView nameTextView = getTextView(
-                "Mentor - " + name,
-                titleTextView.getId()
-        );
-        TextView mobileTextView = getTextView(
-                "Mobile - " + phone,
-                nameTextView.getId()
-        );
-        TextView emailTextView = getTextView(
-                "Email - " + email,
-                mobileTextView.getId()
-        );
-        TextView languageTextView = getTextView(
-                "Language - " + language,
-                emailTextView.getId()
-        );
-        TextView timeSlotTextView = getTextView(
-                "Time slot - " + timeSlot,
-                languageTextView.getId()
-        );
-
-
-        LinearLayout linearLayoutSecondary = new LinearLayout(this);
-        linearLayoutSecondary.setOrientation(LinearLayout.HORIZONTAL);
-        LinearLayout.LayoutParams linearLayoutSecondaryParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        linearLayoutSecondaryParams.setMargins(8, 8, 8, 8);
-        linearLayoutSecondary.setLayoutParams(linearLayoutSecondaryParams);
-
-
-        MaterialButton phoneButton = new MaterialButton(
-                this,
-                null,
-                R.attr.borderlessButtonStyle
-        );
-        RelativeLayout.LayoutParams phoneButtonParams = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT
-        );
-        phoneButtonParams.setMargins(0, 0, 8, 0);
-        phoneButton.setText(R.string.PHONE);
-
-
-        MaterialButton emailButton = new MaterialButton(
-                this,
-                null, R.attr.borderlessButtonStyle
-        );
-        RelativeLayout.LayoutParams emailButtonParams = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT
-        );
-        emailButtonParams.setMargins(0, 0, 8, 0);
-        emailButton.setText(R.string.EMAIL);
-
-
-        linearLayoutPrimaryChild.addView(nameTextView);
-        linearLayoutPrimaryChild.addView(mobileTextView);
-        linearLayoutPrimaryChild.addView(emailTextView);
-        linearLayoutPrimaryChild.addView(languageTextView);
-        linearLayoutPrimaryChild.addView(timeSlotTextView);
-
-
-        linearLayoutPrimary.addView(titleTextView);
-        linearLayoutPrimary.addView(linearLayoutPrimaryChild);
-
-
-        linearLayoutSecondary.addView(phoneButton);
-        linearLayoutSecondary.addView(emailButton);
-
-
-        linearLayoutCard.addView(linearLayoutPrimary);
-        linearLayoutCard.addView(linearLayoutSecondary);
+        //TODO(@Kranthi): Add the textViews dynamically for students details
 
 
         card.addView(linearLayoutCard);

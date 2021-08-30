@@ -59,9 +59,9 @@
     <string name="logout_label">Logout</string>
 
     <string name="feedback_message">Please enter your feedback. </string>
-<!--    <string name="txtCredits">www.google.com</string>-->
+    <!--    <string name="txtCredits">www.google.com</string>-->
 
-<!--    Guidelines for Students Page-->
+    <!--    Guidelines for Students Page-->
     <string name="s_guideline1">Education can change your life! You have taken the first step already by registering on the MyMargdarshaka App.
 </string>
     <string name="s_guideline2">You will find your assigned mentors along with their contact details, in the ‘My Mentors’ page, accessible from the side menu. </string>
@@ -82,27 +82,28 @@
 
 
     <!--    Guidelines for Mentors Page-->
-<string name="m_guideline1">You are your students’ mentor or ‘Margdarshak’ which means you have the noble responsibility of showing them their way through education!
+    <string name="m_guideline1">You are your students’ mentor or ‘Margdarshak’ which means you have the noble responsibility of showing them their way through education!
 </string>
-<string name="m_guideline2">You can find the list of your assigned students, along with their details, on the ‘My Students’ page, accessible from the side menu.
+    <string name="m_guideline2">You can find the list of your assigned students, along with their details, on the ‘My Students’ page, accessible from the side menu.
 </string>
-<string name="m_guideline3">Your students have been assigned to you keeping in mind the class and subjects that you have volunteered to teach. They also have the same ‘Preferred Language of Instruction’ and ‘Preferred Time Slot’ so that it will be easier for you to reach them.
+    <string name="m_guideline3">Your students have been assigned to you keeping in mind the class and subjects that you have volunteered to teach. They also have the same ‘Preferred Language of Instruction’ and ‘Preferred Time Slot’ so that it will be easier for you to reach them.
 </string>
-<string name="m_guideline4">Please contact your students as soon as they are assigned to you and coordinate with them about how to go about mentoring them.
+    <string name="m_guideline4">Please contact your students as soon as they are assigned to you and coordinate with them about how to go about mentoring them.
 </string>
-<string name="m_guideline5">Although you are free to use your creativity and discretion in your mentorship, you are advised to keep some main ideas in mind. Your students should be able to get Secondary (10th standard) and Senior Secondary (12th standard) certification from the National Institute of Open Schooling (NIOS), which is the Government of India’s official examination and certification portal for non-traditional schooling.</string>
-<string name="m_guideline6"><a href="https://sdmis.nios.ac.in/">Please refer to the syllabus and procedure for taking the examinations given in the NIOS website.</a>
+    <string name="m_guideline5">Although you are free to use your creativity and discretion in your mentorship, you are advised to keep some main ideas in mind. Your students should be able to get Secondary (10th standard) and Senior Secondary (12th standard) certification from the National Institute of Open Schooling (NIOS), which is the Government of India’s official examination and certification portal for non-traditional schooling.</string>
+    <string name="m_guideline6"><a href="https://sdmis.nios.ac.in/">Please refer to the syllabus and procedure for taking the examinations given in the NIOS website.</a>
 </string>
-<string name="m_guideline7">Please encourage your students to take the certification exams and guide them through the process as much as possible.
+    <string name="m_guideline7">Please encourage your students to take the certification exams and guide them through the process as much as possible.
 </string>
-<string name="m_guideline8">Please try to understand the variable situations that your students might be going through and try to conduct classes and provide assignments in a way that works for them. They may not be very comfortable with technology, so please take the time to get them onboard. Try to conduct regular classes, give assignments and make the best use of available resources.
+    <string name="m_guideline8">Please try to understand the variable situations that your students might be going through and try to conduct classes and provide assignments in a way that works for them. They may not be very comfortable with technology, so please take the time to get them onboard. Try to conduct regular classes, give assignments and make the best use of available resources.
 </string>
-<string name="m_guideline9"><a href="https://docs.google.com/document/d/1pQRzDyfAsI3TXRGUAC0ojEdwGay095gFAEnRxXIebTY/edit">Here are some resources to guide you.</a>
+    <string name="m_guideline9"><a href="https://docs.google.com/document/d/1pQRzDyfAsI3TXRGUAC0ojEdwGay095gFAEnRxXIebTY/edit">Here are some resources to guide you.</a>
 </string>
-<string name="m_guideline10">Please use the Feedback option to report any undesirable activity and our moderators will look into it.
+    <string name="m_guideline10">Please use the Feedback option to report any undesirable activity and our moderators will look into it.
 </string>
-<string name="m_guideline11">Remember that education is a human right with immense power to transform! More power to you for doing your part!</string>
+    <string name="m_guideline11">Remember that education is a human right with immense power to transform! More power to you for doing your part!</string>
     <string name="EMAIL">EMAIL</string>
     <string name="PHONE">PHONE</string>
     <string name="my_mentors_message">Below you\'ll find the mentors assigned to you! Talk to them and get started with your learning!</string>
+    <string name="resend_otp">RESEND OTP</string>
 </resources>

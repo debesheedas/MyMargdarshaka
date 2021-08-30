@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginHorizontal="55dp"
     >
 
     <TextView
@@ -24,7 +25,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginHorizontal="50dp"
         android:hint="@string/login_phone_number"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         >
@@ -35,33 +35,27 @@
             android:id="@+id/phoneInput"
             android:inputType="phone" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        <Button
-            android:id="@+id/getOTPButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerInParent="true"
-            android:backgroundTint="@color/purple_700"
-            android:layout_marginTop="15dp"
-            android:text="@string/get_otp_button_text"
-            android:layout_below="@id/phoneNumber"
-            app:cornerRadius="50dp" />
-
-            <ProgressBar
-                android:id="@+id/spinner"
-                android:layout_width="57dp"
-                android:layout_height="57dp"
-                android:layout_below="@+id/phoneNumber"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="53dp"
-                android:visibility="gone" />
-
-        </FrameLayout>
-
     </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/getOTPButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:backgroundTint="@color/purple_700"
+        android:layout_marginTop="15dp"
+        android:text="@string/get_otp_button_text"
+        android:layout_below="@id/phoneNumber"
+        app:cornerRadius="50dp" />
+
+    <ProgressBar
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/phoneNumber"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="53dp"
+        android:visibility="gone" />
 
 </RelativeLayout>
