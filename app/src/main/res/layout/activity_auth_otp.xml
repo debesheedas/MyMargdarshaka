@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginHorizontal="50dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -26,8 +27,8 @@
         android:layout_centerInParent="true"
         android:layout_marginHorizontal="50dp"
         android:hint="@string/otp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        >
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"/>
+
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -46,8 +47,6 @@
             android:text="@string/verify"
             android:layout_below="@id/phoneNumber"
             app:cornerRadius="50dp" />
-
-    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/resend_otp"
