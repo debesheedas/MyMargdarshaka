@@ -40,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String SHARED_PREF_NAME = "login";
     private static final String TYPE="userType";
-    private static final String PHONE="userPhone";
+    //private static final String PHONE="userPhone";
+    private static final String USER_ID = "userId";
 
     ImageView imageView;
 
@@ -117,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
 
         String type=sharedPreferences.getString(TYPE,null);
-        String phone=sharedPreferences.getString(PHONE,null);
+        String userId=sharedPreferences.getString(USER_ID,null);
 
         // if already logged in, users and mentors will be redirected to MyMentors and MyStudents repectively.
         if(type!=null){
@@ -129,14 +130,16 @@ public class MainActivity extends AppCompatActivity {
 
             if(type.equals("student")) {
                 i1 = new Intent(MainActivity.this, MyMentors.class);
-                i1.putExtra("phone",phone);
+                //i1.putExtra("phone",phone);
+                i1.putExtra("studentId",userId);
                 i1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i1);
                 return;
             }
             else{
                 i1 = new Intent(MainActivity.this, MyStudents.class);
-                i1.putExtra("phone",phone);
+                //i1.putExtra("phone",phone);
+                i1.putExtra("mentorId", userId);
                 i1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i1);
                 return;

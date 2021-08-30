@@ -32,7 +32,8 @@ public class AuthOtp extends AppCompatActivity {
 
     private static final String SHARED_PREF_NAME = "login";
     private static final String TYPE = "userType";
-    private static final String PHONE="userPhone";
+    //private static final String PHONE="userPhone";
+    private static final String USER_ID = "userId";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,18 +69,21 @@ public class AuthOtp extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-
+                            // if the authentication is successful
                             if(getIntent().getBooleanExtra("found",false)){
+                                // if the user is found,
+
                                 Intent i1;
                                 if(getIntent().getStringExtra("userType").equals("student")) {
 
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
                                     editor.putString(TYPE,"student");
-                                    editor.putString(PHONE,getIntent().getStringExtra("phone"));
+                                    editor.putString(USER_ID,getIntent().getStringExtra("userId"));
                                     editor.apply();
 
                                     i1 = new Intent(AuthOtp.this, MyMentors.class);
-                                    i1.putExtra("phone",getIntent().getStringExtra("phone"));
+                                    i1.putExtra("phone", getIntent().getStringExtra("phone"));
+                                    i1.putExtra("studentId",getIntent().getStringExtra("userId"));
                                     i1.putExtra("noMentorsAssignedHere",false);
                                     i1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                     startActivity(i1);
@@ -89,17 +93,19 @@ public class AuthOtp extends AppCompatActivity {
 
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
                                     editor.putString(TYPE,"mentor");
-                                    editor.putString(PHONE,getIntent().getStringExtra("phone"));
+                                    editor.putString(USER_ID,getIntent().getStringExtra("userId"));
                                     editor.apply();
 
                                     i1 = new Intent(AuthOtp.this, MyStudents.class);
-                                    i1.putExtra("phone",getIntent().getStringExtra("phone"));
+                                    i1.putExtra("phone", getIntent().getStringExtra("phone"));
+                                    i1.putExtra("mentorId",getIntent().getStringExtra("userId"));
                                     i1.putExtra("noMentorsAssignedHere",false);
                                     i1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                     startActivity(i1);
                                     return;
                                 }
                             }
+                            // if the user is not found in DB, send him to signup
 
                             Log.e("Auth otp type: ",getIntent().getStringExtra("userType"));
 

@@ -97,16 +97,21 @@ public class MyMentors extends AppCompatActivity {
 //            String phone=sharedPreferences.getString(PHONE,"");
 //            Log.e("phone from prev page: ", phone);
 //            String phone="9898989888";
+
             HashMap<String,String> mentors=new HashMap<>();
-            rootRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+            rootRef.child("users").child(getIntent().getStringExtra("studentId")).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for(DataSnapshot child:snapshot.getChildren()){
-                        UserDetails details = child.getValue(UserDetails.class);
-                        if(details.getPhone()!=null && details.getPhone().equals(phone)){
-                            display(details.getRegSubjects(),details.getPrefLang(),details.getTimeSlot(),root);
-                        }
-                    }
+
+                    UserDetails details = snapshot.getValue(UserDetails.class);
+                    display(details.getRegSubjects(),details.getPrefLang(),details.getTimeSlot(),root);
+
+                    //for(DataSnapshot child:snapshot.getChildren()){
+                    //    UserDetails details = child.getValue(UserDetails.class);
+                    //      if(details.getPhone()!=null && details.getPhone().equals(phone)){
+                    //          display(details.getRegSubjects(),details.getPrefLang(),details.getTimeSlot(),root);
+                    //      }
+                    //}
                 }
 
                 @Override
