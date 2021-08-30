@@ -16,10 +16,11 @@ public class MentorDetails {
     private ArrayList<String> timeSlots;
     private HashMap<String, ArrayList<String>> regStudents;
     private ArrayList<String> teachSubjects;
+    private int noTests;
 
     public MentorDetails(){}
 
-    public MentorDetails(String name, String email, String phone, ArrayList<String> classes, ArrayList<String> prefLangs, ArrayList<String> timeSlots, HashMap<String,ArrayList<String>> regStudents, ArrayList<String> teachSubjects){
+    public MentorDetails(String name, String email, String phone, ArrayList<String> classes, ArrayList<String> prefLangs, ArrayList<String> timeSlots, HashMap<String,ArrayList<String>> regStudents, ArrayList<String> teachSubjects, int noTests){
         this.name=name;
         this.email=email;
         this.phone=phone;
@@ -28,6 +29,7 @@ public class MentorDetails {
         this.timeSlots=timeSlots;
         this.regStudents=regStudents;
         this.teachSubjects=teachSubjects;
+        this.noTests = noTests;
     }
 
     public String getName(){
@@ -62,6 +64,10 @@ public class MentorDetails {
         return teachSubjects;
     }
 
+    public int getNoTests() {
+        return noTests;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -92,5 +98,9 @@ public class MentorDetails {
 
     public void setTeachSubjects(ArrayList<String> teachSubjects) {
         this.teachSubjects = teachSubjects;
+    }
+
+    public void setNoTests(int noTests) {
+        this.noTests = noTests;
     }
 }
