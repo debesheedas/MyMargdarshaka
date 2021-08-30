@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".AuthSignupMentors1">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="0px">
+
     <LinearLayout
         android:layout_width="302dp"
         android:layout_height="match_parent"
@@ -20,7 +25,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="300dp"
             android:layout_height="64dp"
-            android:layout_marginTop="72dp"
+            android:layout_marginTop="30dp"
             android:hint="@string/email_label"
             app:boxStrokeColor="#3A0CA3"
             app:hintTextColor="#7209B7"
@@ -69,45 +74,191 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/language_select"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            android:layout_width="300dp"
-            android:layout_height="62dp"
-            android:layout_marginTop="15dp"
-            android:hint="@string/language_label"
-            app:boxStrokeColor="#3A0CA3"
-            app:hintTextColor="#7209B7"
-            app:layout_constraintBottom_toTopOf="@+id/time_select"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameTextField">
-
-            <AutoCompleteTextView
-                android:id="@+id/text_view_language"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="none" />
+                android:orientation="vertical"
+                android:padding="15dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/language_label"
+                android:textSize="14dp"
+                android:textAppearance="?attr/textAppearanceHeadline6" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:padding="0px">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <CheckBox
+                        android:id="@+id/check_english"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="#B5179E"
+                        android:checked="false"
+                        android:text="@string/english"
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textColorLink="#B5179E"
+                        android:layout_margin="0dp"
+                        android:padding="0dp"
+                        app:useMaterialThemeColors="false" />
 
-        <com.google.android.material.textfield.TextInputLayout
+                    <CheckBox
+                        android:id="@+id/check_hindi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="#B5179E"
+                        android:checked="false"
+                        android:text="@string/hindi"
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textColorLink="#B5179E"
+                        app:useMaterialThemeColors="false" />
+
+                    <CheckBox
+                        android:id="@+id/check_telugu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="#B5179E"
+                        android:checked="false"
+                        android:text="@string/telugu"
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textColorLink="#B5179E"
+                        app:useMaterialThemeColors="false" />
+
+                </LinearLayout>
+
+            </ScrollView>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/time_select"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            android:layout_width="300dp"
-            android:layout_height="62dp"
-            android:layout_marginTop="15dp"
-            app:boxStrokeColor="#3A0CA3"
-            app:hintTextColor="#7209B7"
-            android:hint="@string/time_label">
-
-            <AutoCompleteTextView
-                android:id="@+id/text_view_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="" />
+                android:orientation="vertical"
+                android:padding="15dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/time_label"
+                    android:textSize="14dp"
+                    android:textAppearance="?attr/textAppearanceHeadline6" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:padding="0px">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+                        <CheckBox
+                            android:id="@+id/check_morning"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="#B5179E"
+                            android:checked="false"
+                            android:text="@string/morning"
+                            android:textAppearance="?attr/textAppearanceBody2"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textColorLink="#B5179E"
+                            android:layout_margin="0dp"
+                            android:padding="0dp"
+                            app:useMaterialThemeColors="false" />
+
+                        <CheckBox
+                            android:id="@+id/check_afternoon"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="#B5179E"
+                            android:checked="false"
+                            android:text="@string/afternoon"
+                            android:textAppearance="?attr/textAppearanceBody2"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textColorLink="#B5179E"
+                            app:useMaterialThemeColors="false" />
+
+                        <CheckBox
+                            android:id="@+id/check_evening"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:buttonTint="#B5179E"
+                            android:checked="false"
+                            android:text="@string/evening"
+                            android:textAppearance="?attr/textAppearanceBody2"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textColorLink="#B5179E"
+                            app:useMaterialThemeColors="false" />
+
+                    </LinearLayout>
+
+                </ScrollView>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/language_select"-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
+<!--            android:layout_width="300dp"-->
+<!--            android:layout_height="62dp"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:hint="@string/language_label"-->
+<!--            app:boxStrokeColor="#3A0CA3"-->
+<!--            app:hintTextColor="#7209B7"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/time_select"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/nameTextField">-->
+
+<!--            <AutoCompleteTextView-->
+<!--                android:id="@+id/text_view_language"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:inputType="none" />-->
+
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/time_select"-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
+<!--            android:layout_width="300dp"-->
+<!--            android:layout_height="62dp"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            app:boxStrokeColor="#3A0CA3"-->
+<!--            app:hintTextColor="#7209B7"-->
+<!--            android:hint="@string/time_label">-->
+
+<!--            <AutoCompleteTextView-->
+<!--                android:id="@+id/text_view_time"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:inputType="" />-->
+
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
 
         <Button
@@ -116,7 +267,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="15dp"
             android:backgroundTint="#00FFFFFF"
             android:text="@string/next"
             android:textColor="#4CC9F0"
@@ -127,5 +278,6 @@
             app:layout_constraintTop_toBottomOf="@+id/class_select"
             app:strokeColor="#4CC9F0" />
     </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

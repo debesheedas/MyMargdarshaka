@@ -52,9 +52,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        Intent i1=new Intent(MainActivity.this,MyMentors.class);
-//        startActivity(i1);
-
         //To make the default Action Bar on top with the App name disappear
         //need to add this on every page
         if (getSupportActionBar() != null) {
@@ -120,7 +117,12 @@ public class MainActivity extends AppCompatActivity {
         String type=sharedPreferences.getString(TYPE,null);
         String userId=sharedPreferences.getString(USER_ID,null);
 
-        // if already logged in, users and mentors will be redirected to MyMentors and MyStudents repectively.
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        FirebaseAuth.getInstance().signOut();
+//        editor.clear();
+//        editor.apply();
+
+        // if already logged in, students and mentors will be redirected to MyMentors and MyStudents respectively.
         if(type!=null){
 
             Toast.makeText(MainActivity.this,"You are already logged in",Toast.LENGTH_SHORT).show();

@@ -48,7 +48,6 @@ public class AuthOtp extends AppCompatActivity {
         final ProgressBar pBar2=(ProgressBar) findViewById(R.id.spinner2);
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
 
-        Log.e("phone: ",getIntent().getStringExtra("phone"));
         Log.e("found: ",String.valueOf(getIntent().getBooleanExtra("found",false)));
 
         verify.setOnClickListener(new View.OnClickListener() {

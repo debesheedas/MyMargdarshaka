@@ -49,6 +49,7 @@ public class MyMentors extends AppCompatActivity {
 
     private static final String SHARED_PREF_NAME = "login";
     private static final String PHONE="userPhone";
+    private static final String USER_ID = "userId";
 
     public void display(HashMap<String,String> mentors, String prefLang, String timeSlot, LinearLayout root){
         DatabaseReference mentorsRef=rootRef.child("mentors");
@@ -80,6 +81,32 @@ public class MyMentors extends AppCompatActivity {
 
             }
         });
+          //code for guidelines popup ---------------------------------------------
+//        //if(condition for first time open)
+//        if(true)
+//        {
+//            LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
+//            View popupView = inflater.inflate(R.layout.guidelines_for_students_popup, null);
+//
+//            // create the popup window
+//            int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+//            int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+//            boolean focusable = true; // lets taps outside the popup also dismiss it
+//            final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+//
+//            // show the popup window, which view you pass in doesn't matter, it is only used for the window token
+//            View view = findViewById(R.id.activity_my_mentors).getRootView();
+//            popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+//
+//            TextView niosLink, resources;
+//            //hyperlink for NIOS website
+//            niosLink =(TextView) popupView.findViewById(R.id.s_guideline6);
+//            niosLink.setMovementMethod(LinkMovementMethod.getInstance());
+//            //hyperlink for resources document
+//            resources =(TextView) popupView.findViewById(R.id.s_guideline8);
+//            resources.setMovementMethod(LinkMovementMethod.getInstance());
+//        }
+//        //code for guidelines popup ends here---------------------------------------------
     }
 
     @Override
@@ -93,12 +120,12 @@ public class MyMentors extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
 
-            String phone=getIntent().getStringExtra("phone");
+//            String phone=getIntent().getStringExtra("phone");
 //            String phone=sharedPreferences.getString(PHONE,"");
 //            Log.e("phone from prev page: ", phone);
 //            String phone="9898989888";
 
-            HashMap<String,String> mentors=new HashMap<>();
+//            HashMap<String,String> mentors=new HashMap<>();
             rootRef.child("users").child(getIntent().getStringExtra("studentId")).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
