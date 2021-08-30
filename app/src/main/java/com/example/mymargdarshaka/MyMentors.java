@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -85,6 +86,31 @@ public class MyMentors extends AppCompatActivity {
 
             }
         });
+
+        if(getIntent().getBooleanExtra("firstTime",false)){
+            LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
+            View popupView = inflater.inflate(R.layout.guidelines_for_students_popup, null);
+
+            // create the popup window
+            int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+            int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+            boolean focusable = true; // lets taps outside the popup also dismiss it
+            final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+            // show the popup window, which view you pass in doesn't matter, it is only used for the window token
+            View view = findViewById(R.id.activity_my_mentors).getRootView();
+            popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+            TextView niosLink, resources;
+            //hyperlink for NIOS website
+            niosLink =(TextView) popupView.findViewById(R.id.s_guideline6);
+            niosLink.setMovementMethod(LinkMovementMethod.getInstance());
+            //hyperlink for resources document
+            resources =(TextView) popupView.findViewById(R.id.s_guideline8);
+            resources.setMovementMethod(LinkMovementMethod.getInstance());
+        }
+
+
           //code for guidelines popup ---------------------------------------------
 //        //if(condition for first time open)
 //        if(true)
@@ -124,25 +150,11 @@ public class MyMentors extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
 
-//            String phone=getIntent().getStringExtra("phone");
-//            String phone=sharedPreferences.getString(PHONE,"");
-//            Log.e("phone from prev page: ", phone);
-//            String phone="9898989888";
-
-//            HashMap<String,String> mentors=new HashMap<>();
             rootRef.child("users").child(getIntent().getStringExtra("studentId")).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                     UserDetails details = snapshot.getValue(UserDetails.class);
                     display(details.getRegSubjects(),details.getPrefLang(),details.getTimeSlot(),root);
-
-                    //for(DataSnapshot child:snapshot.getChildren()){
-                    //    UserDetails details = child.getValue(UserDetails.class);
-                    //      if(details.getPhone()!=null && details.getPhone().equals(phone)){
-                    //          display(details.getRegSubjects(),details.getPrefLang(),details.getTimeSlot(),root);
-                    //      }
-                    //}
                 }
 
                 @Override
@@ -150,30 +162,6 @@ public class MyMentors extends AppCompatActivity {
 
                 }
             });
-
-
-//        MaterialCardView card = getCard(
-//                "Physics Grade 11",
-//                "Someone Random",
-//                "9876543210",
-//                "test@test.com",
-//                "English",
-//                "Morning",
-//                R.id.card_view
-//        );
-//
-//        MaterialCardView card2 = getCard(
-//                "Physics Grade 12",
-//                "Someone Random 2",
-//                "9876543211",
-//                "test@test.con",
-//                "Hindi",
-//                "Afternoon",
-//                card.getId()
-//        );
-//
-//        root.addView(card);
-//        root.addView(card2);
 
         topAppBar = findViewById(R.id.topAppBar);
         drawerLayout = findViewById(R.id.drawerLayout);
@@ -189,13 +177,12 @@ public class MyMentors extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Toast.makeText(getApplicationContext(), "menu item selected "+item.toString(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "menu item selected "+item.toString(), Toast.LENGTH_SHORT).show();
 
                 String choice = item.toString();
                 if(choice.equals("Guidelines"))
                 {
                     Intent i = new Intent(MyMentors.this,GuidelinesForStudents.class);
-                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);
                 }
                 else if(choice.equals("My Mentors"))

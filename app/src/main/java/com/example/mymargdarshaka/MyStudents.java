@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -49,6 +51,29 @@ public class MyStudents extends AppCompatActivity {
         setContentView(R.layout.activity_my_students);
 
         LinearLayout root = findViewById(R.id.root_linear);
+
+        if (getIntent().getBooleanExtra("firstTime", false)) {
+            LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+            View popupView = inflater.inflate(R.layout.guidelines_for_mentors_popup, null);
+
+            // create the popup window
+            int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+            int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+            boolean focusable = true; // lets taps outside the popup also dismiss it
+            final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+            // show the popup window, which view you pass in doesn't matter, it is only used for the window token
+            View view = findViewById(R.id.activity_my_students).getRootView();
+            popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+            TextView niosLink, resources;
+            //hyperlink for NIOS website
+            niosLink = (TextView) popupView.findViewById(R.id.s_guideline6);
+            niosLink.setMovementMethod(LinkMovementMethod.getInstance());
+            //hyperlink for resources document
+            resources = (TextView) popupView.findViewById(R.id.s_guideline8);
+            resources.setMovementMethod(LinkMovementMethod.getInstance());
+        }
 
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
 
@@ -106,6 +131,7 @@ public class MyStudents extends AppCompatActivity {
                 else if(choice.equals("Logout"))
                 {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
+                    FirebaseAuth.getInstance().signOut();
                     editor.clear();
                     editor.commit();
 

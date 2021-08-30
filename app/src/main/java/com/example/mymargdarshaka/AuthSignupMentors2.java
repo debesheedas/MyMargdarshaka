@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -26,6 +27,11 @@ import java.util.Map;
 import java.util.HashMap;
 
 public class AuthSignupMentors2 extends AppCompatActivity {
+
+    SharedPreferences sharedPreferences;
+    private static final String USER_ID = "userId";
+    private static final String SHARED_PREF_NAME = "login";
+    private static final String TYPE="userType";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,10 +151,11 @@ public class AuthSignupMentors2 extends AppCompatActivity {
                     temp = teachSubjects.size();
                 }
 
-
                 // push mentor details to DB before taking test
                 DatabaseReference newMentorRef = FirebaseDatabase.getInstance().getReference("mentors").push();
-                newMentorRef.setValue(new MentorDetails(
+                String key = newMentorRef.getKey();
+                newMentorRef.setValue(new MentorSchema(
+                        key,
                         name,
                         email,
                         phone,
@@ -161,7 +168,15 @@ public class AuthSignupMentors2 extends AppCompatActivity {
                 ).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
+                        sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString(TYPE,"mentor");
+                        editor.putString(USER_ID,key);
+                        editor.apply();
+
                         Intent i = new Intent(AuthSignupMentors2.this, Test.class);
+                        i.putExtra("firstTime",true);
+                        i.putExtra("mentorId",key);
                         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(i);
                     }
