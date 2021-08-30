@@ -49,6 +49,7 @@ public class MyMentors extends AppCompatActivity {
 
     private static final String SHARED_PREF_NAME = "login";
     private static final String PHONE="userPhone";
+    private static final String USER_ID = "userId";
 
     public void display(HashMap<String,String> mentors, String prefLang, String timeSlot, LinearLayout root){
         DatabaseReference mentorsRef=rootRef.child("mentors");
@@ -93,12 +94,12 @@ public class MyMentors extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
 
-            String phone=getIntent().getStringExtra("phone");
+//            String phone=getIntent().getStringExtra("phone");
 //            String phone=sharedPreferences.getString(PHONE,"");
 //            Log.e("phone from prev page: ", phone);
 //            String phone="9898989888";
 
-            HashMap<String,String> mentors=new HashMap<>();
+//            HashMap<String,String> mentors=new HashMap<>();
             rootRef.child("users").child(getIntent().getStringExtra("studentId")).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {

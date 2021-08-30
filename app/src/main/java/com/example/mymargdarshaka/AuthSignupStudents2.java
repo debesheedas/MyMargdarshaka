@@ -38,6 +38,7 @@ public class AuthSignupStudents2 extends AppCompatActivity {
     boolean x;
     private DatabaseReference rootRef;
     SharedPreferences sharedPreferences;
+    private static final String USER_ID = "userId";
 
     ArrayList<String> subjects = new ArrayList<>();
     HashMap<String, String> regSub = new HashMap<>();
@@ -171,12 +172,9 @@ public class AuthSignupStudents2 extends AppCompatActivity {
                             Log.e("1",String.valueOf(mentor.getClasses().contains(class_selected)));
                             Log.e("2",String.valueOf(mentor.getPrefLangs().contains(language_selected)));
                             Log.e("3",String.valueOf(mentor.getTimeSlots().contains(time_selected)));
-                            for(int i=0;i<subjects.size();i++){
-                                Log.e("lkdsfl",subjects.get(i));
-                            }
-                            if (mentor.getClasses().contains(class_selected) && mentor.getPrefLangs().contains(language_selected) && mentor.getTimeSlots().contains(time_selected)) {
+                            Log.e("4",String.valueOf(mentor.getNoTests()));
+                            if (mentor.getClasses().contains(class_selected) && mentor.getPrefLangs().contains(language_selected) && mentor.getTimeSlots().contains(time_selected) && mentor.getNoTests()==-1) {
                                 for (String i : mentor.getTeachSubjects()) {
-                                    Log.e("sub",i);
                                     if (subjects.contains(i)) {
                                         mentors.add(Pair.create(mentor.getRegStudents()==null?0:mentor.getRegStudents().size(), Pair.create(child.getKey(), i)));
                                     }
@@ -514,7 +512,7 @@ public class AuthSignupStudents2 extends AppCompatActivity {
                 sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString(TYPE,"student");
-                editor.putString(PHONE,phone);
+                editor.putString(USER_ID,key);
                 editor.apply();
 
                 DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
@@ -565,6 +563,7 @@ public class AuthSignupStudents2 extends AppCompatActivity {
                 Intent i=new Intent(AuthSignupStudents2.this,MyMentors.class);
                 i.putExtra("noMentorsAssignedHere",x);
                 i.putExtra("phone",getIntent().getStringExtra("phone"));
+                i.putExtra("studentId",key);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
             }
