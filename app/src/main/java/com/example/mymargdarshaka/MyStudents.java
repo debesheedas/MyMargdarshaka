@@ -23,13 +23,21 @@ import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Set;
 
 public class MyStudents extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+
+    private DatabaseReference rootRef;
 
     com.google.android.material.appbar.MaterialToolbar topAppBar;
     androidx.drawerlayout.widget.DrawerLayout drawerLayout;
@@ -37,12 +45,75 @@ public class MyStudents extends AppCompatActivity {
 
     private static final String SHARED_PREF_NAME = "login";
 
+    public void display(HashMap<String,String> mentors, String prefLang, String timeSlot, LinearLayout root){
+        DatabaseReference mentorsRef=rootRef.child("mentors");
+        mentorsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Set keys=mentors.keySet();
+                for(DataSnapshot child: snapshot.getChildren()){
+                    for(Object key:keys){
+                        if(mentors.get(key.toString()).equals(child.getKey())){
+                            MentorDetails mentorDetails = child.getValue(MentorDetails.class);
+                            MaterialCardView card = getCard(
+                                    key.toString(),
+                                    mentorDetails.getName(),
+                                    mentorDetails.getPhone(),
+                                    mentorDetails.getEmail(),
+                                    prefLang,
+                                    timeSlot,
+                                    R.id.card_view
+                            );
+                            root.addView(card);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_students);
 
         LinearLayout root = findViewById(R.id.root_linear);
+
+        rootRef = FirebaseDatabase.getInstance().getReference();
+
+        sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
+
+        String phone=getIntent().getStringExtra("phone");
+//            String phone=sharedPreferences.getString(PHONE,"");
+//            Log.e("phone from prev page: ", phone);
+//            String phone="9898989888";
+
+        HashMap<String,String> students = new HashMap<>();
+        rootRef.child("users").child(getIntent().getStringExtra("studentId")).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                UserDetails details = snapshot.getValue(UserDetails.class);
+                display(details.getRegSubjects(),details.getPrefLang(),details.getTimeSlot(),root);
+
+                //for(DataSnapshot child:snapshot.getChildren()){
+                //    UserDetails details = child.getValue(UserDetails.class);
+                //      if(details.getPhone()!=null && details.getPhone().equals(phone)){
+                //          display(details.getRegSubjects(),details.getPrefLang(),details.getTimeSlot(),root);
+                //      }
+                //}
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         MaterialCardView card = getCard(
                 "Physics Grade 11",
