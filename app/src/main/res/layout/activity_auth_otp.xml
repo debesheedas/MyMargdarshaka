@@ -22,12 +22,12 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/phoneNumber"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginHorizontal="50dp"
-        android:hint="@string/otp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"/>
+        android:hint="@string/otp" >
 
 
         <com.google.android.material.textfield.TextInputEditText
@@ -70,5 +70,7 @@
         android:visibility="gone"
         android:layout_below="@+id/phoneNumber"/>
 
+
+</com.google.android.material.textfield.TextInputLayout>
 
 </RelativeLayout>
