@@ -105,4 +105,7 @@
     <string name="EMAIL">EMAIL</string>
     <string name="PHONE">PHONE</string>
     <string name="my_mentors_message">Below you\'ll find the mentors assigned to you! Talk to them and get started with your learning!</string>
+    <string name="morning">Morning</string>
+    <string name="afternoon">Afternoon</string>
+    <string name="evening">Evening</string>
 </resources>

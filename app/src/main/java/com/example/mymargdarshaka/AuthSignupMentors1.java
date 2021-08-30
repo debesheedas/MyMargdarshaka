@@ -46,11 +46,18 @@ public class AuthSignupMentors1 extends AppCompatActivity {
                 TextInputLayout emailInputLayout = findViewById(R.id.emailTextField);
                 String email = emailInputLayout.getEditText().getText().toString();
 
-                AutoCompleteTextView languageInput = (AutoCompleteTextView)findViewById(R.id.text_view_language);
-                String language_selected = languageInput.getEditableText().toString();
+//                AutoCompleteTextView languageInput = (AutoCompleteTextView)findViewById(R.id.text_view_language);
+//                String language_selected = languageInput.getEditableText().toString();
+//
+//                AutoCompleteTextView timeInput = (AutoCompleteTextView)findViewById(R.id.text_view_time);
+//                String time_selected = timeInput.getEditableText().toString();
+                CheckBox english = (CheckBox) findViewById(R.id.check_english);
+                CheckBox hindi = (CheckBox) findViewById(R.id.check_hindi);
+                CheckBox telugu = (CheckBox) findViewById(R.id.check_telugu);
 
-                AutoCompleteTextView timeInput = (AutoCompleteTextView)findViewById(R.id.text_view_time);
-                String time_selected = timeInput.getEditableText().toString();
+                CheckBox morning = (CheckBox) findViewById(R.id.check_morning);
+                CheckBox afternoon = (CheckBox) findViewById(R.id.check_afternoon);
+                CheckBox evening = (CheckBox) findViewById(R.id.check_evening);
 
                 if(name.equals(""))
                 {
@@ -60,11 +67,11 @@ public class AuthSignupMentors1 extends AppCompatActivity {
                 {
                     Toast.makeText(getApplicationContext(), "Please Enter Email Address ", Toast.LENGTH_SHORT).show();
                 }
-                else if(language_selected.equals(""))
+                else if(!english.isChecked() && !hindi.isChecked() && !telugu.isChecked())
                 {
                     Toast.makeText(getApplicationContext(), "Please Select a Preferred Language ", Toast.LENGTH_SHORT).show();
                 }
-                else if(time_selected.equals(""))
+                else if(!morning.isChecked() && !afternoon.isChecked() && !evening.isChecked())
                 {
                     Toast.makeText(getApplicationContext(), "Please Select a Preferred Time ", Toast.LENGTH_SHORT).show();
                 }
@@ -75,31 +82,31 @@ public class AuthSignupMentors1 extends AppCompatActivity {
                     i.putExtra("name", name);
                     i.putExtra("email", email);
                     i.putExtra("phone", getIntent().getStringExtra("phone"));
-                    i.putExtra("language_selected", language_selected);
-                    i.putExtra("time_selected", time_selected);
+                    //i.putExtra("language_selected", language_selected);
+                    //i.putExtra("time_selected", time_selected);
                     startActivity(i);
                 }
             }
         });
 
-        AutoCompleteTextView text_view_language, text_view_time;// instantiating ac_text_view
-        text_view_language = findViewById(R.id.text_view_language);
-        text_view_time = findViewById(R.id.text_view_time);
-
-        ArrayList<String> languages = new ArrayList<>();
-        languages.add("English");
-        languages.add("Hindi");
-        languages.add("Telugu");
-
-        ArrayList<String> times = new ArrayList<>();
-        times.add("Morning");
-        times.add("Afternoon");
-        times.add("Evening");
-
-        ArrayAdapter<String> languagesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, languages);
-        text_view_language.setAdapter(languagesAdapter);
-
-        ArrayAdapter<String> timesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, times);
-        text_view_time.setAdapter(timesAdapter);
+//        AutoCompleteTextView text_view_language, text_view_time;// instantiating ac_text_view
+//        text_view_language = findViewById(R.id.text_view_language);
+//        text_view_time = findViewById(R.id.text_view_time);
+//
+//        ArrayList<String> languages = new ArrayList<>();
+//        languages.add("English");
+//        languages.add("Hindi");
+//        languages.add("Telugu");
+//
+//        ArrayList<String> times = new ArrayList<>();
+//        times.add("Morning");
+//        times.add("Afternoon");
+//        times.add("Evening");
+//
+//        ArrayAdapter<String> languagesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, languages);
+//        text_view_language.setAdapter(languagesAdapter);
+//
+//        ArrayAdapter<String> timesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, times);
+//        text_view_time.setAdapter(timesAdapter);
     }
 }
