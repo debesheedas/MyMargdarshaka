@@ -98,8 +98,16 @@ public class Test extends AppCompatActivity {
                             Toast.LENGTH_SHORT
                     ).show();
                     //TODO: save details and navigate to the appropriate page based on hasPassed
-                    Intent intent = new Intent(this, GuidelinesForMentors.class);
-                    startActivity(intent);
+
+                    Intent i;
+                    if(hasPassed){
+                        // this will do the matching for mentor and fills the regStudents field and viceversa for students.
+                        MentorMatching.match(getIntent().getStringExtra("mentorKey"));
+                        i = new Intent(this, GuidelinesForMentors.class);
+                    }else{
+                        i = new Intent(this, MainActivity.class);
+                    }
+                    startActivity(i);
                 }
             }
         });

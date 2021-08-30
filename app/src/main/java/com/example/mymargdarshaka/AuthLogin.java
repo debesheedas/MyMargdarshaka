@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.PhoneAuthCredential;
@@ -42,6 +44,7 @@ public class AuthLogin extends AppCompatActivity {
 
     private boolean fine = true;
     boolean found=false;
+    private String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,14 +115,15 @@ public class AuthLogin extends AppCompatActivity {
                 }
                 else {
                     setLoading(true);
-                    for (DataSnapshot users : snapshot.getChildren()) {
-                        Log.e("User key", users.getKey());
+                    for (DataSnapshot user : snapshot.getChildren()) {
+                        Log.e("User key", user.getKey());
 
                         if (!getIntent().getStringExtra("userType").equals("student")) {
                             fine = false;
                         }
                         else{
                             found=true;
+                            userId = user.getKey();
                         }
                         k++;
                         if(k==l) {
@@ -159,6 +163,7 @@ public class AuthLogin extends AppCompatActivity {
                             }
                             else{
                                 found=true;
+                                userId = child.getKey();
                             }
                             k++;
                             if(k==l) {
@@ -206,10 +211,13 @@ public class AuthLogin extends AppCompatActivity {
                         @Override
                         public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                             Intent i = new Intent(AuthLogin.this, AuthOtp.class);
+                            i.putExtra("userType", getIntent().getStringExtra("userType"));
                             i.putExtra("phone", phoneInput.getText().toString());
                             i.putExtra("verificationId", verificationId);
-                            i.putExtra("userType", getIntent().getStringExtra("userType"));
                             i.putExtra("found",found);
+                            if(found){
+                                i.putExtra("userId", userId);
+                            }
                             startActivity(i);
                         }
                     }
