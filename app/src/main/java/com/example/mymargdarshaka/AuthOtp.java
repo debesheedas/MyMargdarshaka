@@ -56,9 +56,6 @@ public class AuthOtp extends AppCompatActivity {
                 if(verificationId == null){
                     Toast.makeText(AuthOtp.this,"Check Your Internet Connection",Toast.LENGTH_SHORT).show();
                 }
-                else{
-                    Toast.makeText(AuthOtp.this,verificationId,Toast.LENGTH_LONG).show();
-                }
 
                 PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.getCredential(
                         verificationId,otpInput.getText().toString()
@@ -84,6 +81,7 @@ public class AuthOtp extends AppCompatActivity {
                                     i1.putExtra("phone", getIntent().getStringExtra("phone"));
                                     i1.putExtra("studentId",getIntent().getStringExtra("userId"));
                                     i1.putExtra("noMentorsAssignedHere",false);
+                                    i1.putExtra("firstTime",false);
                                     i1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                     startActivity(i1);
                                     return;
@@ -95,18 +93,28 @@ public class AuthOtp extends AppCompatActivity {
                                     editor.putString(USER_ID,getIntent().getStringExtra("userId"));
                                     editor.apply();
 
-                                    i1 = new Intent(AuthOtp.this, MyStudents.class);
-                                    i1.putExtra("phone", getIntent().getStringExtra("phone"));
-                                    i1.putExtra("mentorId",getIntent().getStringExtra("userId"));
-                                    i1.putExtra("noMentorsAssignedHere",false);
-                                    i1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    startActivity(i1);
+                                    if(getIntent().getBooleanExtra("testSuccessful",false)){
+                                        i1 = new Intent(AuthOtp.this, MyStudents.class);
+                                        i1.putExtra("phone", getIntent().getStringExtra("phone"));
+                                        i1.putExtra("mentorId",getIntent().getStringExtra("userId"));
+                                        i1.putExtra("noMentorsAssignedHere",false);
+                                        i1.putExtra("firstTime",false);
+                                        i1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(i1);
+                                    }
+                                    else{
+                                        i1 = new Intent(AuthOtp.this, Test.class);
+                                        i1.putExtra("phone", getIntent().getStringExtra("phone"));
+                                        i1.putExtra("mentorId",getIntent().getStringExtra("userId"));
+                                        i1.putExtra("noMentorsAssignedHere",false);
+                                        i1.putExtra("firstTime",false);
+                                        i1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(i1);
+                                    }
                                     return;
                                 }
                             }
                             // if the user is not found in DB, send him to signup
-
-                            Log.e("Auth otp type: ",getIntent().getStringExtra("userType"));
 
                             Toast.makeText(AuthOtp.this,"Successful",Toast.LENGTH_SHORT).show();
 

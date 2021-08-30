@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
                 i1 = new Intent(MainActivity.this, MyMentors.class);
                 //i1.putExtra("phone",phone);
                 i1.putExtra("studentId",userId);
+                i1.putExtra("firstTime",false);
                 i1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i1);
                 return;
@@ -142,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
                 i1 = new Intent(MainActivity.this, MyStudents.class);
                 //i1.putExtra("phone",phone);
                 i1.putExtra("mentorId", userId);
+                i1.putExtra("firstTime",false);
                 i1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i1);
                 return;
