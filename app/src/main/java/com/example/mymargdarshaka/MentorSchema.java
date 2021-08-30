@@ -13,9 +13,9 @@ public class MentorSchema {
 
     public MentorSchema(){}
 
-    public MentorSchema(String id, String name, String email, String phone, ArrayList<String> classes, ArrayList<String> prefLangs, ArrayList<String> timeSlots, HashMap<String, ArrayList<String>> regStudents, ArrayList<String> teachSubjects){
+    public MentorSchema(String id, String name, String email, String phone, ArrayList<String> classes, ArrayList<String> prefLangs, ArrayList<String> timeSlots, HashMap<String, ArrayList<String>> regStudents, ArrayList<String> teachSubjects, int noTests){
         this.id=id;
-        this.mentorDetails=new MentorDetails(name,email,phone,classes,prefLangs,timeSlots,regStudents,teachSubjects);
+        this.mentorDetails=new MentorDetails(name,email,phone,classes,prefLangs,timeSlots,regStudents,teachSubjects, noTests);
     }
 
     public void setId(String id) {
