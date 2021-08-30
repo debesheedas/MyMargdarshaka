@@ -81,6 +81,32 @@ public class MyMentors extends AppCompatActivity {
 
             }
         });
+          //code for guidelines popup ---------------------------------------------
+//        //if(condition for first time open)
+//        if(true)
+//        {
+//            LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
+//            View popupView = inflater.inflate(R.layout.guidelines_for_students_popup, null);
+//
+//            // create the popup window
+//            int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+//            int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+//            boolean focusable = true; // lets taps outside the popup also dismiss it
+//            final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+//
+//            // show the popup window, which view you pass in doesn't matter, it is only used for the window token
+//            View view = findViewById(R.id.activity_my_mentors).getRootView();
+//            popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+//
+//            TextView niosLink, resources;
+//            //hyperlink for NIOS website
+//            niosLink =(TextView) popupView.findViewById(R.id.s_guideline6);
+//            niosLink.setMovementMethod(LinkMovementMethod.getInstance());
+//            //hyperlink for resources document
+//            resources =(TextView) popupView.findViewById(R.id.s_guideline8);
+//            resources.setMovementMethod(LinkMovementMethod.getInstance());
+//        }
+//        //code for guidelines popup ends here---------------------------------------------
     }
 
     @Override
