@@ -154,7 +154,9 @@ public class MyMentors extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     UserDetails details = snapshot.getValue(UserDetails.class);
-                    display(details.getRegSubjects(),details.getPrefLang(),details.getTimeSlot(),root);
+                    if(details.getRegSubjects()!=null) {
+                        display(details.getRegSubjects(), details.getPrefLang(), details.getTimeSlot(), root);
+                    }
                 }
 
                 @Override
