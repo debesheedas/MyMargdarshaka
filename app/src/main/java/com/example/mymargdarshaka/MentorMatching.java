@@ -40,6 +40,8 @@ public class MentorMatching {
 
                                if(newMentor.getClasses().contains(student.getStandard()) && newMentor.getTimeSlots().contains(student.getTimeSlot()) && newMentor.getPrefLangs().contains(student.getPrefLang())){
                                    // this student is applicable
+
+                                   // also add condition when intrSub is null
                                    for(String intrSub : student.getIntrSubjects()){
 
                                        if(newMentor.getTeachSubjects().contains(intrSub)){

@@ -77,9 +77,35 @@ public class MyStudents extends AppCompatActivity {
         rootRef.child("mentors").child(getIntent().getStringExtra("mentorId")).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (getIntent().getBooleanExtra("firstTime", false)) {
+                    LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
+                    View popupView = inflater.inflate(R.layout.feedback_popup, null);
+
+                    // create the popup window
+                    int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+                    int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                    boolean focusable = true; // lets taps outside the popup also dismiss it
+                    final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+                    // show the popup window, which view you pass in doesn't matter, it is only used for the window token
+                    View view = findViewById(R.id.activity_my_students).getRootView();
+                    popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+                    // dismiss the popup window when touched
+                    popupView.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            popupWindow.dismiss();
+                            return true;
+                        }
+                    });
+                }
+
                 MentorDetails details = snapshot.getValue(MentorDetails.class);
                 HashMap<String, ArrayList<String>> regStudents = details.getRegStudents();
-
+                if(regStudents==null){
+                    return;
+                }
                 Set<String> subjects = regStudents.keySet();
 
                 for(String subName : subjects){
@@ -131,29 +157,6 @@ public class MyStudents extends AppCompatActivity {
 
         root.addView(card);
         root.addView(card2);
-
-        if (getIntent().getBooleanExtra("firstTime", false)) {
-            LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-            View popupView = inflater.inflate(R.layout.guidelines_for_mentors_popup, null);
-
-            // create the popup window
-            int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-            int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-            boolean focusable = true; // lets taps outside the popup also dismiss it
-            final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-
-            // show the popup window, which view you pass in doesn't matter, it is only used for the window token
-            View view = findViewById(R.id.activity_my_students).getRootView();
-            popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-
-            TextView niosLink, resources;
-            //hyperlink for NIOS website
-            niosLink = (TextView) popupView.findViewById(R.id.s_guideline6);
-            niosLink.setMovementMethod(LinkMovementMethod.getInstance());
-            //hyperlink for resources document
-            resources = (TextView) popupView.findViewById(R.id.s_guideline8);
-            resources.setMovementMethod(LinkMovementMethod.getInstance());
-        }
 
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
 
