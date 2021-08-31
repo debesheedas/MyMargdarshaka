@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -112,24 +113,31 @@ public class MyStudents extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
                         if(task.isSuccessful()) {
-                           HashMap<String, UserDetails> users = task.getResult().getValue(HashMap.class);
+                           HashMap<String, HashMap> users = (HashMap) task.getResult().getValue();
                            HashMap<String, ArrayList<String>> data = new HashMap<>();
 
                             for(String subName : subjects) {
 
-                                data.put(subName, new ArrayList<String>());
+                                data.put(subName, new ArrayList<>());
                                 ArrayList<String> studentIds = regStudents.get(subName);
 
                                 for(String studentId : studentIds) {
-                                    UserDetails student = users.get(studentId);
-                                    String name = student.getName();
-                                    String phone = student.getPhone();
-                                    data.get(subName).add(name + " - " + phone);
+                                    HashMap student = users.get(studentId);
+                                    if (student != null) {
+                                        String name = (String) student.get("name");
+                                        String phone = (String) student.get("phone");
+                                        data.get(subName).add(name + " - " + phone);
+                                    }
                                 }
                             }
 
                             // here use the data to render
-
+                            int prevId = R.id.card_view;
+                            for(HashMap.Entry<String, ArrayList<String>> entry: data.entrySet()) {
+                                MaterialCardView cardView = getCard(entry.getKey(), entry.getValue(), prevId);
+                                root.addView(cardView);
+                                prevId = cardView.getId();
+                            }
                         }
                     }
                 });

@@ -84,9 +84,11 @@ public class Test extends AppCompatActivity {
 
         button_next.setOnClickListener(view -> {
             if (currentQuestion < questionIds.length) {
-
-                // TODO: handle functionality when user selects no option (currently it crashes)
                 RadioButton selected_option = findViewById(radio_group.getCheckedRadioButtonId());
+                if (selected_option == null) {
+                    Toast.makeText(this, "Please choose an option!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 question = text_question_body.getText().toString();
                 String option = selected_option.getText().toString();
 
