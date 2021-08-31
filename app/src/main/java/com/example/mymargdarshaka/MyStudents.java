@@ -21,12 +21,24 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.navigation.NavigationView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+
 import com.google.firebase.auth.FirebaseAuth;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.lang.reflect.Array;
+import java.util.HashMap;
+import java.util.Set;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -42,11 +54,14 @@ public class MyStudents extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
+    private DatabaseReference rootRef;
+
     com.google.android.material.appbar.MaterialToolbar topAppBar;
     androidx.drawerlayout.widget.DrawerLayout drawerLayout;
     NavigationView navigationView;
 
     private static final String SHARED_PREF_NAME = "login";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +70,47 @@ public class MyStudents extends AppCompatActivity {
 
         LinearLayout root = findViewById(R.id.root_linear);
 
+        rootRef = FirebaseDatabase.getInstance().getReference();
+
+        sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
+
+        rootRef.child("mentors").child(getIntent().getStringExtra("mentorId")).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                MentorDetails details = snapshot.getValue(MentorDetails.class);
+                HashMap<String, ArrayList<String>> regStudents = details.getRegStudents();
+
+                Set<String> subjects = regStudents.keySet();
+
+                for(String subName : subjects){
+                    ArrayList<String> studentIds = regStudents.get(subName);
+                    // sub
+                    for(String studentId : studentIds){
+                        rootRef.child("users").child(studentId).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                if(task.isSuccessful()){
+                                    UserDetails student = task.getResult().getValue(UserDetails.class);
+                                    String name = student.getName();
+                                    String phone = student.getPhone();
+
+
+
+                                }
+                            }
+                        });
+
+                        //
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         ArrayList<String> students = new ArrayList<>();
         students.add("STUDENT 1");
         students.add("STUDENT 2");
