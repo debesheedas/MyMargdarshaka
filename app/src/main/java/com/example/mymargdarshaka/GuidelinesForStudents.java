@@ -65,8 +65,6 @@ public class GuidelinesForStudents extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Toast.makeText(getApplicationContext(), "menu item selected "+item.toString(), Toast.LENGTH_SHORT).show();
-
                 String choice = item.toString();
                 if(choice.equals("Guidelines"))
                 {

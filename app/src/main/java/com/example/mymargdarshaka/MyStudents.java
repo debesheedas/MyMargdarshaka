@@ -186,8 +186,6 @@ public class MyStudents extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Toast.makeText(getApplicationContext(), "menu item selected "+item.toString(), Toast.LENGTH_SHORT).show();
-
                 String choice = item.toString();
                 if(choice.equals("Guidelines"))
                 {
@@ -200,28 +198,9 @@ public class MyStudents extends AppCompatActivity {
                 }
                 else if(choice.equals("Feedback"))
                 {
-                    //code for Feedback
-                    LayoutInflater inflater = (LayoutInflater)
-                            getSystemService(LAYOUT_INFLATER_SERVICE);
-                    View popupView = inflater.inflate(R.layout.feedback_popup, null);
-
-                    // create the popup window
-                    int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-                    int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-                    boolean focusable = true; // lets taps outside the popup also dismiss it
-                    final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-
-                    // show the popup window, which view you pass in doesn't matter, it is only used for the window token
-                    View view = findViewById(android.R.id.content).getRootView();
-                    popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-                    // dismiss the popup window when touched
-                    popupView.setOnTouchListener(new View.OnTouchListener() {
-                        @Override
-                        public boolean onTouch(View v, MotionEvent event) {
-                            popupWindow.dismiss();
-                            return true;
-                        }
-                    });
+                    Intent intent = new Intent(MyStudents.this, Feedback.class);
+                    intent.putExtra("activity", "my_mentors");
+                    startActivity(intent);
                 }
                 else if(choice.equals("Logout"))
                 {
