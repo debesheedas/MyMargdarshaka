@@ -10,12 +10,16 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -32,6 +36,7 @@ public class Test extends AppCompatActivity {
     public static final int CUTOFF_SCORE = 7;
 
     SharedPreferences sharedPreferences;
+    DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
 
     public static final String QUESTION = "question";
     public static final String ANSWER = "answer";
@@ -77,6 +82,8 @@ public class Test extends AppCompatActivity {
 
         button_next.setOnClickListener(view -> {
             if (currentQuestion < questionIds.length) {
+
+                // TODO: handle functionality when user selects no option (currently it crashes)
                 RadioButton selected_option = findViewById(radio_group.getCheckedRadioButtonId());
                 question = text_question_body.getText().toString();
                 String option = selected_option.getText().toString();
@@ -103,18 +110,17 @@ public class Test extends AppCompatActivity {
                             "Test Pass Status " + hasPassed,
                             Toast.LENGTH_SHORT
                     ).show();
-                    //TODO: save details and navigate to the appropriate page based on hasPassed
 
                     Intent i;
                     if(hasPassed){
                         // this will do the matching for mentor and fills the regStudents field and viceversa for students.
-
-                        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
                         rootRef.child("mentors").child(getIntent().getStringExtra("mentorId")).child("noTests").setValue(-1);
 
-                        MentorMatching.match(getIntent().getStringExtra("mentorKey"));
+                        MentorMatching.match(getIntent().getStringExtra("mentorId"));
                         i = new Intent(this, MyStudents.class);
                         i.putExtra("firstTime",true);
+                        i.putExtra("mentorId",getIntent().getStringExtra("mentorId"));
+                        startActivity(i);
                     }else{
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         FirebaseAuth.getInstance().signOut();
@@ -122,11 +128,26 @@ public class Test extends AppCompatActivity {
                         editor.apply();
 
                         // increment noTests here
+                        rootRef.child("mentors").orderByChild(getIntent().getStringExtra("userId")).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for(DataSnapshot child:snapshot.getChildren()){
+                                    MentorDetails details = child.getValue(MentorDetails.class);
+                                    int noTests=details.getNoTests();
+                                    rootRef.child("mentors").child(child.getKey()).child("noTests").setValue(noTests+1);
 
-                        i = new Intent(this, MainActivity.class);
-                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    Intent i2 = new Intent(Test.this, MainActivity.class);
+                                    i2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(i2);
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
                     }
-                    startActivity(i);
                 }
             }
         });
