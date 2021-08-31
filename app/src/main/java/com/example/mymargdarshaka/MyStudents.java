@@ -21,6 +21,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.navigation.NavigationView;
@@ -34,6 +36,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -59,37 +62,6 @@ public class MyStudents extends AppCompatActivity {
 
     private static final String SHARED_PREF_NAME = "login";
 
-    public void display(HashMap<String,String> mentors, String prefLang, String timeSlot, LinearLayout root){
-        DatabaseReference mentorsRef=rootRef.child("mentors");
-        mentorsRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Set keys=mentors.keySet();
-                for(DataSnapshot child: snapshot.getChildren()){
-                    for(Object key:keys){
-                        if(mentors.get(key.toString()).equals(child.getKey())){
-                            MentorDetails mentorDetails = child.getValue(MentorDetails.class);
-                            MaterialCardView card = getCard(
-                                    key.toString(),
-                                    mentorDetails.getName(),
-                                    mentorDetails.getPhone(),
-                                    mentorDetails.getEmail(),
-                                    prefLang,
-                                    timeSlot,
-                                    R.id.card_view
-                            );
-                            root.addView(card);
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,25 +74,36 @@ public class MyStudents extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
 
-        String phone=getIntent().getStringExtra("phone");
-//            String phone=sharedPreferences.getString(PHONE,"");
-//            Log.e("phone from prev page: ", phone);
-//            String phone="9898989888";
-
-        HashMap<String,String> students = new HashMap<>();
-        rootRef.child("users").child(getIntent().getStringExtra("studentId")).addListenerForSingleValueEvent(new ValueEventListener() {
+        rootRef.child("mentors").child(getIntent().getStringExtra("mentorId")).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                MentorDetails details = snapshot.getValue(MentorDetails.class);
+                HashMap<String, ArrayList<String>> regStudents = details.getRegStudents();
 
-                UserDetails details = snapshot.getValue(UserDetails.class);
-                display(details.getRegSubjects(),details.getPrefLang(),details.getTimeSlot(),root);
+                Set<String> subjects = regStudents.keySet();
 
-                //for(DataSnapshot child:snapshot.getChildren()){
-                //    UserDetails details = child.getValue(UserDetails.class);
-                //      if(details.getPhone()!=null && details.getPhone().equals(phone)){
-                //          display(details.getRegSubjects(),details.getPrefLang(),details.getTimeSlot(),root);
-                //      }
-                //}
+                for(String subName : subjects){
+                    ArrayList<String> studentIds = regStudents.get(subName);
+                    // sub
+                    for(String studentId : studentIds){
+                        rootRef.child("users").child(studentId).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                if(task.isSuccessful()){
+                                    UserDetails student = task.getResult().getValue(UserDetails.class);
+                                    String name = student.getName();
+                                    String phone = student.getPhone();
+
+
+
+                                }
+                            }
+                        });
+
+                        //
+                    }
+                }
+
             }
 
             @Override
