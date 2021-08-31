@@ -43,10 +43,8 @@ public class AuthSignupMentors2 extends AppCompatActivity {
         String email  = extras.getString("email");
         String phone = extras.getString("phone");
 
-        ArrayList<String> prefLangs = new ArrayList<>();
-        prefLangs.add(extras.getString("language_selected"));
-        ArrayList<String> timeSlots = new ArrayList<>();
-        timeSlots.add(extras.getString("time_selected"));
+        ArrayList<String> prefLangs = extras.getStringArrayList("prefLangs");
+        ArrayList<String> timeSlots = extras.getStringArrayList("timeSlots");
 
         // will be filled by matching
         HashMap<String,ArrayList<String>> regStudents = new HashMap<>();

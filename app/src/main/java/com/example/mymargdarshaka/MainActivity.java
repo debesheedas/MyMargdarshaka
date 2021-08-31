@@ -144,6 +144,10 @@ public class MainActivity extends AppCompatActivity {
                 //i1.putExtra("phone",phone);
                 i1.putExtra("mentorId", userId);
                 i1.putExtra("firstTime",false);
+                // check noTest for this mentor
+                // if -1 send to MyStudents
+                // if <5 send to after increasing Test
+                // if >=5 Toast saying not eligible
                 i1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i1);
                 return;

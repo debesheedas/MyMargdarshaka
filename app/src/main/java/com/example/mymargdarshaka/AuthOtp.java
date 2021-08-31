@@ -88,6 +88,7 @@ public class AuthOtp extends AppCompatActivity {
                                 }
                                 else {
 
+
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
                                     editor.putString(TYPE,"mentor");
                                     editor.putString(USER_ID,getIntent().getStringExtra("userId"));
@@ -103,6 +104,7 @@ public class AuthOtp extends AppCompatActivity {
                                         startActivity(i1);
                                     }
                                     else{
+                                        // here update noTests
                                         i1 = new Intent(AuthOtp.this, Test.class);
                                         i1.putExtra("phone", getIntent().getStringExtra("phone"));
                                         i1.putExtra("mentorId",getIntent().getStringExtra("userId"));
