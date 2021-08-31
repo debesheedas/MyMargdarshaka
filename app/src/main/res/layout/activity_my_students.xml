@@ -5,6 +5,7 @@
     android:id="@+id/activity_my_students"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="0dp"
     tools:context=".MyStudents">
 
     <androidx.drawerlayout.widget.DrawerLayout
