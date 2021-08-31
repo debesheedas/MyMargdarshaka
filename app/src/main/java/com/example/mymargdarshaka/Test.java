@@ -14,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -111,11 +113,10 @@ public class Test extends AppCompatActivity {
                         // this will do the matching for mentor and fills the regStudents field and viceversa for students.
                         rootRef.child("mentors").child(getIntent().getStringExtra("mentorId")).child("noTests").setValue(-1);
 
-                        MentorMatching.match(getIntent().getStringExtra("mentorId"));
-                        i = new Intent(this, MyStudents.class);
-                        i.putExtra("firstTime",true);
-                        i.putExtra("mentorId",getIntent().getStringExtra("mentorId"));
-                        startActivity(i);
+                        String newMentorKey = getIntent().getStringExtra("mentorId");
+                        // after matching, the mentor will be taken to MyStudents.
+                        MentorMatching.match(newMentorKey, Test.this);
+
                     }else{
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         FirebaseAuth.getInstance().signOut();
