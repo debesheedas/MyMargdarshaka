@@ -1,6 +1,7 @@
 package com.example.mymargdarshaka;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -12,6 +13,9 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -26,6 +30,8 @@ public class Test extends AppCompatActivity {
     public static final int NUM_QUESTIONS = 10;
     public static final int NUM_QUESTIONS_IN_SERVER = 13;
     public static final int CUTOFF_SCORE = 7;
+
+    SharedPreferences sharedPreferences;
 
     public static final String QUESTION = "question";
     public static final String ANSWER = "answer";
@@ -102,10 +108,23 @@ public class Test extends AppCompatActivity {
                     Intent i;
                     if(hasPassed){
                         // this will do the matching for mentor and fills the regStudents field and viceversa for students.
+
+                        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+                        rootRef.child("mentors").child(getIntent().getStringExtra("mentorId")).child("noTests").setValue(-1);
+
                         MentorMatching.match(getIntent().getStringExtra("mentorKey"));
-                        i = new Intent(this, GuidelinesForMentors.class);
+                        i = new Intent(this, MyStudents.class);
+                        i.putExtra("firstTime",true);
                     }else{
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        FirebaseAuth.getInstance().signOut();
+                        editor.clear();
+                        editor.apply();
+
+                        // increment noTests here
+
                         i = new Intent(this, MainActivity.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                     startActivity(i);
                 }

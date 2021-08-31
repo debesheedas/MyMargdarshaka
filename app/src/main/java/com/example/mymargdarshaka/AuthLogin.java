@@ -46,6 +46,8 @@ public class AuthLogin extends AppCompatActivity {
     boolean found=false;
     private String userId;
 
+    boolean testSuccessful=false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -163,7 +165,14 @@ public class AuthLogin extends AppCompatActivity {
                             }
                             else{
                                 found=true;
+                                MentorDetails mentorDetails = child.getValue(MentorDetails.class);
                                 userId = child.getKey();
+                                if(mentorDetails.getNoTests()==-1){
+                                    testSuccessful=true;
+                                }
+                                else{
+                                    testSuccessful=false;
+                                }
                             }
                             k++;
                             if(k==l) {
@@ -215,6 +224,14 @@ public class AuthLogin extends AppCompatActivity {
                             i.putExtra("phone", phoneInput.getText().toString());
                             i.putExtra("verificationId", verificationId);
                             i.putExtra("found",found);
+                            if(getIntent().getStringExtra("userType").equals("mentor") && found){
+                                if(testSuccessful){
+                                    i.putExtra("testSuccessful",true);
+                                }
+                                else{
+                                    i.putExtra("testSuccessful",false);
+                                }
+                            }
                             if(found){
                                 i.putExtra("userId", userId);
                             }

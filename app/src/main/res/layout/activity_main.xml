@@ -72,7 +72,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.488"
-        app:srcCompat="@drawable/navigation_chevron_right" />
+        app:srcCompat="@drawable/baseline_chevron_right_white_48" />
 
     <ImageButton
         android:id="@+id/leftButton"
@@ -89,7 +89,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.491"
-        app:srcCompat="@drawable/navigation_chevron_left" />
+        app:srcCompat="@drawable/baseline_chevron_left_white_48" />
 
     <com.google.android.material.chip.ChipGroup
         android:layout_width="wrap_content"

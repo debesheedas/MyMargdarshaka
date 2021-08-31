@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -34,7 +36,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MyMentors extends AppCompatActivity {
 
@@ -81,6 +86,31 @@ public class MyMentors extends AppCompatActivity {
 
             }
         });
+
+        if(getIntent().getBooleanExtra("firstTime",false)){
+            LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
+            View popupView = inflater.inflate(R.layout.guidelines_for_students_popup, null);
+
+            // create the popup window
+            int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+            int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+            boolean focusable = true; // lets taps outside the popup also dismiss it
+            final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+            // show the popup window, which view you pass in doesn't matter, it is only used for the window token
+            View view = findViewById(R.id.activity_my_mentors).getRootView();
+            popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+            TextView niosLink, resources;
+            //hyperlink for NIOS website
+            niosLink =(TextView) popupView.findViewById(R.id.s_guideline6);
+            niosLink.setMovementMethod(LinkMovementMethod.getInstance());
+            //hyperlink for resources document
+            resources =(TextView) popupView.findViewById(R.id.s_guideline8);
+            resources.setMovementMethod(LinkMovementMethod.getInstance());
+        }
+
+
           //code for guidelines popup ---------------------------------------------
 //        //if(condition for first time open)
 //        if(true)
@@ -120,25 +150,13 @@ public class MyMentors extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
 
-//            String phone=getIntent().getStringExtra("phone");
-//            String phone=sharedPreferences.getString(PHONE,"");
-//            Log.e("phone from prev page: ", phone);
-//            String phone="9898989888";
-
-//            HashMap<String,String> mentors=new HashMap<>();
             rootRef.child("users").child(getIntent().getStringExtra("studentId")).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                     UserDetails details = snapshot.getValue(UserDetails.class);
-                    display(details.getRegSubjects(),details.getPrefLang(),details.getTimeSlot(),root);
-
-                    //for(DataSnapshot child:snapshot.getChildren()){
-                    //    UserDetails details = child.getValue(UserDetails.class);
-                    //      if(details.getPhone()!=null && details.getPhone().equals(phone)){
-                    //          display(details.getRegSubjects(),details.getPrefLang(),details.getTimeSlot(),root);
-                    //      }
-                    //}
+                    if(details.getRegSubjects()!=null) {
+                        display(details.getRegSubjects(), details.getPrefLang(), details.getTimeSlot(), root);
+                    }
                 }
 
                 @Override
@@ -146,30 +164,6 @@ public class MyMentors extends AppCompatActivity {
 
                 }
             });
-
-
-//        MaterialCardView card = getCard(
-//                "Physics Grade 11",
-//                "Someone Random",
-//                "9876543210",
-//                "test@test.com",
-//                "English",
-//                "Morning",
-//                R.id.card_view
-//        );
-//
-//        MaterialCardView card2 = getCard(
-//                "Physics Grade 12",
-//                "Someone Random 2",
-//                "9876543211",
-//                "test@test.con",
-//                "Hindi",
-//                "Afternoon",
-//                card.getId()
-//        );
-//
-//        root.addView(card);
-//        root.addView(card2);
 
         topAppBar = findViewById(R.id.topAppBar);
         drawerLayout = findViewById(R.id.drawerLayout);
@@ -185,13 +179,12 @@ public class MyMentors extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Toast.makeText(getApplicationContext(), "menu item selected "+item.toString(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "menu item selected "+item.toString(), Toast.LENGTH_SHORT).show();
 
                 String choice = item.toString();
                 if(choice.equals("Guidelines"))
                 {
                     Intent i = new Intent(MyMentors.this,GuidelinesForStudents.class);
-                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);
                 }
                 else if(choice.equals("My Mentors"))
@@ -200,28 +193,41 @@ public class MyMentors extends AppCompatActivity {
                 }
                 else if(choice.equals("Feedback"))
                 {
+                    Intent intent = new Intent(MyMentors.this, Feedback.class);
+                    intent.putExtra("activity", "my_mentors");
+                    startActivity(intent);
                     //code for Feedback
-                    LayoutInflater inflater = (LayoutInflater)
-                            getSystemService(LAYOUT_INFLATER_SERVICE);
-                    View popupView = inflater.inflate(R.layout.feedback_popup, null);
-
-                    // create the popup window
-                    int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-                    int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-                    boolean focusable = true; // lets taps outside the popup also dismiss it
-                    final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-
-                    // show the popup window, which view you pass in doesn't matter, it is only used for the window token
-                    View view = findViewById(android.R.id.content).getRootView();
-                    popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-                    // dismiss the popup window when touched
-                    popupView.setOnTouchListener(new View.OnTouchListener() {
-                        @Override
-                        public boolean onTouch(View v, MotionEvent event) {
-                            popupWindow.dismiss();
-                            return true;
-                        }
-                    });
+//                    LayoutInflater inflater = (LayoutInflater)
+//                            getSystemService(LAYOUT_INFLATER_SERVICE);
+//                    View popupView = inflater.inflate(R.layout.feedback_popup, null);
+//
+//                    // create the popup window
+//                    int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+//                    int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+//                    boolean focusable = true; // lets taps outside the popup also dismiss it
+//                    final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+//
+//                    // show the popup window, which view you pass in doesn't matter, it is only used for the window token
+//                    View view = findViewById(android.R.id.content).getRootView();
+//                    popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+//                    // dismiss the popup window when touched
+//                    popupView.setOnTouchListener(new View.OnTouchListener() {
+//                        @Override
+//                        public boolean onTouch(View v, MotionEvent event) {
+//                            Log.d("TOUCHED", "POPUP TOUCHED");
+//                            EditText feedback = popupView.findViewById(R.id.text_feedback);
+//                            Button submitButton = popupView.findViewById(R.id.feedback_submit);
+//                            submitButton.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View view) {
+//                                    String feedbackText = feedback.getText().toString();
+//                                    Toast.makeText(MyMentors.this, feedbackText, Toast.LENGTH_SHORT).show();
+//                                    popupWindow.dismiss();
+//                                }
+//                            });
+//                            return true;
+//                        }
+//                    });
                 }
                 else if(choice.equals("Logout"))
                 {
@@ -316,8 +322,8 @@ public class MyMentors extends AppCompatActivity {
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT
         );
-        int marginTop = dpAsPixels(16);
-        params.setMargins(0, marginTop, 0, 0);
+        int margin = dpAsPixels(16);
+        params.setMargins(margin, margin, 0, margin);
         params.addRule(RelativeLayout.BELOW, aboveId);
         textView.setTextSize(14);
         textView.setLayoutParams(params);
@@ -362,8 +368,8 @@ public class MyMentors extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
         linearLayoutPrimary.setOrientation(LinearLayout.VERTICAL);
-        int linearLayoutPrimaryPadding = dpAsPixels(16);
-        linearLayoutPrimary.setPadding(linearLayoutPrimaryPadding, linearLayoutPrimaryPadding, linearLayoutPrimaryPadding, linearLayoutPrimaryPadding);
+//        int linearLayoutPrimaryPadding = dpAsPixels(16);
+//        linearLayoutPrimary.setPadding(linearLayoutPrimaryPadding, linearLayoutPrimaryPadding, linearLayoutPrimaryPadding, linearLayoutPrimaryPadding);
         linearLayoutPrimary.setLayoutParams(linearLayoutPrimaryParams);
 
 
@@ -373,7 +379,13 @@ public class MyMentors extends AppCompatActivity {
                 RelativeLayout.LayoutParams.WRAP_CONTENT
         );
         titleTextView.setLayoutParams(titleTextViewParams);
-        titleTextView.setText(title);
+        Pattern courseLevel = Pattern.compile("([a-z]+)(\\d+)");
+        Matcher matcher = courseLevel.matcher(title);
+        if (matcher.find()) {
+            titleTextView.setText(matcher.group(1).toUpperCase(Locale.ROOT) + " " + matcher.group(2));
+        } else{
+            titleTextView.setText(title);
+        }
         int titlePadding = dpAsPixels(15);
         titleTextView.setPadding(titlePadding, titlePadding, titlePadding, titlePadding);
         titleTextView.setTextSize(25);
