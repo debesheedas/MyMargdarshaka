@@ -108,27 +108,31 @@ public class MyStudents extends AppCompatActivity {
                 }
                 Set<String> subjects = regStudents.keySet();
 
-                for(String subName : subjects){
-                    ArrayList<String> studentIds = regStudents.get(subName);
-                    // sub
-                    for(String studentId : studentIds){
-                        rootRef.child("users").child(studentId).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                                if(task.isSuccessful()){
-                                    UserDetails student = task.getResult().getValue(UserDetails.class);
+                rootRef.child("users").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        if(task.isSuccessful()) {
+                           HashMap<String, UserDetails> users = task.getResult().getValue(HashMap.class);
+                           HashMap<String, ArrayList<String>> data = new HashMap<>();
+
+                            for(String subName : subjects) {
+
+                                data.put(subName, new ArrayList<String>());
+                                ArrayList<String> studentIds = regStudents.get(subName);
+
+                                for(String studentId : studentIds) {
+                                    UserDetails student = users.get(studentId);
                                     String name = student.getName();
                                     String phone = student.getPhone();
-
-
-
+                                    data.get(subName).add(name + " - " + phone);
                                 }
                             }
-                        });
 
-                        //
+                            // here use the data to render
+
+                        }
                     }
-                }
+                });
 
             }
 
