@@ -382,7 +382,7 @@ public class MyMentors extends AppCompatActivity {
         Pattern courseLevel = Pattern.compile("([a-z]+)(\\d+)");
         Matcher matcher = courseLevel.matcher(title);
         if (matcher.find()) {
-            titleTextView.setText(matcher.group(1).toUpperCase(Locale.ROOT) + " " + matcher.group(2));
+            titleTextView.setText(matcher.group(1).substring(0, 1).toUpperCase(Locale.ROOT) + matcher.group(1).substring(1) + " " + matcher.group(2));
         } else{
             titleTextView.setText(title);
         }
