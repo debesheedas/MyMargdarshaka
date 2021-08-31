@@ -24,12 +24,12 @@ import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.navigation.NavigationView;
-<<<<<<< HEAD
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-=======
+
 import com.google.firebase.auth.FirebaseAuth;
->>>>>>> 9c39e3e0554302ae36932a83bec18a15e7bffb4c
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
@@ -98,7 +98,6 @@ public class MyStudents extends AppCompatActivity {
 
         LinearLayout root = findViewById(R.id.root_linear);
 
-<<<<<<< HEAD
         rootRef = FirebaseDatabase.getInstance().getReference();
 
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
@@ -129,12 +128,10 @@ public class MyStudents extends AppCompatActivity {
 
             }
         });
-=======
         ArrayList<String> students = new ArrayList<>();
         students.add("STUDENT 1");
         students.add("STUDENT 2");
         students.add("STUDENT 3");
->>>>>>> 9c39e3e0554302ae36932a83bec18a15e7bffb4c
 
         MaterialCardView card = getCard(
                 "Physics Grade 11",
