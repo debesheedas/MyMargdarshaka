@@ -55,9 +55,19 @@ public class AuthSignupMentors1 extends AppCompatActivity {
                 CheckBox hindi = (CheckBox) findViewById(R.id.check_hindi);
                 CheckBox telugu = (CheckBox) findViewById(R.id.check_telugu);
 
+                ArrayList<String> prefLangs = new ArrayList<>();
+                if(english.isChecked()) prefLangs.add("English");
+                if(hindi.isChecked()) prefLangs.add("Hindi");
+                if(telugu.isChecked()) prefLangs.add("Telugu");
+
                 CheckBox morning = (CheckBox) findViewById(R.id.check_morning);
                 CheckBox afternoon = (CheckBox) findViewById(R.id.check_afternoon);
                 CheckBox evening = (CheckBox) findViewById(R.id.check_evening);
+
+                ArrayList<String> timeSlots = new ArrayList<>();
+                if(morning.isChecked()) timeSlots.add("Morning");
+                if(afternoon.isChecked()) timeSlots.add("Afternoon");
+                if(evening.isChecked()) timeSlots.add("Evening");
 
                 if(name.equals(""))
                 {
@@ -67,11 +77,11 @@ public class AuthSignupMentors1 extends AppCompatActivity {
                 {
                     Toast.makeText(getApplicationContext(), "Please Enter Email Address ", Toast.LENGTH_SHORT).show();
                 }
-                else if(!english.isChecked() && !hindi.isChecked() && !telugu.isChecked())
+                else if(prefLangs.size() == 0)
                 {
                     Toast.makeText(getApplicationContext(), "Please Select a Preferred Language ", Toast.LENGTH_SHORT).show();
                 }
-                else if(!morning.isChecked() && !afternoon.isChecked() && !evening.isChecked())
+                else if(timeSlots.size() == 0)
                 {
                     Toast.makeText(getApplicationContext(), "Please Select a Preferred Time ", Toast.LENGTH_SHORT).show();
                 }
@@ -82,8 +92,8 @@ public class AuthSignupMentors1 extends AppCompatActivity {
                     i.putExtra("name", name);
                     i.putExtra("email", email);
                     i.putExtra("phone", getIntent().getStringExtra("phone"));
-                    //i.putExtra("language_selected", language_selected);
-                    //i.putExtra("time_selected", time_selected);
+                    i.putStringArrayListExtra("prefLangs", prefLangs);
+                    i.putStringArrayListExtra("timeSlots", timeSlots);
                     startActivity(i);
                 }
             }

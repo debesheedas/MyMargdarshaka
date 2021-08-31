@@ -169,6 +169,11 @@ public class AuthLogin extends AppCompatActivity {
                                 userId = child.getKey();
                                 if(mentorDetails.getNoTests()==-1){
                                     testSuccessful=true;
+                                }else if(mentorDetails.getNoTests() >= 5){
+                                    Toast.makeText(AuthLogin.this, "You are not eligible.", Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(AuthLogin.this, MainActivity.class);
+                                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(i);
                                 }
                                 else{
                                     testSuccessful=false;
