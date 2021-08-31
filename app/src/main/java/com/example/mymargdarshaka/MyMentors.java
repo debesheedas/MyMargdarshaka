@@ -322,8 +322,8 @@ public class MyMentors extends AppCompatActivity {
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT
         );
-        int marginTop = dpAsPixels(16);
-        params.setMargins(0, marginTop, 0, 0);
+        int margin = dpAsPixels(16);
+        params.setMargins(margin, margin, 0, margin);
         params.addRule(RelativeLayout.BELOW, aboveId);
         textView.setTextSize(14);
         textView.setLayoutParams(params);
@@ -368,8 +368,8 @@ public class MyMentors extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
         linearLayoutPrimary.setOrientation(LinearLayout.VERTICAL);
-        int linearLayoutPrimaryPadding = dpAsPixels(16);
-        linearLayoutPrimary.setPadding(linearLayoutPrimaryPadding, linearLayoutPrimaryPadding, linearLayoutPrimaryPadding, linearLayoutPrimaryPadding);
+//        int linearLayoutPrimaryPadding = dpAsPixels(16);
+//        linearLayoutPrimary.setPadding(linearLayoutPrimaryPadding, linearLayoutPrimaryPadding, linearLayoutPrimaryPadding, linearLayoutPrimaryPadding);
         linearLayoutPrimary.setLayoutParams(linearLayoutPrimaryParams);
 
 

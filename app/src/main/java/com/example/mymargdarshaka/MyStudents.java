@@ -35,6 +35,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MyStudents extends AppCompatActivity {
+
+    //    TODO(Kranthi, Aashrith): Implement the students details grouped by course
+
     SharedPreferences sharedPreferences;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -51,6 +54,26 @@ public class MyStudents extends AppCompatActivity {
         setContentView(R.layout.activity_my_students);
 
         LinearLayout root = findViewById(R.id.root_linear);
+
+        ArrayList<String> students = new ArrayList<>();
+        students.add("STUDENT 1");
+        students.add("STUDENT 2");
+        students.add("STUDENT 3");
+
+        MaterialCardView card = getCard(
+                "Physics Grade 11",
+                students,
+                R.id.card_view
+        );
+
+        MaterialCardView card2 = getCard(
+                "Physics Grade 12",
+                students,
+                card.getId()
+        );
+
+        root.addView(card);
+        root.addView(card2);
 
         if (getIntent().getBooleanExtra("firstTime", false)) {
             LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -185,8 +208,8 @@ public class MyStudents extends AppCompatActivity {
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT
         );
-        int marginTop = dpAsPixels(16);
-        params.setMargins(0, marginTop, 0, 0);
+        int margin = dpAsPixels(16);
+        params.setMargins(margin, margin, 0, margin);
         params.addRule(RelativeLayout.BELOW, aboveId);
         textView.setTextSize(14);
         textView.setLayoutParams(params);
@@ -196,8 +219,8 @@ public class MyStudents extends AppCompatActivity {
     }
 
     private MaterialCardView getCard(
-            String classLevel,
-            ArrayList<Map<String, String>> students,
+            String title,
+            ArrayList<String> students,
             int aboveId
     ) {
         MaterialCardView card = new MaterialCardView(this);
@@ -217,11 +240,41 @@ public class MyStudents extends AppCompatActivity {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
+
         linearLayoutCard.setOrientation(LinearLayout.VERTICAL);
         linearLayoutCard.setLayoutParams(linearLayoutCardParams);
 
-        //TODO(@Kranthi): Add the textViews dynamically for students details
+        TextView titleTextView = new TextView(this);
+        RelativeLayout.LayoutParams titleTextViewParams = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT
+        );
+        titleTextView.setLayoutParams(titleTextViewParams);
+        Pattern courseLevel = Pattern.compile("([a-z]+)(\\d+)");
+        Matcher matcher = courseLevel.matcher(title);
+        if (matcher.find()) {
+            titleTextView.setText(matcher.group(1).toUpperCase(Locale.ROOT) + " " + matcher.group(2));
+        } else{
+            titleTextView.setText(title);
+        }
+        int titlePadding = dpAsPixels(15);
+        titleTextView.setPadding(titlePadding, titlePadding, titlePadding, titlePadding);
+        titleTextView.setTextSize(25);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            titleTextView.setBackgroundColor(getColor(R.color.purple_500));
+            titleTextView.setTextColor(getColor(R.color.white));
+        }
 
+        linearLayoutCard.addView(titleTextView);
+
+
+        int prevId = titleTextView.getId();
+        for (String student :
+                students) {
+            TextView textView = getTextView(student, prevId);
+            linearLayoutCard.addView(textView);
+            prevId = textView.getId();
+        }
 
         card.addView(linearLayoutCard);
 
