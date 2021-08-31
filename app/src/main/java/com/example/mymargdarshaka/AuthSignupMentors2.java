@@ -152,8 +152,7 @@ public class AuthSignupMentors2 extends AppCompatActivity {
                 // push mentor details to DB before taking test
                 DatabaseReference newMentorRef = FirebaseDatabase.getInstance().getReference("mentors").push();
                 String key = newMentorRef.getKey();
-                newMentorRef.setValue(new MentorSchema(
-                        key,
+                newMentorRef.setValue(new MentorDetails(
                         name,
                         email,
                         phone,
