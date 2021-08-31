@@ -45,12 +45,16 @@ public class MainActivity extends AppCompatActivity {
 
     ImageView imageView;
 
+    private DatabaseReference rootRef;
+
     static int count=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        rootRef = FirebaseDatabase.getInstance().getReference();
 
         //To make the default Action Bar on top with the App name disappear
         //need to add this on every page
@@ -132,7 +136,6 @@ public class MainActivity extends AppCompatActivity {
 
             if(type.equals("student")) {
                 i1 = new Intent(MainActivity.this, MyMentors.class);
-                //i1.putExtra("phone",phone);
                 i1.putExtra("studentId",userId);
                 i1.putExtra("firstTime",false);
                 i1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -140,16 +143,43 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
             else{
-                i1 = new Intent(MainActivity.this, MyStudents.class);
-                //i1.putExtra("phone",phone);
-                i1.putExtra("mentorId", userId);
-                i1.putExtra("firstTime",false);
                 // check noTest for this mentor
-                // if -1 send to MyStudents
-                // if <5 send to after increasing Test
-                // if >=5 Toast saying not eligible
-                i1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(i1);
+                rootRef.child("mentors").orderByChild(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot child:snapshot.getChildren()){
+                            MentorDetails details = child.getValue(MentorDetails.class);
+                            int noTests=details.getNoTests();
+                            if(noTests==-1){
+                                Intent i2 = new Intent(MainActivity.this, MyStudents.class);
+                                i2.putExtra("mentorId", userId);
+                                i2.putExtra("firstTime",false);
+                                i2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(i2);
+                            }
+                            else if(noTests>=5){
+                                Toast.makeText(MainActivity.this,"You are not eligible",Toast.LENGTH_SHORT).show();
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                FirebaseAuth.getInstance().signOut();
+                                editor.clear();
+                                editor.apply();
+                            }
+                            else{
+                                rootRef.child("mentors").child(userId).child("noTests").setValue(noTests+1);
+                                Intent i2 = new Intent(MainActivity.this, Test.class);
+                                i2.putExtra("mentorId", userId);
+                                i2.putExtra("firstTime",false);
+                                i2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(i2);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
                 return;
             }
         }
@@ -157,7 +187,6 @@ public class MainActivity extends AppCompatActivity {
         studentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent i=new Intent(MainActivity.this,GuidelinesForMentors.class);
                 Intent i=new Intent(MainActivity.this,AuthLogin.class);
                 i.putExtra("userType","student");
                 startActivity(i);

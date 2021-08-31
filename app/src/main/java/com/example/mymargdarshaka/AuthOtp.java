@@ -19,6 +19,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.TimeUnit;
 
@@ -30,6 +35,8 @@ public class AuthOtp extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
 
+    private DatabaseReference rootRef;
+
     private static final String SHARED_PREF_NAME = "login";
     private static final String TYPE = "userType";
     //private static final String PHONE="userPhone";
@@ -39,6 +46,8 @@ public class AuthOtp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth_otp);
+
+        rootRef = FirebaseDatabase.getInstance().getReference();
 
         verificationId = getIntent().getStringExtra("verificationId");
         Log.e("verificationId: ",verificationId);
@@ -88,7 +97,6 @@ public class AuthOtp extends AppCompatActivity {
                                 }
                                 else {
 
-
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
                                     editor.putString(TYPE,"mentor");
                                     editor.putString(USER_ID,getIntent().getStringExtra("userId"));
@@ -105,13 +113,30 @@ public class AuthOtp extends AppCompatActivity {
                                     }
                                     else{
                                         // here update noTests
-                                        i1 = new Intent(AuthOtp.this, Test.class);
-                                        i1.putExtra("phone", getIntent().getStringExtra("phone"));
-                                        i1.putExtra("mentorId",getIntent().getStringExtra("userId"));
-                                        i1.putExtra("noMentorsAssignedHere",false);
-                                        i1.putExtra("firstTime",false);
-                                        i1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                        startActivity(i1);
+
+                                        rootRef.child("mentors").orderByChild(getIntent().getStringExtra("userId")).addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                for(DataSnapshot child:snapshot.getChildren()){
+                                                    MentorDetails details = child.getValue(MentorDetails.class);
+                                                    int noTests=details.getNoTests();
+                                                    Log.e("noTests",String.valueOf(noTests));
+                                                    rootRef.child("mentors").child(child.getKey()).child("noTests").setValue(noTests+1);
+                                                    Intent i2 = new Intent(AuthOtp.this, Test.class);
+                                                    i2.putExtra("phone", getIntent().getStringExtra("phone"));
+                                                    i2.putExtra("mentorId",getIntent().getStringExtra("userId"));
+                                                    i2.putExtra("noMentorsAssignedHere",false);
+                                                    i2.putExtra("firstTime",false);
+                                                    i2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                    startActivity(i2);
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
                                     }
                                     return;
                                 }
