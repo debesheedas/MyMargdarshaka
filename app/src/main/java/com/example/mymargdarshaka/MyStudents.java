@@ -111,6 +111,7 @@ public class MyStudents extends AppCompatActivity {
 
             }
         });
+
         ArrayList<String> students = new ArrayList<>();
         students.add("STUDENT 1");
         students.add("STUDENT 2");
