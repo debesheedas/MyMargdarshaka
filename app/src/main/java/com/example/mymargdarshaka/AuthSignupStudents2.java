@@ -32,7 +32,6 @@ import java.util.Map;
 public class AuthSignupStudents2 extends AppCompatActivity {
 
     AutoCompleteTextView a;
-
     CheckBox english, math, hindi, telugu, physics, chemistry, biology, history, geography, science, social;
     Button submit_button;
     boolean x;
@@ -61,9 +60,7 @@ public class AuthSignupStudents2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth_signup_students2);
-
         x = true;
-
         a = AuthSignupStudents1.text_view_class;
         String s = a.getEditableText().toString();
 
@@ -84,23 +81,22 @@ public class AuthSignupStudents2 extends AppCompatActivity {
         math.setVisibility(View.VISIBLE);
         telugu.setVisibility(View.VISIBLE);
 
+        //only the subjects available for the chosen class are displayed for user to choose
         if (s.equals("Class 11") || s.equals("Class 12")) {
             physics.setVisibility(View.VISIBLE);
             chemistry.setVisibility(View.VISIBLE);
             biology.setVisibility(View.VISIBLE);
             history.setVisibility(View.VISIBLE);
             geography.setVisibility(View.VISIBLE);
-        } else {
+        }
+        else {
             science.setVisibility(View.VISIBLE);
             social.setVisibility(View.VISIBLE);
         }
-
-
         submit_button = (Button) findViewById(R.id.studentSignupButton2);
         submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 extras = getIntent().getExtras();
                 name = extras.getString("name");
                 email = extras.getString("email");
@@ -108,7 +104,6 @@ public class AuthSignupStudents2 extends AppCompatActivity {
                 language_selected = extras.getString("language_selected");
                 phone = extras.getString("phone");
                 time_selected = extras.getString("time_selected");
-
 
                 if (english.isChecked()) {
                     subjects.add("english"+class_selected.toString());
@@ -147,9 +142,7 @@ public class AuthSignupStudents2 extends AppCompatActivity {
                     subjects.add("science"+class_selected.toString());
                 }
 
-                // uncomment this !!
                 DatabaseReference newStudentRef = FirebaseDatabase.getInstance().getReference("users").push();
-
                 String key = newStudentRef.getKey();
                 ArrayList<Pair<Integer, Pair<String, ArrayList<String>>>> arr = new ArrayList<>();
                 rootRef = FirebaseDatabase.getInstance().getReference();
@@ -184,13 +177,11 @@ public class AuthSignupStudents2 extends AppCompatActivity {
                             }
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 
                     }
                 });
-
             }
 
             public void assignMentor(String key, DatabaseReference newStudentRef, DatabaseReference mentorsRef, ArrayList<Pair<Integer, Pair<String, String>>> mentors) {
@@ -272,7 +263,6 @@ public class AuthSignupStudents2 extends AppCompatActivity {
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
             }
-
         });
     }
-        }
+}

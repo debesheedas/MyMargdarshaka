@@ -100,7 +100,6 @@ public class Test extends AppCompatActivity {
                 radio_group.clearCheck();
 
                 // verifying the response
-                Toast.makeText(this, "Selected: " + option, Toast.LENGTH_SHORT).show();
                 Log.d("Response", "onClick: " + responses);
 
                 currentQuestion++;
@@ -109,12 +108,6 @@ public class Test extends AppCompatActivity {
                 } else {
                     boolean hasPassed = score >= CUTOFF_SCORE;
                     Log.d("Test Pass Status", hasPassed + "");
-                    Toast.makeText(
-                            this,
-                            "Test Pass Status " + hasPassed,
-                            Toast.LENGTH_SHORT
-                    ).show();
-
                     Intent i;
                     if(hasPassed){
                         // this will do the matching for mentor and fills the regStudents field and viceversa for students.

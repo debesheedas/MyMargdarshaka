@@ -80,14 +80,14 @@ public class MyMentors extends AppCompatActivity {
                     }
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
 
         if(getIntent().getBooleanExtra("firstTime",false)){
+            //TODO: Error handling, some attribute of the student with phone 9898989898 is missing
+            // and raising a null point exception
             LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
             View popupView = inflater.inflate(R.layout.guidelines_for_students_popup, null);
 
@@ -109,34 +109,6 @@ public class MyMentors extends AppCompatActivity {
             resources =(TextView) popupView.findViewById(R.id.s_guideline8);
             resources.setMovementMethod(LinkMovementMethod.getInstance());
         }
-
-
-          //code for guidelines popup ---------------------------------------------
-//        //if(condition for first time open)
-//        if(true)
-//        {
-//            LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
-//            View popupView = inflater.inflate(R.layout.guidelines_for_students_popup, null);
-//
-//            // create the popup window
-//            int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-//            int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-//            boolean focusable = true; // lets taps outside the popup also dismiss it
-//            final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-//
-//            // show the popup window, which view you pass in doesn't matter, it is only used for the window token
-//            View view = findViewById(R.id.activity_my_mentors).getRootView();
-//            popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-//
-//            TextView niosLink, resources;
-//            //hyperlink for NIOS website
-//            niosLink =(TextView) popupView.findViewById(R.id.s_guideline6);
-//            niosLink.setMovementMethod(LinkMovementMethod.getInstance());
-//            //hyperlink for resources document
-//            resources =(TextView) popupView.findViewById(R.id.s_guideline8);
-//            resources.setMovementMethod(LinkMovementMethod.getInstance());
-//        }
-//        //code for guidelines popup ends here---------------------------------------------
     }
 
     @Override
@@ -145,9 +117,7 @@ public class MyMentors extends AppCompatActivity {
         setContentView(R.layout.activity_my_mentors);
 
         LinearLayout root = findViewById(R.id.root_linear);
-
         rootRef = FirebaseDatabase.getInstance().getReference();
-
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
 
             rootRef.child("users").child(getIntent().getStringExtra("studentId")).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -158,13 +128,12 @@ public class MyMentors extends AppCompatActivity {
                         display(details.getRegSubjects(), details.getPrefLang(), details.getTimeSlot(), root);
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
 
                 }
             });
-
+        //Functionality for App Bar with Menu
         topAppBar = findViewById(R.id.topAppBar);
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationView);
@@ -175,12 +144,10 @@ public class MyMentors extends AppCompatActivity {
                 drawerLayout.openDrawer(Gravity.LEFT);
             }
         });
-
+        //Functionality for side panel with navigation options
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                Toast.makeText(getApplicationContext(), "menu item selected "+item.toString(), Toast.LENGTH_SHORT).show();
-
                 String choice = item.toString();
                 if(choice.equals("Guidelines"))
                 {
@@ -193,41 +160,8 @@ public class MyMentors extends AppCompatActivity {
                 }
                 else if(choice.equals("Feedback"))
                 {
-                    Intent intent = new Intent(MyMentors.this, Feedback.class);
-                    intent.putExtra("activity", "my_mentors");
+                    Intent intent = new Intent(MyMentors.this, FeedbackStudents.class);
                     startActivity(intent);
-                    //code for Feedback
-//                    LayoutInflater inflater = (LayoutInflater)
-//                            getSystemService(LAYOUT_INFLATER_SERVICE);
-//                    View popupView = inflater.inflate(R.layout.feedback_popup, null);
-//
-//                    // create the popup window
-//                    int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-//                    int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-//                    boolean focusable = true; // lets taps outside the popup also dismiss it
-//                    final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-//
-//                    // show the popup window, which view you pass in doesn't matter, it is only used for the window token
-//                    View view = findViewById(android.R.id.content).getRootView();
-//                    popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-//                    // dismiss the popup window when touched
-//                    popupView.setOnTouchListener(new View.OnTouchListener() {
-//                        @Override
-//                        public boolean onTouch(View v, MotionEvent event) {
-//                            Log.d("TOUCHED", "POPUP TOUCHED");
-//                            EditText feedback = popupView.findViewById(R.id.text_feedback);
-//                            Button submitButton = popupView.findViewById(R.id.feedback_submit);
-//                            submitButton.setOnClickListener(new View.OnClickListener() {
-//                                @Override
-//                                public void onClick(View view) {
-//                                    String feedbackText = feedback.getText().toString();
-//                                    Toast.makeText(MyMentors.this, feedbackText, Toast.LENGTH_SHORT).show();
-//                                    popupWindow.dismiss();
-//                                }
-//                            });
-//                            return true;
-//                        }
-//                    });
                 }
                 else if(choice.equals("Logout"))
                 {
@@ -240,8 +174,6 @@ public class MyMentors extends AppCompatActivity {
                     i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);
                 }
-
-                //drawerLayout.closeDrawer(Gravity.START, true);
                 return true;
             }
         });
@@ -382,7 +314,7 @@ public class MyMentors extends AppCompatActivity {
         Pattern courseLevel = Pattern.compile("([a-z]+)(\\d+)");
         Matcher matcher = courseLevel.matcher(title);
         if (matcher.find()) {
-            titleTextView.setText(matcher.group(1).toUpperCase(Locale.ROOT) + " " + matcher.group(2));
+            titleTextView.setText(matcher.group(1).substring(0, 1).toUpperCase(Locale.ROOT) + matcher.group(1).substring(1) + " " + matcher.group(2));
         } else{
             titleTextView.setText(title);
         }
@@ -393,12 +325,9 @@ public class MyMentors extends AppCompatActivity {
             titleTextView.setBackgroundColor(getColor(R.color.purple_500));
             titleTextView.setTextColor(getColor(R.color.white));
         }
-
-
         LinearLayout linearLayoutPrimaryChild = new LinearLayout(this);
         linearLayoutPrimaryChild.setOrientation(LinearLayout.VERTICAL);
         linearLayoutPrimaryChild.setLayoutParams(linearLayoutCardParams);
-
 
         TextView nameTextView = getTextView(
                 "Mentor - " + name,
@@ -444,7 +373,6 @@ public class MyMentors extends AppCompatActivity {
         phoneButtonParams.setMargins(0, 0, 8, 0);
         phoneButton.setText("PHONE");
 
-
         MaterialButton emailButton = new MaterialButton(
                 this,
                 null, R.attr.borderlessButtonStyle
@@ -456,28 +384,22 @@ public class MyMentors extends AppCompatActivity {
         emailButtonParams.setMargins(0, 0, 8, 0);
         emailButton.setText("EMAIL");
 
-
         linearLayoutPrimaryChild.addView(nameTextView);
         linearLayoutPrimaryChild.addView(mobileTextView);
         linearLayoutPrimaryChild.addView(emailTextView);
         linearLayoutPrimaryChild.addView(languageTextView);
         linearLayoutPrimaryChild.addView(timeSlotTextView);
 
-
         linearLayoutPrimary.addView(titleTextView);
         linearLayoutPrimary.addView(linearLayoutPrimaryChild);
-
 
         linearLayoutSecondary.addView(phoneButton);
         linearLayoutSecondary.addView(emailButton);
 
-
         linearLayoutCard.addView(linearLayoutPrimary);
         linearLayoutCard.addView(linearLayoutSecondary);
 
-
         card.addView(linearLayoutCard);
-
         return card;
     }
 }

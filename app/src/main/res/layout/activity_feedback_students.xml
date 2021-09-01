@@ -34,7 +34,7 @@
                     android:background="@android:color/transparent"
                     android:elevation="0dp"
                     app:navigationIcon="@drawable/ic_menu_24dp"
-                    app:title="@string/my_students_label" />
+                    app:title="@string/feedback_label" />
 
             </com.google.android.material.appbar.AppBarLayout>
 
@@ -43,67 +43,53 @@
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-
         <ScrollView
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="150dp"
             android:padding="15dp">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/my_students"
+                android:layout_margin="0dp"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/my_students"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/text_input_layout_feedback"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginHorizontal="25dp"
+                    android:scrollbarAlwaysDrawVerticalTrack="true"
+                    android:scrollbars="vertical"
+                    android:hint="@string/please_describe_your_problem">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/text_feedback"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/button_submit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="@string/my_students_label"
-                    android:textAlignment="center"
-                    android:textColor="@color/text"
-                    android:textSize="40sp" />
-
-                <LinearLayout
-                    android:id="@+id/root_linear"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    tools:ignore="UselessParent">
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/card_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        app:cardElevation="10dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="20dp"
-                            android:background="@color/purple_200"
-                            android:textColor="@color/white"
-                            android:textAlignment="center"
-                            android:textSize="34sp"
-                            android:text="Below you'll find the mentors assigned to you! Talk to them and get started with your learning!" />
-
-                    </com.google.android.material.card.MaterialCardView>
-                </LinearLayout>
+                    android:layout_marginStart="30dp"
+                    android:layout_below="@+id/text_input_layout_feedback"
+                    android:text="@string/submit"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"/>
             </LinearLayout>
         </ScrollView>
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigationView"
-            app:menu="@menu/navigation_drawer_mentor"
+            app:menu="@menu/navigation_drawer_student"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"/>
-
     </androidx.drawerlayout.widget.DrawerLayout>
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+

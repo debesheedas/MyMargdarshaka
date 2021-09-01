@@ -43,6 +43,7 @@ public class AuthSignupStudents1 extends AppCompatActivity {
                 editor.clear();
                 editor.commit();
 
+                //extracting user input from UI elements
                 TextInputLayout nameInputLayout = findViewById(R.id.nameTextField);
                 String name = nameInputLayout.getEditText().getText().toString();
 
@@ -58,6 +59,7 @@ public class AuthSignupStudents1 extends AppCompatActivity {
                 AutoCompleteTextView timeInput = (AutoCompleteTextView)findViewById(R.id.text_view_time);
                 String time_selected = timeInput.getEditableText().toString();
 
+                //checks to ensure that user enters required input
                 if(name.equals(""))
                 {
                     Toast.makeText(getApplicationContext(), "Please Enter Name", Toast.LENGTH_SHORT).show();
@@ -95,15 +97,13 @@ public class AuthSignupStudents1 extends AppCompatActivity {
 
                     startActivity(i);
                 }
-
-
             }
         });
-
 
         text_view_class = findViewById(R.id.text_view_class);
         text_view_language = findViewById(R.id.text_view_language);
         text_view_time = findViewById(R.id.text_view_time);
+
         // creating a list of dropdown menu options
         ArrayList<String> classes = new ArrayList<>();
         classes.add("Class 6");
@@ -124,27 +124,14 @@ public class AuthSignupStudents1 extends AppCompatActivity {
         times.add("Afternoon");
         times.add("Evening");
 
-        // creating a classAdapter, I'm not sure what this does but it works
-        ArrayAdapter<String> classesAdapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_list_item_1,    // this is the style of each option,
-                                                        // but I just used something simple
-                classes
-        );
-
-        // attaching the adapter to ac_text_view
-        text_view_class.setAdapter(classesAdapter);
+        // creating a classAdapter for creating options for multiple choice inputs using dropdown menu
+        ArrayAdapter<String> classesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, classes);
+        text_view_class.setAdapter(classesAdapter);  // attaching the adapter to ac_text_view
 
         ArrayAdapter<String> languagesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, languages);
         text_view_language.setAdapter(languagesAdapter);
 
         ArrayAdapter<String> timesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, times);
         text_view_time.setAdapter(timesAdapter);
-
-        // adding a listener which responds to an option selection
-        // using a toast to demonstrate
-        //text_view_class.setOnItemClickListener((parent, view, position, id) -> Toast.makeText(getApplicationContext(), "Selected Item: " + classes.get(position), Toast.LENGTH_SHORT).show());
-
-
     }
 }
