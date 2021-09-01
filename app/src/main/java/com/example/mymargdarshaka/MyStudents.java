@@ -116,7 +116,7 @@ public class MyStudents extends AppCompatActivity {
                         }
 
 
-                        // popup for mentor guidelines ------------
+                        // popup for mentor guidelines  ------------
                         if (getIntent().getBooleanExtra("firstTime", false)) {
                             LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
                             View popupView = inflater.inflate(R.layout.guidelines_for_mentors_popup, null);
