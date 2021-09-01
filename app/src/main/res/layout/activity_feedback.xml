@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="0dp"
-    tools:context=".Feedback">
+    android:layout_margin="0dp">
 
 <!--    TODO(Debeshee): Please add the top app bar and navigation drawer-->
 
@@ -17,7 +14,7 @@
         android:layout_marginHorizontal="25dp"
         android:scrollbarAlwaysDrawVerticalTrack="true"
         android:scrollbars="vertical"
-        android:hint="Please describe your problem">
+        android:hint="@string/please_describe_your_problem">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/text_feedback"
@@ -32,9 +29,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
         android:layout_below="@+id/text_input_layout_feedback"
-        android:text="SUBMIT"
+        android:text="@string/submit"
         style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
 </RelativeLayout>

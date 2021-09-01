@@ -198,8 +198,7 @@ public class MyStudents extends AppCompatActivity {
                 }
                 else if(choice.equals("Feedback"))
                 {
-                    Intent intent = new Intent(MyStudents.this, Feedback.class);
-                    intent.putExtra("activity", "my_mentors");
+                    Intent intent = new Intent(MyStudents.this, FeedbackMentors.class);
                     startActivity(intent);
                 }
                 else if(choice.equals("Logout"))

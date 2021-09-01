@@ -11,7 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyMargdarshaka">
         <activity
-            android:name=".Feedback"
+            android:name=".FeedbackMentors"
+            android:exported="true" />
+        <activity
+            android:name=".FeedbackStudents"
             android:exported="true" />
         <activity
             android:name=".MyMentors"

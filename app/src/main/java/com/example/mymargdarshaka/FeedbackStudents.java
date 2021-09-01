@@ -1,14 +1,13 @@
 package com.example.mymargdarshaka;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -18,9 +17,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 
-public class Feedback extends AppCompatActivity {
+public class FeedbackStudents extends AppCompatActivity {
     private final CollectionReference mColRef = FirebaseFirestore.getInstance().
-            collection("feedbacks");
+            collection("students_feedback");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,17 +35,9 @@ public class Feedback extends AppCompatActivity {
             mColRef.add(data).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentReference> task) {
-                    Toast.makeText(Feedback.this, "Your feedback is recorded", Toast.LENGTH_SHORT).show();
-                    //TODO(@Shreetesh): Get the type of user and navigate to the appropriate page
-                    Intent prevIntent = getIntent();
-                    String previousActivity = prevIntent.getStringExtra("activity");
-                    if (previousActivity.equals("my_mentors")) {
-                        Intent intent = new Intent(Feedback.this, MyMentors.class);
-                        startActivity(intent);
-                    } else if (previousActivity.equals("my_students")) {
-                        Intent intent = new Intent(Feedback.this, MyStudents.class);
-                        startActivity(intent);
-                    }
+                    Toast.makeText(FeedbackStudents.this, "Your feedback is recorded", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(FeedbackStudents.this, MyMentors.class);
+                    startActivity(intent);
                 }
             });
 

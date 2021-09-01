@@ -193,8 +193,7 @@ public class MyMentors extends AppCompatActivity {
                 }
                 else if(choice.equals("Feedback"))
                 {
-                    Intent intent = new Intent(MyMentors.this, Feedback.class);
-                    intent.putExtra("activity", "my_mentors");
+                    Intent intent = new Intent(MyMentors.this, FeedbackStudents.class);
                     startActivity(intent);
                     //code for Feedback
 //                    LayoutInflater inflater = (LayoutInflater)
