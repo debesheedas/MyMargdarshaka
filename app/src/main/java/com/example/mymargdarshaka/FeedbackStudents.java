@@ -24,7 +24,7 @@ public class FeedbackStudents extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_feedback);
+        setContentView(R.layout.activity_feedback_students);
         EditText feedbackInput = findViewById(R.id.text_feedback);
         Button feedbackSubmitButton = findViewById(R.id.button_submit);
 

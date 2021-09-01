@@ -88,6 +88,8 @@ public class MyMentors extends AppCompatActivity {
         });
 
         if(getIntent().getBooleanExtra("firstTime",false)){
+            //TODO: Error handling, some attribute of the student with phone 9898989898 is missing
+            // and raising a null point exception
             LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
             View popupView = inflater.inflate(R.layout.guidelines_for_students_popup, null);
 

@@ -3,9 +3,25 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/A/Projects/MyMargdarshaka/app/src/main/res/layout/activity_auth_login.xml" value="0.264945652173913" />
+        <entry key="..\:/A/Projects/MyMargdarshaka/app/src/main/res/layout/activity_auth_otp.xml" value="0.25" />
+        <entry key="..\:/A/Projects/MyMargdarshaka/app/src/main/res/layout/activity_auth_signup_mentors2.xml" value="0.32155797101449274" />
+        <entry key="..\:/A/Projects/MyMargdarshaka/app/src/main/res/layout/activity_feedback.xml" value="0.21875" />
+        <entry key="..\:/A/Projects/MyMargdarshaka/app/src/main/res/layout/activity_feedback_mentors.xml" value="0.21510416666666668" />
+        <entry key="..\:/A/Projects/MyMargdarshaka/app/src/main/res/layout/activity_feedback_students.xml" value="0.21510416666666668" />
+        <entry key="..\:/A/Projects/MyMargdarshaka/app/src/main/res/layout/activity_guidelines_for_mentors.xml" value="0.1" />
         <entry key="..\:/A/Projects/MyMargdarshaka/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/A/Projects/MyMargdarshaka/app/src/main/res/layout/activity_my_mentors.xml" value="0.25" />
+        <entry key="..\:/A/Projects/MyMargdarshaka/app/src/main/res/layout/activity_my_students.xml" value="0.33" />
+        <entry key="..\:/A/Projects/MyMargdarshaka/app/src/main/res/layout/activity_test.xml" value="0.2916666666666667" />
         <entry key="..\:/A/Projects/MyMargdarshaka/app/src/main/res/layout/auth_login.xml" value="0.22" />
         <entry key="..\:/A/Projects/MyMargdarshaka/app/src/main/res/layout/auth_login_2.xml" value="0.33" />
+        <entry key="..\:/A/Projects/MyMargdarshaka/app/src/main/res/layout/guidelines_for_mentors_popup.xml" value="0.38697916666666665" />
+        <entry key="..\:/A/Projects/MyMargdarshaka/app/src/main/res/layout/header_navigation_drawer.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/aashr/OneDrive/Desktop/pj/MyMargdarshaka/app/src/main/res/layout/activity_auth_signup_mentors1.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/aashr/OneDrive/Desktop/pj/MyMargdarshaka/app/src/main/res/layout/activity_auth_signup_mentors2.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/aashr/OneDrive/Desktop/pj/MyMargdarshaka/app/src/main/res/layout/activity_my_students.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/aashr/OneDrive/Desktop/pj/MyMargdarshaka/app/src/main/res/layout/activity_test.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14322916666666666" />
         <entry key="app/src/main/res/drawable-v24/right_chevron.xml" value="0.278125" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.14322916666666666" />
@@ -16,11 +32,10 @@
         <entry key="app/src/main/res/drawable/outline_perm_identity_24dp.xml" value="0.278125" />
         <entry key="app/src/main/res/layout/activity_auth_login.xml" value="0.2140625" />
         <entry key="app/src/main/res/layout/activity_auth_otp.xml" value="0.2140625" />
-        <entry key="app/src/main/res/layout/activity_auth_signup_mentors1.xml" value="0.264" />
+        <entry key="app/src/main/res/layout/activity_auth_signup_mentors1.xml" value="0.16302083333333334" />
         <entry key="app/src/main/res/layout/activity_auth_signup_mentors2.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/activity_auth_signup_students1.xml" value="0.264" />
         <entry key="app/src/main/res/layout/activity_auth_signup_students2.xml" value="0.2578125" />
-        <entry key="app/src/main/res/layout/activity_feedback.xml" value="0.18541666666666667" />
         <entry key="app/src/main/res/layout/activity_guidelines_for_mentors.xml" value="0.16302083333333334" />
         <entry key="app/src/main/res/layout/activity_guidelines_for_students.xml" value="0.23655913978494625" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.4" />
@@ -29,12 +44,9 @@
         <entry key="app/src/main/res/layout/activity_my_students.xml" value="0.2140625" />
         <entry key="app/src/main/res/layout/activity_mymentors.xml" value="0.2140625" />
         <entry key="app/src/main/res/layout/activity_student_details1.xml" value="0.2140625" />
-        <entry key="app/src/main/res/layout/activity_test.xml" value="0.23645833333333333" />
         <entry key="app/src/main/res/layout/auth_login.xml" value="0.19427083333333334" />
         <entry key="app/src/main/res/layout/auth_login_2.xml" value="0.19427083333333334" />
         <entry key="app/src/main/res/layout/feedback_popup.xml" value="0.17135416666666667" />
-        <entry key="app/src/main/res/layout/guidelines_for_mentors_popup.xml" value="0.17916666666666667" />
-        <entry key="app/src/main/res/layout/guidelines_for_students_popup.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/header_navigation_drawer.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.18333333333333332" />
         <entry key="app/src/main/res/menu/navigation_drawer.xml" value="0.23802083333333332" />
