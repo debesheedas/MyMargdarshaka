@@ -67,6 +67,7 @@ public class AuthSignupMentors2 extends AppCompatActivity {
                 if(((CheckBox)findViewById(R.id.check_science6)).isChecked()) teachSubjects.add("science6");
                 if(((CheckBox)findViewById(R.id.check_social6)).isChecked()) teachSubjects.add("social6");
 
+                // if the mentor can teach atleast one subject in a class, the mentor is said to teach that class.
                 if(temp < teachSubjects.size()){
                     classes.add("6");
                     temp = teachSubjects.size();
@@ -148,7 +149,7 @@ public class AuthSignupMentors2 extends AppCompatActivity {
                     temp = teachSubjects.size();
                 }
 
-                // push mentor details to DB before taking test
+                // push mentor details to DB before taking test, and set the noTest to 1 as he is going to take a test after signup
                 DatabaseReference newMentorRef = FirebaseDatabase.getInstance().getReference("mentors").push();
                 String key = newMentorRef.getKey();
                 newMentorRef.setValue(new MentorDetails(
@@ -170,6 +171,7 @@ public class AuthSignupMentors2 extends AppCompatActivity {
                         editor.putString(USER_ID,key);
                         editor.apply();
 
+                        // send the mentor to take the Test
                         Intent i = new Intent(AuthSignupMentors2.this, Test.class);
                         i.putExtra("firstTime",true);
                         i.putExtra("mentorId",key);

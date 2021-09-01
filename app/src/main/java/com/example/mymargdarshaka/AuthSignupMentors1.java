@@ -84,6 +84,7 @@ public class AuthSignupMentors1 extends AppCompatActivity {
                 {
                     Intent i = new Intent(AuthSignupMentors1.this,AuthSignupMentors2.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    // sending the details to the next activity
                     i.putExtra("name", name);
                     i.putExtra("email", email);
                     i.putExtra("phone", getIntent().getStringExtra("phone"));
