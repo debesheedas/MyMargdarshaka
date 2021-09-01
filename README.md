@@ -14,15 +14,17 @@ The *My Margdarshaka* Android app based on the novel concept of connecting India
 _________________________________________________________________
 ## Run the App
 
-*Alternative 1:* Download the [APK]()  
+*Alternative 1:* Download the [APK](https://github.com/debesheedas/MyMargdarshaka)  
 
 *Alternative 2:* <details>
     <summary>Run it locally on Android Studio</summary>
+  <br>
     To run it locally,
-1. Clone the repository to your local system using 
-    ```
-    git clone https://github.com/debesheedas/MyMargdarshaka
-    ``` 
+1. Clone the repository to your local system using
+  
+   ```
+   git clone https://github.com/debesheedas/MyMargdarshaka
+   ``` 
 2. Then open the repository in Android Studio and Build it on your device of choice (either an emulator or phone connected through USB). [<sup>1</sup>](https://github.com/debesheedas/MyMargdarshaka#Note)
     </details>
 ________________________________________________________________
@@ -52,6 +54,6 @@ ___________________________________________________________________
 If built locally, in order to see the authentication in action, please follow these steps on Android Studio:
 * On the right panel, click on ```Gradle``` ➝ expand ```Tasks``` ➝ expand ```android``` ➝ double tap ```signiningReport```.
 * In the console below, copy **SHA1** key.
-* Navigate to [Firebase Project Console Settings](https://console.firebase.google.com/u/1/project/mymargdarshaka/settings/general/android:com.example.mymargdarshaka), scroll down and under 'Your apps', add your SHA1 figerprint.
+* Navigate to [Firebase Project Console Settings](https://console.firebase.google.com/u/1/project/mymargdarshaka/settings/general/android:com.example.mymargdarshaka), scroll down and under **Your apps**, add your SHA1 figerprint.
 
 *(Currently, this can only be performed by authorized users)*
