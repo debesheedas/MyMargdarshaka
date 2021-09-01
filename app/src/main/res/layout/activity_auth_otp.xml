@@ -60,16 +60,15 @@
         style="@style/Widget.MaterialComponents.Button.TextButton"
         />
 
-    <!--    TODO: Change the color of the spinner   -->
     <ProgressBar
         android:layout_width="57dp"
         android:layout_height="57dp"
         android:layout_centerHorizontal="true"
         android:id="@+id/spinner2"
         android:layout_marginTop="53dp"
+        android:layout_marginLeft="60dp"
         android:visibility="gone"
         android:layout_below="@+id/phoneNumber"/>
-
 
 </com.google.android.material.textfield.TextInputLayout>
 

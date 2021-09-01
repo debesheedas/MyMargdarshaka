@@ -25,9 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class GuidelinesForStudents extends AppCompatActivity {
 
-
     TextView niosLink, resources;
-
     SharedPreferences sharedPreferences;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -50,18 +48,17 @@ public class GuidelinesForStudents extends AppCompatActivity {
         //hyperlink for resources document
         resources =(TextView) findViewById(R.id.s_guideline8);
         resources.setMovementMethod(LinkMovementMethod.getInstance());
-
         topAppBar = findViewById(R.id.topAppBar);
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationView);
-
+        //Functionality for App Bar with Menu
         topAppBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 drawerLayout.openDrawer(Gravity.LEFT);
-        }
-    });
-
+            }
+        });
+        //Functionality for side panel with navigation options
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -76,28 +73,9 @@ public class GuidelinesForStudents extends AppCompatActivity {
                     startActivity(i);
                 }
                 else if(choice.equals("Feedback"))
-                {   //code for Feedback
-                    LayoutInflater inflater = (LayoutInflater)
-                            getSystemService(LAYOUT_INFLATER_SERVICE);
-                    View popupView = inflater.inflate(R.layout.feedback_popup, null);
-
-                    // create the popup window
-                    int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-                    int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-                    boolean focusable = true; // lets taps outside the popup also dismiss it
-                    final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-
-                    // show the popup window, which view you pass in doesn't matter, it is only used for the window token
-                    View view = findViewById(android.R.id.content).getRootView();
-                    popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-                    // dismiss the popup window when touched
-                    popupView.setOnTouchListener(new View.OnTouchListener() {
-                        @Override
-                        public boolean onTouch(View v, MotionEvent event) {
-                            popupWindow.dismiss();
-                            return true;
-                        }
-                    });
+                {
+                    Intent i = new Intent(GuidelinesForStudents.this,FeedbackStudents.class);
+                    startActivity(i);
                 }
                 else if(choice.equals("Logout"))
                 {
@@ -109,8 +87,6 @@ public class GuidelinesForStudents extends AppCompatActivity {
                     i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);
                 }
-
-                drawerLayout.closeDrawer(Gravity.START, true);
                 return true;
             }
         });

@@ -63,16 +63,13 @@ public class MyStudents extends AppCompatActivity {
 
     private static final String SHARED_PREF_NAME = "login";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_students);
 
         LinearLayout root = findViewById(R.id.root_linear);
-
         rootRef = FirebaseDatabase.getInstance().getReference();
-
         sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
 
         rootRef.child("mentors").child(getIntent().getStringExtra("mentorId")).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -81,7 +78,7 @@ public class MyStudents extends AppCompatActivity {
 
                 if (getIntent().getBooleanExtra("firstTime", false)) {
                     LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
-                    View popupView = inflater.inflate(R.layout.feedback_popup, null);
+                    View popupView = inflater.inflate(R.layout.guidelines_for_mentors_popup, null);
 
                     // create the popup window
                     int width = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -141,7 +138,6 @@ public class MyStudents extends AppCompatActivity {
                         }
                     }
                 });
-
             }
 
             @Override
@@ -160,7 +156,6 @@ public class MyStudents extends AppCompatActivity {
                 students,
                 R.id.card_view
         );
-
         MaterialCardView card2 = getCard(
                 "Physics Grade 12",
                 students,
@@ -169,9 +164,7 @@ public class MyStudents extends AppCompatActivity {
 
         root.addView(card);
         root.addView(card2);
-
-        sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
-
+        //Functionality for App Bar with Menu
         topAppBar = findViewById(R.id.topAppBar);
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationView);
@@ -182,7 +175,7 @@ public class MyStudents extends AppCompatActivity {
                 drawerLayout.openDrawer(Gravity.LEFT);
             }
         });
-
+        //Functionality for side panel with navigation options
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -212,39 +205,9 @@ public class MyStudents extends AppCompatActivity {
                     i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);
                 }
-
-                drawerLayout.closeDrawer(Gravity.START, true);
                 return true;
             }
         });
-
-        //Code for starting up the popup
-//        //if(condition for first time open)
-//        if(true)
-//        {
-//            LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
-//            View popupView = inflater.inflate(R.layout.feedback_popup, null);
-//
-//            // create the popup window
-//            int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-//            int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-//            boolean focusable = true; // lets taps outside the popup also dismiss it
-//            final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-//
-//           // show the popup window, which view you pass in doesn't matter, it is only used for the window token
-//            View view = findViewById(R.id.activity_my_students).getRootView();
-//            popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-//            // dismiss the popup window when touched
-//            popupView.setOnTouchListener(new View.OnTouchListener() {
-//                @Override
-//                public boolean onTouch(View v, MotionEvent event) {
-//                    popupWindow.dismiss();
-//                    return true;
-//                }
-//            });
-//        }
-
-
     }
 
     private int dpAsPixels(int dp) {
@@ -316,8 +279,6 @@ public class MyStudents extends AppCompatActivity {
         }
 
         linearLayoutCard.addView(titleTextView);
-
-
         int prevId = titleTextView.getId();
         for (String student :
                 students) {
@@ -325,36 +286,7 @@ public class MyStudents extends AppCompatActivity {
             linearLayoutCard.addView(textView);
             prevId = textView.getId();
         }
-
         card.addView(linearLayoutCard);
-
         return card;
     }
 }
-//
-////code for guidelines popup ---------------------------------------------
-////if(condition for first time open)
-//        if(true)
-//                {
-//                LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
-//                View popupView = inflater.inflate(R.layout.guidelines_for_mentors_popup, null);
-//
-//                // create the popup window
-//                int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-//                int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-//                boolean focusable = true; // lets taps outside the popup also dismiss it
-//final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-//
-//        // show the popup window, which view you pass in doesn't matter, it is only used for the window token
-//        View view = findViewById(R.id.activity_my_students).getRootView();
-//        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-//
-//        TextView niosLink, resources;
-//        //hyperlink for NIOS website
-//        niosLink =(TextView) popupView.findViewById(R.id.s_guideline6);
-//        niosLink.setMovementMethod(LinkMovementMethod.getInstance());
-//        //hyperlink for resources document
-//        resources =(TextView) popupView.findViewById(R.id.s_guideline9);
-//        resources.setMovementMethod(LinkMovementMethod.getInstance());
-//        }
-////code for guidelines popup ends here---------------------------------------------

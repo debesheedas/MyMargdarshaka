@@ -52,7 +52,6 @@ public class AuthSignupMentors2 extends AppCompatActivity {
         ArrayList<String> teachSubjects = new ArrayList<>();
         ArrayList<String> classes = new ArrayList<>();
 
-
         Button submit_button = (Button) findViewById(R.id.mentorsSignupButton2);
         submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,9 +177,6 @@ public class AuthSignupMentors2 extends AppCompatActivity {
                         startActivity(i);
                     }
                 });
-
-
-
             }
         });
     }

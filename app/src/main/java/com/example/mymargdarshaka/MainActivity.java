@@ -55,30 +55,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         rootRef = FirebaseDatabase.getInstance().getReference();
-
-        //To make the default Action Bar on top with the App name disappear
-        //need to add this on every page
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
-        }
-
         studentButton=(Button) findViewById(R.id.studentLoginButton);
         mentorButton=(Button) findViewById(R.id.mentorLoginButton);
         rightButton=(ImageButton) findViewById(R.id.rightButton);
         leftButton=(ImageButton) findViewById(R.id.leftButton);
 
-        //imageSwitcher = (ImageSwitcher)findViewById(R.id.slideView);
+        //carousel of images on mainpage
         imageView = (ImageView) findViewById(R.id.slideView);
-//        imageSwitcher.setFactory(new ViewSwitcher.ViewFactory() {
-//                                     public View makeView() {
-//                                         ImageView myView = new ImageView(getApplicationContext());
-//                                         return myView;
-//                                     }
-//                                 });
-//        Animation in = AnimationUtils.loadAnimation(this,android.R.anim.slide_in_left);
-//        imageSwitcher.setInAnimation(in);
-//        imageSwitcher.setOutAnimation(out);
-
         rightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,9 +75,7 @@ public class MainActivity extends AppCompatActivity {
                     case 4:imageView.setImageResource(R.drawable.image4);break;
                     case 5:imageView.setImageResource(R.drawable.image5);break;
                     case 6:imageView.setImageResource(R.drawable.image6);break;
-
                 }
-                //imageView.setImageResource(R.drawable.image1);
             }
         });
         leftButton.setOnClickListener(new View.OnClickListener() {
@@ -110,9 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     case 4:imageView.setImageResource(R.drawable.image4);break;
                     case 5:imageView.setImageResource(R.drawable.image5);break;
                     case 6:imageView.setImageResource(R.drawable.image6);break;
-
                 }
-                //imageView.setImageResource(R.drawable.image1);
             }
         });
 
@@ -128,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
 
         // if already logged in, students and mentors will be redirected to MyMentors and MyStudents respectively.
         if(type!=null){
-
             Toast.makeText(MainActivity.this,"You are already logged in",Toast.LENGTH_SHORT).show();
             Intent i1;
 
