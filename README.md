@@ -32,21 +32,21 @@ ________________________________________________________________
 ## User Guide and Features
 On the homepage there is a clickable carousel with slides that explain the main idea behind the app. To login as a student who wants to connect with a mentor, click on the **I AM A STUDENT** button. Similarly for mentors, click on the **I AM A MENTOR** button. Login using mobile number and OTP authentication. 
 
-![Screenshot - Mainpage and Login](https://github.com/debesheedas/MyMargdarshaka/images/screenshots/login_signup.png)
+![Screenshot - Mainpage and Login](screenshots/login_signup.png)
 
 For first time users, there are different sign up requirements for both students and mentors. Enter details such as name, email, class, subject, preferred language of instruction and preferred time slot.
 For mentors, there is an additional test, to provide a basic check on the quality of the mentor.
 
-![Screenshot - Sign up for Students and Mentors](https://github.com/debesheedas/MyMargdarshaka/images/screenshots/details.png)
+![Screenshot - Sign up for Students and Mentors](images/screenshots/details.png)
 
 After a successful sign up, students are matched with compatible mentors available and their details are provided to the student in the **My Mentors** page. Similarly, for mentors, the students are assigned based on the criteria such as subject, class, preferred language and time slot. The details of these students are presented in the **My Students** page. Separate Guidelines are provided for both mentors and students. The menu provides options to navigate, an option for providing Feedback, and to logout. Feedback is collected and stored in the database.
 
-![Screenshot - My Mentors, My Students, Guidelines, Feedback](https://github.com/debesheedas/MyMargdarshaka/images/screenshots/my_mentors.png)
+![Screenshot - My Mentors, My Students, Guidelines, Feedback](images/screenshots/my_mentors.png)
 
 
 ### Test
 Mentors are required to clear the test which contains questions from high school. However, they are free to attempt the upto 5 times beyond which they will not be allowed in the platform.
-![Screenshot - Test for mentors](https://github.com/debesheedas/MyMargdarshaka/images/screenshots/test_images.png)
+![Screenshot - Test for mentors](images/screenshots/test_images.png)
 
 ## Data Flow
 ![Data flow image](https://github.com/debesheedas/MyMargdarshaka/blob/main/data%20flow%20images/data%20flow.png)
