@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class AuthSignupStudents1 extends AppCompatActivity {
 
@@ -55,7 +56,8 @@ public class AuthSignupStudents1 extends AppCompatActivity {
               AutoCompleteTextView timeInput =
                   findViewById(R.id.text_view_time);
               String time_selected = timeInput.getEditableText().toString();
-
+              String regex = "^(.+)@(.+)$";
+              Pattern pattern = Pattern.compile(regex);
               // checks to ensure that user enters required input
               if (name.equals("")) {
                 Toast.makeText(getApplicationContext(), "Please Enter Name", Toast.LENGTH_SHORT)
@@ -63,7 +65,11 @@ public class AuthSignupStudents1 extends AppCompatActivity {
               } else if (class_selected.equals("")) {
                 Toast.makeText(getApplicationContext(), "Please Select a Class ", Toast.LENGTH_SHORT)
                     .show();
-              } else if (language_selected.equals("")) {
+              } else if(!pattern.matcher(email).matches()){
+                  Toast.makeText(
+                          getApplicationContext(), "Please Enter a Valid Email Address ", Toast.LENGTH_SHORT)
+                          .show();
+              }else if (language_selected.equals("")) {
                 Toast.makeText(
                         getApplicationContext(),
                         "Please Select a Preferred Language ",
