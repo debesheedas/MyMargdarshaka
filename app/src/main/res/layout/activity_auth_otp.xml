@@ -2,9 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginHorizontal="50dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="50dp">
 
 
     <TextView
@@ -27,49 +27,48 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginHorizontal="50dp"
-        android:hint="@string/otp" >
+        android:hint="@string/otp">
 
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/otp_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/otp_input"
             android:inputType="number" />
 
         <Button
             android:id="@+id/verifyOTPButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerInParent="true"
-            android:backgroundTint="@color/purple_700"
-            android:layout_marginTop="15dp"
-            android:text="@string/verify"
             android:layout_below="@id/phoneNumber"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:backgroundTint="@color/purple_700"
+            android:text="@string/verify"
             app:cornerRadius="50dp" />
 
-    <Button
-        android:id="@+id/resend_otp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_centerHorizontal="true"
-        app:cornerRadius="50dp"
-        android:text="@string/resend_otp"
-        android:layout_below="@+id/phoneNumber"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        />
+        <Button
+            android:id="@+id/resend_otp"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/phoneNumber"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:text="@string/resend_otp"
+            app:cornerRadius="50dp" />
 
-    <ProgressBar
-        android:layout_width="57dp"
-        android:layout_height="57dp"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/spinner2"
-        android:layout_marginTop="53dp"
-        android:layout_marginLeft="60dp"
-        android:visibility="gone"
-        android:layout_below="@+id/phoneNumber"/>
+        <ProgressBar
+            android:id="@+id/spinner2"
+            android:layout_width="57dp"
+            android:layout_height="57dp"
+            android:layout_below="@+id/phoneNumber"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="53dp"
+            android:visibility="gone" />
 
-</com.google.android.material.textfield.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
 </RelativeLayout>

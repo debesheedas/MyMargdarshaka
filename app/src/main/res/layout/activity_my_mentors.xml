@@ -84,12 +84,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="20dp"
                             android:background="@color/purple_700"
-                            android:textColor="@color/white"
+                            android:padding="20dp"
+                            android:text="@string/my_mentors_message"
                             android:textAlignment="center"
-                            android:textSize="20sp"
-                            android:text="@string/my_mentors_message" />
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
 
                     </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
@@ -98,10 +98,10 @@
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigationView"
-            app:menu="@menu/navigation_drawer_student"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="start"/>
+            android:layout_gravity="start"
+            app:menu="@menu/navigation_drawer_student" />
 
     </androidx.drawerlayout.widget.DrawerLayout>
 

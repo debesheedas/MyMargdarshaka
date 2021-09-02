@@ -131,9 +131,9 @@
             android:layout_width="300dp"
             android:layout_height="62dp"
             android:layout_marginTop="15dp"
+            android:hint="@string/time_label"
             app:boxStrokeColor="#3A0CA3"
-            app:hintTextColor="#7209B7"
-            android:hint="@string/time_label">
+            app:hintTextColor="#7209B7">
 
             <AutoCompleteTextView
                 android:id="@+id/text_view_time"

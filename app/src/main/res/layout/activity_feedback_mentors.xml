@@ -48,6 +48,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="150dp"
             android:padding="15dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -60,32 +61,32 @@
                     android:layout_height="150dp"
                     android:layout_centerInParent="true"
                     android:layout_marginHorizontal="25dp"
+                    android:hint="@string/please_describe_your_problem"
                     android:scrollbarAlwaysDrawVerticalTrack="true"
-                    android:scrollbars="vertical"
-                    android:hint="@string/please_describe_your_problem">
+                    android:scrollbars="vertical">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/text_feedback"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
                     android:id="@+id/button_submit"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:layout_marginStart="30dp"
-                    android:text="@string/submit"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"/>
+                    android:layout_marginTop="20dp"
+                    android:text="@string/submit" />
             </LinearLayout>
         </ScrollView>
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigationView"
-            app:menu="@menu/navigation_drawer_mentor"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="start"/>
+            android:layout_gravity="start"
+            app:menu="@menu/navigation_drawer_mentor" />
     </androidx.drawerlayout.widget.DrawerLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

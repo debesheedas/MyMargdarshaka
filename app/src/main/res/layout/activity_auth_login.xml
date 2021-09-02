@@ -21,17 +21,16 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/phoneNumber"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:hint="@string/login_phone_number"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        >
+        android:hint="@string/login_phone_number">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/phoneInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/phoneInput"
             android:inputType="phone" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -39,12 +38,12 @@
         android:id="@+id/getOTPButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true"
-        android:backgroundTint="@color/purple_700"
-        android:layout_marginTop="15dp"
-        android:text="@string/get_otp_button_text"
         android:layout_below="@id/phoneNumber"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@color/purple_700"
+        android:text="@string/get_otp_button_text"
         app:cornerRadius="50dp" />
 
     <ProgressBar

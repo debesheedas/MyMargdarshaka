@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/guidelines_for_mentors_popup"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="#E0FFFFFF"
-    android:elevation="10dp">
-<!--    android:background="#C04CC9F0"-->
+    android:elevation="10dp"
+    app:cardBackgroundColor="#E0FFFFFF">
+    <!--    android:background="#C04CC9F0"-->
     <ScrollView
         android:layout_width="320dp"
         android:layout_height="550dp"
@@ -26,8 +25,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/guidelines_for_mentors"
-                android:textColor="@color/text"
                 android:textAlignment="center"
+                android:textColor="@color/text"
                 android:textSize="40sp" />
 
             <com.google.android.material.card.MaterialCardView
@@ -36,151 +35,172 @@
                 android:layout_margin="8dp"
                 app:cardBackgroundColor="@color/grey43"
                 app:contentPadding="10dp">
+
                 <TextView
                     android:id="@+id/m_guideline1"
-                    android:text="@string/m_guideline1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/m_guideline1"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary" />
             </com.google.android.material.card.MaterialCardView>
+
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 app:cardBackgroundColor="@color/grey43"
                 app:contentPadding="10dp">
+
                 <TextView
                     android:id="@+id/m_guideline2"
-                    android:text="@string/m_guideline2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/m_guideline2"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary" />
             </com.google.android.material.card.MaterialCardView>
+
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 app:cardBackgroundColor="@color/grey43"
                 app:contentPadding="10dp">
+
                 <TextView
                     android:id="@+id/m_guideline3"
-                    android:text="@string/m_guideline3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/m_guideline3"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary" />
             </com.google.android.material.card.MaterialCardView>
+
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 app:cardBackgroundColor="@color/grey43"
                 app:contentPadding="10dp">
+
                 <TextView
                     android:id="@+id/m_guideline4"
-                    android:text="@string/m_guideline4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/m_guideline4"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary" />
             </com.google.android.material.card.MaterialCardView>
+
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 app:cardBackgroundColor="@color/grey43"
                 app:contentPadding="10dp">
+
                 <TextView
                     android:id="@+id/m_guideline5"
-                    android:text="@string/m_guideline5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/m_guideline5"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary" />
             </com.google.android.material.card.MaterialCardView>
+
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 app:cardBackgroundColor="@color/grey43"
                 app:contentPadding="10dp">
+
                 <TextView
                     android:id="@+id/m_guideline6"
-                    android:text="@string/m_guideline6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/m_guideline6"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary" />
             </com.google.android.material.card.MaterialCardView>
+
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 app:cardBackgroundColor="@color/grey43"
                 app:contentPadding="10dp">
+
                 <TextView
                     android:id="@+id/m_guideline7"
-                    android:text="@string/m_guideline7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/m_guideline7"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary" />
             </com.google.android.material.card.MaterialCardView>
+
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 app:cardBackgroundColor="@color/grey43"
                 app:contentPadding="10dp">
+
                 <TextView
                     android:id="@+id/m_guideline8"
-                    android:text="@string/m_guideline8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/m_guideline8"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary" />
             </com.google.android.material.card.MaterialCardView>
+
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 app:cardBackgroundColor="@color/grey43"
                 app:contentPadding="10dp">
+
                 <TextView
                     android:id="@+id/m_guideline9"
-                    android:text="@string/m_guideline9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/m_guideline9"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary" />
             </com.google.android.material.card.MaterialCardView>
+
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 app:cardBackgroundColor="@color/grey43"
                 app:contentPadding="10dp">
+
                 <TextView
                     android:id="@+id/m_guideline10"
-                    android:text="@string/m_guideline10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/m_guideline10"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary" />
             </com.google.android.material.card.MaterialCardView>
+
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 app:cardBackgroundColor="@color/grey43"
                 app:contentPadding="10dp">
+
                 <TextView
                     android:id="@+id/m_guideline11"
-                    android:text="@string/m_guideline11"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/m_guideline11"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary" />
             </com.google.android.material.card.MaterialCardView>
