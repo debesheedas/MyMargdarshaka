@@ -34,6 +34,7 @@ public class MentorMatching {
                   ArrayList<ArrayList<String>> matches = new ArrayList<ArrayList<String>>();
                   DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
 
+                  // iterating through the students list and finding a match
                   usersRef.addListenerForSingleValueEvent(
                       new ValueEventListener() {
                         @Override
@@ -85,7 +86,7 @@ public class MentorMatching {
                               usersRef.child(user.getKey()).setValue(student);
                             }
                           }
-                          //
+
                           newMentorRef.setValue(newMentor);
 
                           Intent i = new Intent(context, MyStudents.class);

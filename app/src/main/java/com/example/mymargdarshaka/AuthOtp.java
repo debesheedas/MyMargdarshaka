@@ -36,7 +36,6 @@ public class AuthOtp extends AppCompatActivity {
 
   private static final String SHARED_PREF_NAME = "login";
   private static final String TYPE = "userType";
-  // private static final String PHONE="userPhone";
   private static final String USER_ID = "userId";
 
   @Override
@@ -57,6 +56,7 @@ public class AuthOtp extends AppCompatActivity {
 
     Log.e("found: ", String.valueOf(getIntent().getBooleanExtra("found", false)));
 
+    // functionality for verifying the OTP
     verify.setOnClickListener(
             view -> {
               if (verificationId == null) {
@@ -70,6 +70,7 @@ public class AuthOtp extends AppCompatActivity {
               PhoneAuthCredential phoneAuthCredential =
                   PhoneAuthProvider.getCredential(verificationId, otp);
 
+              // instantiating firebase auth class required for verification
               FirebaseAuth.getInstance()
                   .signInWithCredential(phoneAuthCredential)
                   .addOnCompleteListener(
@@ -77,9 +78,10 @@ public class AuthOtp extends AppCompatActivity {
                             if (task.isSuccessful()) {
                               // if the authentication is successful
                               if (getIntent().getBooleanExtra("found", false)) {
-                                // if the user is found,
+                                // if the user is found
 
                                 Intent i1;
+                                // if student, routing to MyMentors page
                                 if (getIntent().getStringExtra("userType").equals("student")) {
 
                                   SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -96,7 +98,7 @@ public class AuthOtp extends AppCompatActivity {
                                       Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                   startActivity(i1);
                                   return;
-                                } else {
+                                } else {            // if mentor, routing to MyStudents page
 
                                   SharedPreferences.Editor editor = sharedPreferences.edit();
                                   editor.putString(TYPE, "mentor");
@@ -114,8 +116,9 @@ public class AuthOtp extends AppCompatActivity {
                                             | Intent.FLAG_ACTIVITY_NEW_TASK);
                                     startActivity(i1);
                                   } else {
-                                    // here update noTests
 
+                                      // if mentor, updating number of attempts in the database
+                                      // and routing to Tests page
                                     rootRef
                                         .child("mentors")
                                         .orderByChild(getIntent().getStringExtra("userId"))
@@ -154,7 +157,7 @@ public class AuthOtp extends AppCompatActivity {
                                   return;
                                 }
                               }
-                              // if the user is not found in DB, send him to signup
+                              // if the user is not found in DB, send him to signup pages
 
                               Toast.makeText(AuthOtp.this, "Successful", Toast.LENGTH_SHORT).show();
 
@@ -178,6 +181,7 @@ public class AuthOtp extends AppCompatActivity {
                           });
             });
 
+    // same functionality for resend OTP button
     resend.setOnClickListener(
         (view -> {
 
@@ -211,6 +215,8 @@ public class AuthOtp extends AppCompatActivity {
                         @NonNull String s,
                         @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                       verificationId = s;
+
+                      // not allowing the user to click on resend button again
                       pBar2.setVisibility(View.GONE);
                       resend.setVisibility(View.GONE);
                     }

@@ -149,6 +149,8 @@ public class AuthSignupMentors2 extends AppCompatActivity {
                     teachSubjects,
                     1)
             ).addOnCompleteListener(task -> {
+
+                // logging in the mentor
                 sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString(TYPE,"mentor");

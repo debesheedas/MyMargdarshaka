@@ -69,6 +69,8 @@ public class GuidelinesForMentors extends AppCompatActivity {
               Intent i = new Intent(GuidelinesForMentors.this, FeedbackMentors.class);
               startActivity(i);
             } else if (choice.equals("Logout")) {
+
+              // logging out the mentor
               SharedPreferences.Editor editor = sharedPreferences.edit();
               editor.clear();
               editor.commit();

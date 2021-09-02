@@ -38,8 +38,6 @@ import java.util.regex.Pattern;
 
 public class MyStudents extends AppCompatActivity {
 
-  //    TODO(Kranthi, Aashrith): Implement the students details grouped by course
-
   SharedPreferences sharedPreferences;
   FirebaseDatabase firebaseDatabase;
   DatabaseReference databaseReference;
@@ -190,6 +188,8 @@ public class MyStudents extends AppCompatActivity {
               Intent intent = new Intent(MyStudents.this, FeedbackMentors.class);
               startActivity(intent);
             } else if (choice.equals("Logout")) {
+
+              // logging the mentor out
               SharedPreferences.Editor editor = sharedPreferences.edit();
               FirebaseAuth.getInstance().signOut();
               editor.clear();
@@ -224,6 +224,7 @@ public class MyStudents extends AppCompatActivity {
     return textView;
   }
 
+  // UI for card
   private MaterialCardView getCard(String title, ArrayList<String> students, int aboveId) {
     MaterialCardView card = new MaterialCardView(this);
     RelativeLayout.LayoutParams cardParams =

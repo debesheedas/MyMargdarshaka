@@ -110,15 +110,12 @@ public class AuthSignupStudents2 extends AppCompatActivity {
 
             if (english.isChecked()) {
               subjects.add("english" + class_selected);
-              //                    regSub.add(new Pair<>("english", "mentorid1"));
             }
             if (hindi.isChecked()) {
               subjects.add("hindi" + class_selected);
-              //                    regSub.add(new Pair<>("english", "mentorid2"));
             }
             if (telugu.isChecked()) {
               subjects.add("telugu" + class_selected.toString());
-              //                    regSub.add(new Pair<>("english", "mentorid3"));
             }
             if (math.isChecked()) {
               subjects.add("math" + class_selected);
@@ -145,6 +142,7 @@ public class AuthSignupStudents2 extends AppCompatActivity {
               subjects.add("science" + class_selected.toString());
             }
 
+            // obtaining the database reference object
             DatabaseReference newStudentRef =
                 FirebaseDatabase.getInstance().getReference("users").push();
             String key = newStudentRef.getKey();
@@ -152,24 +150,24 @@ public class AuthSignupStudents2 extends AppCompatActivity {
             DatabaseReference mentorsRef = rootRef.child("mentors");
 
             ArrayList<Pair<Integer, Pair<String, String>>> mentors =
-                new ArrayList<>(); // Integer, <mentor id, subject>
+                new ArrayList<>(); // <Integer, <mentor id, subject>>
 
+            // matching algorithm commences
             mentorsRef.addListenerForSingleValueEvent(
                 new ValueEventListener() {
                   @Override
                   public void onDataChange(@NonNull DataSnapshot snapshot) {
                     long l = snapshot.getChildrenCount();
                     long k = 0;
+
+                    // iterating through each mentor looking for matches for the newly signed up student
                     for (DataSnapshot child : snapshot.getChildren()) {
 
                       k++;
                       Log.e("mentor: ", child.getValue().toString());
 
                       MentorDetails mentor = child.getValue(MentorDetails.class);
-                      Log.e("1", String.valueOf(mentor.getClasses().contains(class_selected)));
-                      Log.e("2", String.valueOf(mentor.getPrefLangs().contains(language_selected)));
-                      Log.e("3", String.valueOf(mentor.getTimeSlots().contains(time_selected)));
-                      Log.e("4", String.valueOf(mentor.getNoTests()));
+
                       if (mentor.getClasses().contains(class_selected)
                           && mentor.getPrefLangs().contains(language_selected)
                           && mentor.getTimeSlots().contains(time_selected)
@@ -196,11 +194,14 @@ public class AuthSignupStudents2 extends AppCompatActivity {
                 });
           }
 
+          // assigning this student to the appropriate mentors as well
           public void assignMentor(
               String key,
               DatabaseReference newStudentRef,
               DatabaseReference mentorsRef,
               ArrayList<Pair<Integer, Pair<String, String>>> mentors) {
+
+            // sorting mentors based on the number of students already assigned to them
             Collections.sort(
                 mentors,
                     (p1, p2) -> p1.first - p2.first);
@@ -214,6 +215,8 @@ public class AuthSignupStudents2 extends AppCompatActivity {
             }
             ArrayList<String> tempSub = new ArrayList<>();
             tempSub.addAll(subjects);
+
+            // updating the student database
             UserDetails userSchema =
                 new UserDetails(
                     name,
@@ -226,6 +229,7 @@ public class AuthSignupStudents2 extends AppCompatActivity {
                     regSub);
             newStudentRef.setValue(userSchema);
 
+            // logging in the student
             sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString(TYPE, "student");
@@ -247,6 +251,8 @@ public class AuthSignupStudents2 extends AppCompatActivity {
               forMentors.add(
                   Pair.create(mentors.get(i).second.first, mentors.get(i).second.second));
             }
+
+            // updating the corresponding mentors to include this student in their list of students
             mentorsRef.addListenerForSingleValueEvent(
                 new ValueEventListener() {
                   @Override
@@ -293,6 +299,7 @@ public class AuthSignupStudents2 extends AppCompatActivity {
                   public void onCancelled(@NonNull DatabaseError error) {}
                 });
 
+            // routing to the next page
             Intent i = new Intent(AuthSignupStudents2.this, MyMentors.class);
             i.putExtra("noMentorsAssignedHere", x);
             i.putExtra("phone", getIntent().getStringExtra("phone"));

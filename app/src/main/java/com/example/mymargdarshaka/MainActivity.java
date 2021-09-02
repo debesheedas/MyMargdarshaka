@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
   private static final String SHARED_PREF_NAME = "login";
   private static final String TYPE = "userType";
-  // private static final String PHONE="userPhone";
   private static final String USER_ID = "userId";
 
   ImageView imageView;
@@ -110,10 +109,14 @@ public class MainActivity extends AppCompatActivity {
     String type = sharedPreferences.getString(TYPE, null);
     String userId = sharedPreferences.getString(USER_ID, null);
 
+    // code for debugging purpose (do not delete) ------------------------------------------
+
     //        SharedPreferences.Editor editor = sharedPreferences.edit();
     //        FirebaseAuth.getInstance().signOut();
     //        editor.clear();
     //        editor.apply();
+
+    // -------------------------------------------------------------------------------------
 
     // if already logged in, students and mentors will be redirected to MyMentors and MyStudents
     // respectively.
@@ -141,15 +144,16 @@ public class MainActivity extends AppCompatActivity {
                   public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for (DataSnapshot child : snapshot.getChildren()) {
                       MentorDetails details = child.getValue(MentorDetails.class);
+                      // obtaining the number of attempted tests from the database
                       int noTests = details.getNoTests();
-                      if (noTests == -1) {
+                      if (noTests == -1) {        // if the mentor has passed the test previously
                         Intent i2 = new Intent(MainActivity.this, MyStudents.class);
                         i2.putExtra("mentorId", userId);
                         i2.putExtra("firstTime", false);
                         i2.setFlags(
                             Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(i2);
-                      } else if (noTests >= 5) {
+                      } else if (noTests >= 5) {    // if the mentor has exceeded the threshold number of attempts
                         Toast.makeText(
                                 MainActivity.this, "You are not eligible", Toast.LENGTH_SHORT)
                             .show();
@@ -157,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
                         FirebaseAuth.getInstance().signOut();
                         editor.clear();
                         editor.apply();
-                      } else {
+                      } else {        // if the mentor still has a few attempts left
                         rootRef
                             .child("mentors")
                             .child(userId)
@@ -180,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
       }
     }
 
+    // if the user is logged out
     studentButton.setOnClickListener(
         new View.OnClickListener() {
           @Override
@@ -190,6 +195,7 @@ public class MainActivity extends AppCompatActivity {
           }
         });
 
+    // if the user is logged out
     mentorButton.setOnClickListener(
         new View.OnClickListener() {
           @Override

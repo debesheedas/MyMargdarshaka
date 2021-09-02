@@ -118,12 +118,14 @@ public class Test extends AppCompatActivity {
                         MentorMatching.match(newMentorKey, Test.this);
 
                     }else{
+
+                        // logging out the mentor
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         FirebaseAuth.getInstance().signOut();
                         editor.clear();
                         editor.apply();
 
-                        // increment noTests here
+                        // incrementing number of attempts
                         rootRef.child("mentors").orderByChild(getIntent().getStringExtra("userId")).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -150,6 +152,7 @@ public class Test extends AppCompatActivity {
 
     }
 
+    // obtaining the relevant questions from the database
     private void fetchAndSetQuestion() {
         questionDoc = mColRef.document(questionIds[currentQuestion] + "");
         questionDoc.get().addOnSuccessListener(documentSnapshot -> {
