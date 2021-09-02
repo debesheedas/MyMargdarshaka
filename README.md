@@ -46,7 +46,8 @@ After a successful sign up, students are matched with compatible mentors availab
 
 ### Test
 Mentors are required to clear the test which contains questions from high school. However, they are free to attempt the upto 5 times beyond which they will not be allowed in the platform.
-![Screenshot - Test for mentors](images/screenshots/test_images.png)
+
+<img src="images/screenshots/test_images.png" width="550"></img>
 
 ## Data Flow
 ![Data flow image](https://github.com/debesheedas/MyMargdarshaka/blob/main/data%20flow%20images/data%20flow.png)
