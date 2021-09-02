@@ -32,7 +32,7 @@ ________________________________________________________________
 ## User Guide and Features
 On the homepage there is a clickable carousel with slides that explain the main idea behind the app. To login as a student who wants to connect with a mentor, click on the **I AM A STUDENT** button. Similarly for mentors, click on the **I AM A MENTOR** button. Login using mobile number and OTP authentication. 
 
-![Screenshot - Mainpage and Login](screenshots/login_signup.png)
+![Screenshot - Mainpage and Login](images/screenshots/login_signup.png)
 
 For first time users, there are different sign up requirements for both students and mentors. Enter details such as name, email, class, subject, preferred language of instruction and preferred time slot.
 For mentors, there is an additional test, to provide a basic check on the quality of the mentor.
