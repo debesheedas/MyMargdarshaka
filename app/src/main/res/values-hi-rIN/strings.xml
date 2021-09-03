@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Margdarshaka</string>
+    <string name="student_login_text">मैं एक छात्र हूँ</string>
+    <string name="mentor_login_text">मैं एक गुरु हूँ</string>
+    <string name="hindi_chip">हिंदी</string>
+    <string name="english_chip">अंग्रेज़ी</string>
+    <string name="welcome_string">स्वागत</string>
+    <string name="login_text">अपना फोन नंबर डालें</string>
+    <string name="login_phone_number">फ़ोन नंबर</string>
+    <string name="get_otp_button_text">ओटीपी प्राप्त करें</string>
+    <string name="verify">सत्यापित करें</string>
+    <string name="enter_the_otp">ओटीपी दर्ज करें</string>
+    <string name="otp">ओटीपी</string>
+    <string name="question">प्रश्न</string>
+    <string name="option">विकल्प</string>
+    <string name="option_1">विकल्प 1</string>
+    <string name="option_2">विकल्प 2</string>
+    <string name="option_3">विकल्प 3</string>
+    <string name="option_4">विकल्प 4</string>
+    <string name="next">अगला</string>
+    <string name="submit">समाप्ति</string>
+    <string name="guidelines_for_students">गुरु के लिए दिशा निर्देश</string>
+    <string name="guidelines_for_mentors">छात्रों के लिए दिशा निर्देश</string>
+    <string name="email_label">ईमेल</string>
+    <string name="name_label">नाम</string>
+    <string name="class_label">कक्षा</string>
+    <string name="language_label">शिक्षा की पसंदीदा भाषा</string>
+    <string name="time_label">पसंदीदा समय स्लॉट</string>
+    <string name="student_subjects">आप कौन से विषय सीखना चाहते हैं?</string>
+    <string name="mentor_subjects">आप क्या पढ़ना चाहते हो</string>
+    <string name="english">अंग्रेज़ी</string>
+    <string name="hindi">हिंदी</string>
+    <string name="math">गणित</string>
+    <string name="telugu">तेलुगू</string>
+    <string name="science">विज्ञान</string>
+    <string name="social">सामाजिक विज्ञान</string>
+    <string name="physics">भौतिक विज्ञान</string>
+    <string name="chemistry">रसायन विज्ञान</string>
+    <string name="biology">जीवविज्ञान</string>
+    <string name="history">इतिहास और नागरिक शास्त्र</string>
+    <string name="geography">भूगोल-शास्त्र</string>
+    <string name="class6">कक्षा 6</string>
+    <string name="class7">कक्षा 7</string>
+    <string name="class8">कक्षा 8</string>
+    <string name="class9">कक्षा 9</string>
+    <string name="class10">कक्षा 10</string>
+    <string name="class11">कक्षा 11</string>
+    <string name="class12">कक्षा 12</string>
+    <string name="guidelines_label">दिशा निर्देशों</string>
+    <string name="my_mentors_label">मेरे गुरु</string>
+    <string name="my_students_label">मेरे छात्र</string>
+    <string name="feedback_label">प्रतिक्रिया</string>
+    <string name="logout_label">लॉग आउट</string>
+    <string name="feedback_message">कृपया अपनी प्रतिक्रिया दर्ज करें</string>
+    <string name="s_guideline1">शिक्षा आपके जीवन को बदल सकती है! आपने MyMargdarshaka App पर रजिस्टर करके पहला कदम पहले ही उठा लिया है।</string>
+    <string name="s_guideline2">आप अपने असाइन किए गए आकाओं को उनके संपर्क विवरण के साथ, \'माई मेंटर्स\' पेज में पाएंगे, जो साइड मेन्यू से एक्सेस किया जा सकता है।</string>
+    <string name="s_guideline3">आप मीटिंग में शामिल हों, बैठक में मीटिंग करें, बैठक में शामिल हों, जो मीटिंग में हों।</string>
+    <string name="s_guideline4">कृपया अपने गुरु से संपर्क करें जैसे ही आप उनकी संपर्क जानकारी प्राप्त करते हैं और पूछताछ करते हैं कि कक्षाओं, असाइनमेंट और परीक्षाओं के बारे में उनके साथ कैसे समन्वय किया जाए।</string>
+    <string name="s_guideline5">यद्यपि मंच पर पंजीकृत होने के कारण परीक्षा देने की कोई बाध्यता नहीं है, यह कड़ाई से अनुशंसा की जाती है कि आप राष्ट्रीय मुक्त विद्यालयी शिक्षा संस्थान से माध्यमिक (10 वीं कक्षा) और वरिष्ठ माध्यमिक (12 वीं कक्षा) प्रमाणन के लिए पंजीकरण करें, अच्छी तैयारी करें और ( एनआईओएस), जो गैर-पारंपरिक स्कूली शिक्षा के लिए भारत सरकार की आधिकारिक परीक्षा और प्रमाणन पोर्टल है।</string>
+    <string name="s_guideline6"><a href="https://sdmis.nios.ac.in/">कृपया एनआईओएस वेबसाइट में दी गई परीक्षाओं के पाठ्यक्रम और प्रक्रिया को देखें।</a></string>
+    <string name="s_guideline7">इन प्रमाणपत्रों के होने से आपको भविष्य में कई तरह से मदद मिलेगी।</string>
+    <string name="s_guideline8"><a href="https://docs.google.com/document/d/1WGHR1hr-8y5eQNR-HD-ljx77Q19XBmAYIzN1BS0jcwo/edit">ऑनलाइन शिक्षा चुनौतीपूर्ण हो सकती है इसलिए इन संसाधनों का हवाला देकर इसे सर्वश्रेष्ठ बनाने का प्रयास करें।</a></string>
+</resources>

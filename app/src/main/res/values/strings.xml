@@ -62,8 +62,7 @@
     <!--    <string name="txtCredits">www.google.com</string>-->
 
     <!--    Guidelines for Students Page-->
-    <string name="s_guideline1">Education can change your life! You have taken the first step already by registering on the MyMargdarshaka App.
-</string>
+    <string name="s_guideline1">"Education can change your life! You have taken the first step already by registering on the MyMargdarshaka App. "</string>
     <string name="s_guideline2">You will find your assigned mentors along with their contact details, in the ‘My Mentors’ page, accessible from the side menu. </string>
     <string name="s_guideline3">Your mentors have been assigned according to your class, which subjects you want to learn, your ‘Preferred Language of Instruction’ and your ‘Preferred Time Slot’. </string>
     <string name="s_guideline4">Please contact your mentors as soon as you get their contact information and enquire how to coordinate with them about classes, assignments and exams.</string>
@@ -73,8 +72,7 @@
 </string>
     <string name="s_guideline7">Having these certifications will help you in many ways in the future.
 </string>
-    <string name="s_guideline8"><a href="https://docs.google.com/document/d/1WGHR1hr-8y5eQNR-HD-ljx77Q19XBmAYIzN1BS0jcwo/edit">Online education can be challenging so try to make the best of it by referring to these resources.</a>
-</string>
+    <string name="s_guideline8">"<a href="https://docs.google.com/document/d/1WGHR1hr-8y5eQNR-HD-ljx77Q19XBmAYIzN1BS0jcwo/edit">Online education can be challenging so try to make the best of it by referring to these resources.</a> "</string>
     <string name="s_guideline9">Please use the Feedback option to report any undesirable activity and our moderators will look into it.
 </string>
     <string name="s_guideline10">Please try to make the best of the platform and the guidance given to you by your mentor. Good luck to you as you pursue your education sincerely!
