@@ -149,7 +149,7 @@ public class AuthSignupMentors2 extends AppCompatActivity {
 
             }
 
-            // if the mentor didn't select any subjects
+            // if the mentor didn't select any subjects, show a toast
             if(teachSubjects.size() == 0){
                 Toast.makeText(AuthSignupMentors2.this, "Please select atleast one subject ", Toast.LENGTH_SHORT).show();
                 return;
