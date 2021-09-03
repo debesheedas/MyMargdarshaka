@@ -150,15 +150,15 @@ public class MyMentors extends AppCompatActivity {
           @Override
           public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             String choice = item.toString();
-            if (choice.equals("Guidelines")) {
+            if (choice.equals(getString(R.string.guidelines_label))) {
               Intent i = new Intent(MyMentors.this, GuidelinesForStudents.class);
               startActivity(i);
-            } else if (choice.equals("My Mentors")) {
+            } else if (choice.equals(getString(R.string.my_mentors_label))) {
               // code to shift to Mentor Details Page
-            } else if (choice.equals("Feedback")) {
+            } else if (choice.equals(getString(R.string.feedback_label))) {
               Intent intent = new Intent(MyMentors.this, FeedbackStudents.class);
               startActivity(intent);
-            } else if (choice.equals("Logout")) {
+            } else if (choice.equals(getString(R.string.logout_label))) {
               SharedPreferences.Editor editor = sharedPreferences.edit();
               FirebaseAuth.getInstance().signOut();
               editor.clear();

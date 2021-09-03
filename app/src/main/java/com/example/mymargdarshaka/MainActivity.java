@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     //TODO: get the chosen language code from shared preferences
     // and replace "hi" with it
 
-//    setLocale(MainActivity.this, "en");
+    setLocale(MainActivity.this, "hi");
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
