@@ -39,6 +39,7 @@ public class AuthSignupMentors2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth_signup_mentors2);
 
+        // get the data from the previous Activity
         Bundle extras = getIntent().getExtras();
         String name  = extras.getString("name");
         String email  = extras.getString("email");
@@ -47,15 +48,13 @@ public class AuthSignupMentors2 extends AppCompatActivity {
         ArrayList<String> prefLangs = extras.getStringArrayList("prefLangs");
         ArrayList<String> timeSlots = extras.getStringArrayList("timeSlots");
 
-        // will be filled by matching
+        // this will be filled in MentorMatching after completing the test successfully
         HashMap<String,ArrayList<String>> regStudents = new HashMap<>();
 
+        // all the subjects the mentor can teach
         ArrayList<String> teachSubjects = new ArrayList<>();
-        ArrayList<String> classes = new ArrayList<>();
-
-        //@Aashrith - You'll have to use "getTag() or findViewByTag() instead of findViewById()
-        //use the arrayLIst allCheckBoxes to check if atleast 1 checkbox is checked, inside onListener for Submit button
-        //display toast if not checked
+        // all the classes the mentor can teach
+        ArrayList<String> teachClasses = new ArrayList<>();
 
         // for rendering UI elements ( checkboxes ) dynamically.
         ArrayList<String> subjects = new ArrayList<>();
@@ -107,10 +106,11 @@ public class AuthSignupMentors2 extends AppCompatActivity {
             }
         }
 
-        Button submitButton = findViewById(R.id.mentorsSignupButton2);
+        // submitButton listener --------------------------
+        Button submitButton = (Button)findViewById(R.id.mentorsSignupButton2);
         submitButton.setOnClickListener(view -> {
 
-            // helper variable for determining which classes a mentor can teach
+            // helper variable for determining which classes a mentor can teach.
             int temp = 0;
 
             for(String c : junior_class_options){
@@ -124,7 +124,7 @@ public class AuthSignupMentors2 extends AppCompatActivity {
 
                 // if the mentor can teach atleast one subject in a class, the mentor is said to teach that class.
                 if(temp < teachSubjects.size()){
-                    classes.add(c);
+                    teachClasses.add(c);
                     temp = teachSubjects.size();
                 }
             }
@@ -142,8 +142,9 @@ public class AuthSignupMentors2 extends AppCompatActivity {
                 if(((CheckBox)root.findViewWithTag("check_history"+c)).isChecked()) teachSubjects.add("history"+c);
                 if(((CheckBox)root.findViewWithTag("check_geography"+c)).isChecked()) teachSubjects.add("geography"+c);
 
+                // if the mentor can teach atleast one subject in a class, the mentor is said to teach that class.
                 if(temp < teachSubjects.size()){
-                    classes.add(c);
+                    teachClasses.add(c);
                     temp = teachSubjects.size();
                 }
 
@@ -161,7 +162,7 @@ public class AuthSignupMentors2 extends AppCompatActivity {
                     name,
                     email,
                     phone,
-                    classes,
+                    teachClasses,
                     prefLangs,
                     timeSlots,
                     regStudents,
