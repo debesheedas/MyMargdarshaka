@@ -38,8 +38,6 @@ import java.util.regex.Pattern;
 
 public class MyStudents extends AppCompatActivity {
 
-  //    TODO(Kranthi, Aashrith): Implement the students details grouped by course
-
   SharedPreferences sharedPreferences;
   FirebaseDatabase firebaseDatabase;
   DatabaseReference databaseReference;
@@ -85,7 +83,11 @@ public class MyStudents extends AppCompatActivity {
                           public void onComplete(@NonNull Task<DataSnapshot> task) {
                             if (task.isSuccessful()) {
                               HashMap<String, HashMap> users =
-                                  (HashMap) task.getResult().getValue();
+                                  task.getResult().getValue(HashMap.class);
+
+                              // stores subject as key, ArrayList of student names and phone numbers
+                              // as value
+                              // for rendering the data in UI
                               HashMap<String, ArrayList<String>> data = new HashMap<>();
 
                               for (String subName : subjects) {
