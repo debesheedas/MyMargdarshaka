@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     //TODO: get the chosen language code from shared preferences
     // and replace "hi" with it
 
-    setLocale(MainActivity.this, "hi");
+    setLocale(MainActivity.this, "en");
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
@@ -60,24 +60,35 @@ public class MainActivity extends AppCompatActivity {
 
     ChipGroup languageChipGroup = findViewById(R.id.chip_group_language);
     Chip selectedLanguage = findViewById(languageChipGroup.getCheckedChipId());
-    if (selectedLanguage.getText().toString().equals("हिंदी")) {
-      setLocale(MainActivity.this, "hi");
-    }
+    Log.d("INITIAL LANGUAGE",selectedLanguage.getText().toString());
+//    if (selectedLanguage.getText().toString().equals("हिंदी")) {
+//      setLocale(MainActivity.this, "hi");
+//    }
+//    else{
+//      setLocale(MainActivity.this,"en");
+//    }
     languageChipGroup.setOnCheckedChangeListener(
         new ChipGroup.OnCheckedChangeListener() {
           @Override
           public void onCheckedChanged(ChipGroup group, int checkedId) {
-            Chip chip = findViewById(languageChipGroup.getCheckedChipId());
-            String selectedLanguage = chip.getText().toString();
+            Log.d("CHECKED ID",String.valueOf(checkedId));
+            if(checkedId!=-1) {
+              Chip chip = findViewById(languageChipGroup.getCheckedChipId());
+              String selectedLanguage = chip.getText().toString();
 
-            //TODO: save the preferred language code
-            // hi for hindi and en for english
-            if (selectedLanguage.equals("हिंदी")) {
-            Log.d("LANGUAGE", "onCheckedChanged: hindi");
-              setLocale(MainActivity.this, "hi");
-            } else if (selectedLanguage.equals("English")) {
-              Log.d("LANGUAGE", "onCheckedChanged: english");
-              setLocale(MainActivity.this, "en");
+              Log.d("afsd", selectedLanguage);
+
+              //TODO: save the preferred language code
+              // hi for hindi and en for english
+              if (selectedLanguage.equals("हिंदी")) {
+                Log.d("LANGUAGE", "onCheckedChanged: hindi");
+                setLocale(MainActivity.this, "hi");
+                setContentView(R.layout.activity_main);
+              } else if (selectedLanguage.equals("English") || selectedLanguage.equals("अंग्रेज़ी")) {
+                Log.d("LANGUAGE", "onCheckedChanged: english");
+                setLocale(MainActivity.this, "en");
+                setContentView(R.layout.activity_main);
+              }
             }
           }
         });
@@ -246,8 +257,10 @@ public class MainActivity extends AppCompatActivity {
     Locale locale = new Locale(langCode);
     Locale.setDefault(locale);
     Resources resources = activity.getResources();
+    Log.d("RESOURCES",String.valueOf(resources.getDisplayMetrics()));
     Configuration config = resources.getConfiguration();
     config.setLocale(locale);
+    Log.d("CONFIGURATIONS",String.valueOf(config));
     resources.updateConfiguration(config, resources.getDisplayMetrics());
     Log.d("LANGUAGE", "Finished setting language");
   }
