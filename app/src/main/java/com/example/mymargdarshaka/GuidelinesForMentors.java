@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class GuidelinesForMentors extends AppCompatActivity {
 
   TextView niosLink, resources;
-  SharedPreferences sharedPreferences;
+  SharedPreferences sharedPreferences,pref;
   FirebaseDatabase firebaseDatabase;
   DatabaseReference databaseReference;
 
@@ -37,7 +37,9 @@ public class GuidelinesForMentors extends AppCompatActivity {
     setContentView(R.layout.activity_guidelines_for_mentors);
     sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
 
-    // hyperlink for NIOS website
+    pref=getSharedPreferences("lang",MODE_PRIVATE);
+
+      // hyperlink for NIOS website
     niosLink = (TextView) findViewById(R.id.m_guideline6);
     niosLink.setMovementMethod(LinkMovementMethod.getInstance());
     // hyperlink for resources document
@@ -53,14 +55,19 @@ public class GuidelinesForMentors extends AppCompatActivity {
     topAppBar.setOnMenuItemClickListener(new com.google.android.material.appbar.MaterialToolbar.OnMenuItemClickListener() {
         @Override
         public boolean onMenuItemClick(MenuItem item) {
+            SharedPreferences.Editor editor = pref.edit();
             switch(item.getItemId()){
                 case R.id.english:
                     //TODO: here add the language preference as english
+                    editor.putString("language","en");
+                    editor.apply();
                     Toast.makeText(getApplicationContext(), "Please restart the app for language change to English", Toast.LENGTH_SHORT)
                               .show();
                       break;
                 case R.id.hindi:
                     //TODO here add the language preference as hindi
+                    editor.putString("language","hi");
+                    editor.apply();
                       Toast.makeText(getApplicationContext(), "Please restart the app for language change to Hindi", Toast.LENGTH_SHORT)
                               .show();
                       break;

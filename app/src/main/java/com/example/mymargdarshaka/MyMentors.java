@@ -1,7 +1,10 @@
 package com.example.mymargdarshaka;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
@@ -13,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,7 +40,7 @@ import java.util.regex.Pattern;
 
 public class MyMentors extends AppCompatActivity {
 
-  SharedPreferences sharedPreferences;
+  SharedPreferences sharedPreferences,pref;
   FirebaseDatabase firebaseDatabase;
   DatabaseReference databaseReference;
   private DatabaseReference rootRef;
@@ -48,6 +52,7 @@ public class MyMentors extends AppCompatActivity {
   private static final String SHARED_PREF_NAME = "login";
   private static final String PHONE = "userPhone";
   private static final String USER_ID = "userId";
+
 
   // rendering the assigned mentors as a list of cards
   public void display(
@@ -117,6 +122,8 @@ public class MyMentors extends AppCompatActivity {
     rootRef = FirebaseDatabase.getInstance().getReference();
     sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
 
+    pref=getSharedPreferences("lang",MODE_PRIVATE);
+
     // obtaining the list of assigned mentors for each subject
     rootRef
         .child("users")
@@ -142,6 +149,29 @@ public class MyMentors extends AppCompatActivity {
     navigationView = findViewById(R.id.navigationView);
 
     //TODO @Shreetesh Paste code snippet here
+    topAppBar.setOnMenuItemClickListener(new com.google.android.material.appbar.MaterialToolbar.OnMenuItemClickListener() {
+      @Override
+      public boolean onMenuItemClick(MenuItem item) {
+        SharedPreferences.Editor editor = pref.edit();
+        switch(item.getItemId()){
+          case R.id.english:
+            //TODO: here add the language preference as english
+            editor.putString("language","en");
+            editor.apply();
+            Toast.makeText(getApplicationContext(), "Please restart the app for language change to English", Toast.LENGTH_SHORT)
+                    .show();
+            break;
+          case R.id.hindi:
+            //TODO here add the language preference as hindi
+            editor.putString("language","hi");
+            editor.apply();
+            Toast.makeText(getApplicationContext(), "Please restart the app for language change to Hindi", Toast.LENGTH_SHORT)
+                    .show();
+            break;
+        }
+        return true;
+      }
+    });
 
     topAppBar.setNavigationOnClickListener(
         new View.OnClickListener() {
@@ -310,5 +340,14 @@ public class MyMentors extends AppCompatActivity {
 
     card.addView(linearLayoutCard);
     return card;
+  }
+
+  public void setLocale(Activity activity, String langCode) {
+    Locale locale = new Locale(langCode);
+    Locale.setDefault(locale);
+    Resources resources = activity.getResources();
+    Configuration config = resources.getConfiguration();
+    config.setLocale(locale);
+    resources.updateConfiguration(config, resources.getDisplayMetrics());
   }
 }
