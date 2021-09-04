@@ -3,6 +3,7 @@ package com.example.mymargdarshaka;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+// student schema for the database
 public class UserSchema {
   String id;
   UserDetails userDetails;

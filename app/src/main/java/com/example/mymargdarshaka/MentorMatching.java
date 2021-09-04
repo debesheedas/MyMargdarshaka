@@ -34,6 +34,7 @@ public class MentorMatching {
                   // matches stores arraylist of students he can teach along with the subject
                   ArrayList<ArrayList<String>> matches = new ArrayList<ArrayList<String>>();
 
+                  // iterating through the students list and finding a match
                   DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
                   usersRef.addListenerForSingleValueEvent(
                       new ValueEventListener() {
@@ -94,7 +95,8 @@ public class MentorMatching {
                               usersRef.child(user.getKey()).setValue(student);
                             }
                           }
-                          // set the updated data in the DB
+
+                            // set the updated data in the DB
                           newMentorRef.setValue(newMentor);
 
                           // next send him to MyStudents

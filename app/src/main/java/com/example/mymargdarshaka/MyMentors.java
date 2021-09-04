@@ -49,6 +49,7 @@ public class MyMentors extends AppCompatActivity {
   private static final String PHONE = "userPhone";
   private static final String USER_ID = "userId";
 
+  // rendering the assigned mentors as a list of cards
   public void display(
       HashMap<String, String> mentors, String prefLang, String timeSlot, LinearLayout root) {
     DatabaseReference mentorsRef = rootRef.child("mentors");
@@ -80,6 +81,7 @@ public class MyMentors extends AppCompatActivity {
           public void onCancelled(@NonNull DatabaseError error) {}
         });
 
+    // display guidelines popup if the student is logging in for the first time
     if (getIntent().getBooleanExtra("firstTime", false)) {
       // and raising a null point exception
       LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -115,6 +117,7 @@ public class MyMentors extends AppCompatActivity {
     rootRef = FirebaseDatabase.getInstance().getReference();
     sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
 
+    // obtaining the list of assigned mentors for each subject
     rootRef
         .child("users")
         .child(getIntent().getStringExtra("studentId"))
@@ -132,6 +135,7 @@ public class MyMentors extends AppCompatActivity {
               @Override
               public void onCancelled(@NonNull DatabaseError error) {}
             });
+
     // Functionality for App Bar with Menu
     topAppBar = findViewById(R.id.topAppBar);
     drawerLayout = findViewById(R.id.drawerLayout);
@@ -158,6 +162,8 @@ public class MyMentors extends AppCompatActivity {
             } else if (choice.equals(getString(R.string.feedback_label))) {
               Intent intent = new Intent(MyMentors.this, FeedbackStudents.class);
               startActivity(intent);
+
+              // logging the student out
             } else if (choice.equals(getString(R.string.logout_label))) {
               SharedPreferences.Editor editor = sharedPreferences.edit();
               FirebaseAuth.getInstance().signOut();
@@ -171,69 +177,6 @@ public class MyMentors extends AppCompatActivity {
             return true;
           }
         });
-
-    //        logout.setOnClickListener(new View.OnClickListener() {
-    //            @Override
-    //            public void onClick(View view) {
-    //                SharedPreferences.Editor editor = sharedPreferences.edit();
-    //                editor.clear();
-    //                editor.commit();
-    //
-    //                Intent i = new Intent(MyMentors.this,MainActivity.class);
-    //                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-    //                startActivity(i);
-
-    //                firebaseDatabase=FirebaseDatabase.getInstance();
-    //                databaseReference=firebaseDatabase.getReference("users");
-    //                String key=databaseReference.push().getKey();
-    //                databaseReference=databaseReference.child(key);
-    //
-    //                ArrayList<String> intr=new ArrayList<>();
-    //                intr.add("Maths");
-    //                intr.add("Science");
-    //
-    //                ArrayList<String> times=new ArrayList<>();
-    //                times.add("10:30");
-    //
-    //                ArrayList<Pair<String,String>> reg=new ArrayList<>();
-    //                reg.add(new Pair<String,String>("Maths","mentorid1"));
-    //                reg.add(new Pair<String,String>("Science","mentorid2"));
-    //
-    //                UserDetails userSchema = new
-    // UserDetails("Somename","abc@gmail.com","9898989888","6","Hindi",intr,times,reg);
-    //                databaseReference.setValue(userSchema);
-
-    //                firebaseDatabase=FirebaseDatabase.getInstance();
-    //                databaseReference=firebaseDatabase.getReference("mentors");
-    //                String key=databaseReference.push().getKey();
-    //                databaseReference=databaseReference.child(key);
-    //
-    //                ArrayList<String> prefLangs=new ArrayList<>();
-    //                prefLangs.add("English");
-    //                prefLangs.add("Hindi");
-    //
-    //                ArrayList<String> classes=new ArrayList<>();
-    //                classes.add("8");
-    //                classes.add("9");
-    //                classes.add("10");
-    //
-    //                ArrayList<String> times=new ArrayList<>();
-    //                times.add("10:30");
-    //
-    //                ArrayList<String> teachSubjects=new ArrayList<>();
-    //                teachSubjects.add("Maths");
-    //                teachSubjects.add("Science");
-    //
-    //                ArrayList<String> regStudents=new ArrayList<>();
-    //                regStudents.add("student id 1");
-    //                regStudents.add("student id 2");
-    //
-    //                MentorDetails mentorSchema = new
-    // MentorDetails("MyName","abc@gmail.com","9898989888",classes,prefLangs,times,regStudents,teachSubjects);
-    //                databaseReference.setValue(mentorSchema);
-
-    //            }
-    //        });
 
   }
 
@@ -257,6 +200,7 @@ public class MyMentors extends AppCompatActivity {
     return textView;
   }
 
+  // UI for the card
   private MaterialCardView getCard(
       String title,
       String name,

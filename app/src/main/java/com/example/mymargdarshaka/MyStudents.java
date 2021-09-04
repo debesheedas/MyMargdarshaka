@@ -191,6 +191,7 @@ public class MyStudents extends AppCompatActivity {
             } else if (choice.equals(getString(R.string.feedback_label))) {
               Intent intent = new Intent(MyStudents.this, FeedbackMentors.class);
               startActivity(intent);
+              // logging the mentor out
             } else if (choice.equals(getString(R.string.logout_label))) {
               SharedPreferences.Editor editor = sharedPreferences.edit();
               FirebaseAuth.getInstance().signOut();
@@ -226,6 +227,7 @@ public class MyStudents extends AppCompatActivity {
     return textView;
   }
 
+  // UI for card
   private MaterialCardView getCard(String title, ArrayList<String> students, int aboveId) {
     MaterialCardView card = new MaterialCardView(this);
     RelativeLayout.LayoutParams cardParams =

@@ -74,7 +74,7 @@ public class AuthLogin extends AppCompatActivity {
         });
   }
 
-  void setLoading(boolean b) {
+  void setLoading(boolean b) {                   // rendering the spinner
     if (b) {
       pBar.setVisibility(View.VISIBLE);
       getOtpButton.setVisibility(View.GONE);
@@ -90,7 +90,7 @@ public class AuthLogin extends AppCompatActivity {
 
     setLoading(true);
 
-    // checking in the users
+    // checking in the students list
     DatabaseReference usersRef = rootRef.child("users");
     String phone = "No phone";
     if (phoneInput.getText() != null) {
@@ -112,6 +112,7 @@ public class AuthLogin extends AppCompatActivity {
                   for (DataSnapshot user : snapshot.getChildren()) {
                     Log.e("User key", user.getKey());
 
+                    // if the user was previously signed in as a student, he/she cannot sign up as a mentor
                     if (!getIntent().getStringExtra("userType").equals("student")) {
                       fine = false;
                     } else {
@@ -135,6 +136,7 @@ public class AuthLogin extends AppCompatActivity {
               }
             });
 
+    // checking in the mentors list
     if (fine) {
 
       DatabaseReference mentorsRef = rootRef.child("mentors");
@@ -154,12 +156,16 @@ public class AuthLogin extends AppCompatActivity {
                     for (DataSnapshot child : snapshot.getChildren()) {
                       setLoading(true);
                       Log.e("User key", child.getKey());
+
+                      // if the user was previously signed in as a mentor, he/she cannot sign up as a student
                       if (getIntent().getStringExtra("userType").equals("student")) {
                         fine = false;
                       } else {
                         found = true;
                         MentorDetails mentorDetails = child.getValue(MentorDetails.class);
                         userId = child.getKey();
+
+                        // checking if the mentor has passed the test and routing appropriately
                         if (mentorDetails != null && mentorDetails.getNoTests() == -1) {
                           testSuccessful = true;
                         } else if (mentorDetails != null && mentorDetails.getNoTests() >= 5) {
@@ -197,7 +203,8 @@ public class AuthLogin extends AppCompatActivity {
   public void generateOtp() {
 
     if (fine) {
-      // PhoneAuthOptions authOptions = new PhoneAuthOptions();
+
+        // verifying phone number and mobile device and sending a valid OTP
       PhoneAuthProvider.getInstance()
           .verifyPhoneNumber(
               "+91" + phoneInput.getText().toString(),
@@ -208,11 +215,7 @@ public class AuthLogin extends AppCompatActivity {
                 @Override
                 public void onVerificationCompleted(
                     @NonNull PhoneAuthCredential phoneAuthCredential) {
-                  // pBar.setVisibility(View.GONE);
-                  // getOtpButton.setVisibility(View.VISIBLE);
-                  // setLoading(false);
-                  // Toast.makeText(AuthLogin.this, "Phone number verified",
-                  // Toast.LENGTH_SHORT).show();
+
                 }
 
                 @Override
@@ -225,6 +228,8 @@ public class AuthLogin extends AppCompatActivity {
                 public void onCodeSent(
                     @NonNull String verificationId,
                     @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+
+                    // sending the user to the next page
                   Intent i = new Intent(AuthLogin.this, AuthOtp.class);
                   i.putExtra("userType", getIntent().getStringExtra("userType"));
                   i.putExtra("phone", phoneInput.getText().toString());
@@ -242,6 +247,7 @@ public class AuthLogin extends AppCompatActivity {
 
     } else {
 
+        // displaying appropriate toast message and routing back to the home page
       if (getIntent().getStringExtra("userType").equals("student")) {
         Toast.makeText(
                 AuthLogin.this,

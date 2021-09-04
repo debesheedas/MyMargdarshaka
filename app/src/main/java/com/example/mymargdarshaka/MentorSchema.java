@@ -3,6 +3,7 @@ package com.example.mymargdarshaka;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+// mentor schema for the database
 public class MentorSchema {
   private String id;
   private MentorDetails mentorDetails;
@@ -73,37 +74,5 @@ public class MentorSchema {
   public ArrayList<String> getTeachSubjects() {
     return this.mentorDetails.getTeachSubjects();
   }
-
-  //    public void setName(String name) {
-  //        this.mentorDetails.setName(name);
-  //    }
-  //
-  //    public void setEmail(String email) {
-  //        this.mentorDetails.setEmail(email);
-  //    }
-  //
-  //    public void setPhone(String phone) {
-  //        this.mentorDetails.setPhone(phone);
-  //    }
-  //
-  //    public void setClasses(ArrayList<String> classes) {
-  //        this.mentorDetails.setClasses(classes);
-  //    }
-  //
-  //    public void setPrefLangs(ArrayList<String> prefLangs) {
-  //        this.mentorDetails.setPrefLangs(prefLangs);
-  //    }
-  //
-  //    public void setTimeSlots(ArrayList<String> timeSlots) {
-  //        this.mentorDetails.setTimeSlots(timeSlots);
-  //    }
-  //
-  //    public void setRegStudents(ArrayList<String> regStudents) {
-  //        this.mentorDetails.setRegStudents(regStudents);
-  //    }
-  //
-  //    public void setTeachSubjects(ArrayList<String> teachSubjects) {
-  //        this.mentorDetails.setTeachSubjects(teachSubjects);
-  //    }
 
 }

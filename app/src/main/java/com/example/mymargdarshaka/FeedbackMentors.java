@@ -45,6 +45,8 @@ public class FeedbackMentors extends AppCompatActivity {
           String feedback = feedbackInput.getText().toString();
           HashMap<String, String> data = new HashMap<>();
           data.put("feedback", feedback);
+
+          // saving the feedback in the database
           mColRef
               .add(data)
               .addOnCompleteListener(
@@ -88,6 +90,8 @@ public class FeedbackMentors extends AppCompatActivity {
             } else if (choice.equals("Feedback")) {
               // code to shift to Feedback Page
             } else if (choice.equals("Logout")) {
+
+                // logging out the mentor
               SharedPreferences.Editor editor = sharedPreferences.edit();
               FirebaseAuth.getInstance().signOut();
               editor.clear();
