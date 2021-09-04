@@ -1,7 +1,10 @@
 package com.example.mymargdarshaka;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,12 +16,16 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+    //TODO: get the chosen language code from shared preferences
+    // and replace "hi" with it
+
+    setLocale(MainActivity.this, "hi");
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
@@ -46,6 +57,30 @@ public class MainActivity extends AppCompatActivity {
     mentorButton = (Button) findViewById(R.id.mentorLoginButton);
     rightButton = (ImageButton) findViewById(R.id.rightButton);
     leftButton = (ImageButton) findViewById(R.id.leftButton);
+
+    ChipGroup languageChipGroup = findViewById(R.id.chip_group_language);
+    Chip selectedLanguage = findViewById(languageChipGroup.getCheckedChipId());
+    if (selectedLanguage.getText().toString().equals("हिंदी")) {
+      setLocale(MainActivity.this, "hi");
+    }
+    languageChipGroup.setOnCheckedChangeListener(
+        new ChipGroup.OnCheckedChangeListener() {
+          @Override
+          public void onCheckedChanged(ChipGroup group, int checkedId) {
+            Chip chip = findViewById(languageChipGroup.getCheckedChipId());
+            String selectedLanguage = chip.getText().toString();
+
+            //TODO: save the preferred language code
+            // hi for hindi and en for english
+            if (selectedLanguage.equals("हिंदी")) {
+            Log.d("LANGUAGE", "onCheckedChanged: hindi");
+              setLocale(MainActivity.this, "hi");
+            } else if (selectedLanguage.equals("English")) {
+              Log.d("LANGUAGE", "onCheckedChanged: english");
+              setLocale(MainActivity.this, "en");
+            }
+          }
+        });
 
     // carousel of images on mainpage
     imageView = (ImageView) findViewById(R.id.slideView);
@@ -205,5 +240,15 @@ public class MainActivity extends AppCompatActivity {
             startActivity(i);
           }
         });
+  }
+
+  public void setLocale(Activity activity, String langCode) {
+    Locale locale = new Locale(langCode);
+    Locale.setDefault(locale);
+    Resources resources = activity.getResources();
+    Configuration config = resources.getConfiguration();
+    config.setLocale(locale);
+    resources.updateConfiguration(config, resources.getDisplayMetrics());
+    Log.d("LANGUAGE", "Finished setting language");
   }
 }

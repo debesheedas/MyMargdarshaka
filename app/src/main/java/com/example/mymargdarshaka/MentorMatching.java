@@ -30,35 +30,43 @@ public class MentorMatching {
                 if (task.isSuccessful()) {
 
                   MentorDetails newMentor = task.getResult().getValue(MentorDetails.class);
-                  Log.e("newMentor : ", newMentor.toString());
+
+                  // matches stores arraylist of students he can teach along with the subject
                   ArrayList<ArrayList<String>> matches = new ArrayList<ArrayList<String>>();
-                  DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
 
                   // iterating through the students list and finding a match
+                  DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
                   usersRef.addListenerForSingleValueEvent(
                       new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
 
-                          Log.e("MENTOR : ", newMentor.toString());
-
+                          // iterate for each student and verify the matching criteria
                           for (DataSnapshot user : dataSnapshot.getChildren()) {
 
                             UserDetails student = user.getValue(UserDetails.class);
 
-                            Log.e("student : ", student.toString());
-
+                            // if the student's class, timeslot, language matches then the student is applicable
                             if (newMentor.getClasses().contains(student.getStandard())
                                 && newMentor.getTimeSlots().contains(student.getTimeSlot())
                                 && newMentor.getPrefLangs().contains(student.getPrefLang())) {
                               // this student is applicable
-                              ArrayList<String> temp = new ArrayList<>();
-                              // also add condition when intrSub is null
+
+                              // stores all the subjects that the mentor can't teach, this is set back as interestedSubjects of the student
+                              ArrayList<String> cantTeach = new ArrayList<>();
+
+                              // intrSubjects only contains subjects that he is interested in but not registered for
+                              // if the student had registered for all the subjects he is interested in, skip him
+                              // null check as it can be empty
                               if (student.getIntrSubjects() == null) continue;
 
+                              // iterate for each interested subject, if the mentor can teach the interested subject, add the students and the subject to matches
                               for (String intrSub : student.getIntrSubjects()) {
 
                                 if (newMentor.getTeachSubjects().contains(intrSub)) {
+                                  // mentor can teach the subject
+
+                                  // null checks before adding the data
 
                                   if (student.getRegSubjects() == null) {
                                     student.setRegSubjects(new HashMap<>());
@@ -78,17 +86,20 @@ public class MentorMatching {
                                   newMentor.getRegStudents().get(intrSub).add(user.getKey());
 
                                 } else {
-                                  temp.add(intrSub);
+                                  cantTeach.add(intrSub);
                                 }
                               }
 
-                              student.setIntrSubjects(temp);
+                              student.setIntrSubjects(cantTeach);
+                              // set the updated data in the DB
                               usersRef.child(user.getKey()).setValue(student);
                             }
                           }
 
+                            // set the updated data in the DB
                           newMentorRef.setValue(newMentor);
 
+                          // next send him to MyStudents
                           Intent i = new Intent(context, MyStudents.class);
                           i.putExtra("firstTime", true);
                           i.putExtra("mentorId", newMentorKey);

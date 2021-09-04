@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class AuthSignupMentors1 extends AppCompatActivity {
 
@@ -59,14 +60,23 @@ public class AuthSignupMentors1 extends AppCompatActivity {
           if (afternoon.isChecked()) timeSlots.add("Afternoon");
           if (evening.isChecked()) timeSlots.add("Evening");
 
+          String regex = "^(.+)@(.+)$";
+          Pattern pattern = Pattern.compile(regex);
+
           // checks to ensure that user enters required input
           if (name.equals("")) {
-            Toast.makeText(getApplicationContext(), "Please Enter Name", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Please Enter Name", Toast.LENGTH_SHORT)
+                    .show();
           } else if (email.equals("")) {
             Toast.makeText(
                     getApplicationContext(), "Please Enter Email Address ", Toast.LENGTH_SHORT)
                 .show();
-          } else if (prefLangs.size() == 0) {
+          } else if(!pattern.matcher(email).matches()){
+              Toast.makeText(
+                      getApplicationContext(), "Please Enter a Valid Email Address ", Toast.LENGTH_SHORT)
+                      .show();
+            }
+          else if (prefLangs.size() == 0) {
             Toast.makeText(
                     getApplicationContext(),
                     "Please Select a Preferred Language ",
