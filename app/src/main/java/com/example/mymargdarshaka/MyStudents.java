@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -20,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.navigation.NavigationView;
@@ -33,6 +35,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -85,8 +88,9 @@ public class MyStudents extends AppCompatActivity {
                           @Override
                           public void onComplete(@NonNull Task<DataSnapshot> task) {
                             if (task.isSuccessful()) {
-                              HashMap<String, HashMap> users =
-                                  task.getResult().getValue(HashMap.class);
+                              HashMap<String, Object> users = (HashMap<String, java.lang.Object>) task.getResult().getValue();
+                              Log.d("FOO", task.getResult().toString());
+                              Log.d("FOO", task.getResult().getValue().getClass().toString());
 
                               // stores subject as key, ArrayList of student names and phone numbers
                               // as value
@@ -99,7 +103,7 @@ public class MyStudents extends AppCompatActivity {
                                 ArrayList<String> studentIds = regStudents.get(subName);
 
                                 for (String studentId : studentIds) {
-                                  HashMap student = users.get(studentId);
+                                  HashMap student = (HashMap) users.get(studentId);
                                   if (student != null) {
                                     String name = (String) student.get("name");
                                     String phone = (String) student.get("phone");
