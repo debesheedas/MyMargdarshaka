@@ -44,7 +44,10 @@ public class GuidelinesForStudents extends AppCompatActivity {
     topAppBar = findViewById(R.id.topAppBar);
     drawerLayout = findViewById(R.id.drawerLayout);
     navigationView = findViewById(R.id.navigationView);
+
     // Functionality for App Bar with Menu
+    //TODO @Shreetesh Paste code snippet here
+
     topAppBar.setNavigationOnClickListener(
         new View.OnClickListener() {
           @Override

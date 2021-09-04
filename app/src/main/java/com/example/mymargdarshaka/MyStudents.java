@@ -170,6 +170,8 @@ public class MyStudents extends AppCompatActivity {
     drawerLayout = findViewById(R.id.drawerLayout);
     navigationView = findViewById(R.id.navigationView);
 
+    //TODO @Shreetesh Paste code snippet here
+
     topAppBar.setNavigationOnClickListener(
         new View.OnClickListener() {
           @Override

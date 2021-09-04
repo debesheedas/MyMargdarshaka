@@ -2,12 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:id="@+id/favorite"
+<!--    <item-->
+<!--        android:id="@+id/favorite"-->
 
-        android:title="Fav"
-        android:contentDescription="Content description"
-        app:showAsAction="ifRoom" />
+<!--        android:title="Fav"-->
+<!--        android:contentDescription="Content description"-->
+<!--        app:showAsAction="ifRoom" />-->
+
 
 <!--    <item-->
 <!--        android:id="@+id/search"-->
@@ -16,10 +17,13 @@
 <!--        android:contentDescription="@string/content_description_search"-->
 <!--        app:showAsAction="ifRoom" />-->
 
-<!--    <item-->
-<!--        android:id="@+id/more"-->
-<!--        android:title="@string/more"-->
-<!--        android:contentDescription="@string/content_description_more"-->
-<!--        app:showAsAction="never" />-->
+    <item
+        android:id="@+id/english"
+        android:title="@string/english"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/hindi"
+        android:title="@string/hindi"
+        app:showAsAction="never" />
 
 </menu>

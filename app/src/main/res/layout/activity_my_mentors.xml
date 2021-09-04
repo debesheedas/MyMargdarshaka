@@ -33,6 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:background="@android:color/transparent"
+                    app:menu="@menu/top_app_bar"
                     android:elevation="0dp"
                     app:navigationIcon="@drawable/ic_menu_24dp"
                     app:title="@string/my_mentors_label" />

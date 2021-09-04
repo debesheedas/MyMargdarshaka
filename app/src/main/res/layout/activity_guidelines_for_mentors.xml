@@ -33,6 +33,7 @@
                     android:layout_height="?attr/actionBarSize"
                     android:background="@android:color/transparent"
                     android:elevation="0dp"
+                    app:menu="@menu/top_app_bar"
                     app:navigationIcon="@drawable/ic_menu_24dp"
                     app:title="@string/guidelines_label" />
 

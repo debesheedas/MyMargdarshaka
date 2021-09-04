@@ -8,6 +8,8 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,6 +47,28 @@ public class GuidelinesForMentors extends AppCompatActivity {
     topAppBar = findViewById(R.id.topAppBar);
     drawerLayout = findViewById(R.id.drawerLayout);
     navigationView = findViewById(R.id.navigationView);
+
+    //TODO: @Shreetesh Please add the functionality of saving the selected language in the shared preferences and then copy paste the following code snippet wherever indicated
+    //start of code snippet--------------------------------------------
+    topAppBar.setOnMenuItemClickListener(new com.google.android.material.appbar.MaterialToolbar.OnMenuItemClickListener() {
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+            switch(item.getItemId()){
+                case R.id.english:
+                    //TODO: here add the language preference as english
+                    Toast.makeText(getApplicationContext(), "Please restart the app for language change to English", Toast.LENGTH_SHORT)
+                              .show();
+                      break;
+                case R.id.hindi:
+                    //TODO here add the language preference as hindi
+                      Toast.makeText(getApplicationContext(), "Please restart the app for language change to Hindi", Toast.LENGTH_SHORT)
+                              .show();
+                      break;
+              }
+              return true;
+        }
+    });
+    //end of language options UI code snippet-----------------------------------------------------
 
     topAppBar.setNavigationOnClickListener(
         new View.OnClickListener() {
