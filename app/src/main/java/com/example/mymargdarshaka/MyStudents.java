@@ -158,16 +158,6 @@ public class MyStudents extends AppCompatActivity {
               public void onCancelled(@NonNull DatabaseError error) {}
             });
 
-    ArrayList<String> students = new ArrayList<>();
-    students.add("STUDENT 1");
-    students.add("STUDENT 2");
-    students.add("STUDENT 3");
-
-    MaterialCardView card = getCard("Physics Grade 11", students, R.id.card_view);
-    MaterialCardView card2 = getCard("Physics Grade 12", students, card.getId());
-
-    root.addView(card);
-    root.addView(card2);
     // Functionality for App Bar with Menu
     topAppBar = findViewById(R.id.topAppBar);
     drawerLayout = findViewById(R.id.drawerLayout);
@@ -214,11 +204,15 @@ public class MyStudents extends AppCompatActivity {
             String choice = item.toString();
             if (choice.equals(getString(R.string.guidelines_label))) {
               Intent i = new Intent(MyStudents.this, GuidelinesForMentors.class);
+              i.putExtra("mentorId",getIntent().getStringExtra("mentorId"));
+              i.putExtra("firstTime",getIntent().getBooleanExtra("firstTime",false));
               startActivity(i);
-            } else if (choice.equals(getString(R.string.my_mentors_label))) {
+            } else if (choice.equals(getString(R.string.my_students_label))) {
               // code to shift to Student Details Page
             } else if (choice.equals(getString(R.string.feedback_label))) {
               Intent intent = new Intent(MyStudents.this, FeedbackMentors.class);
+              intent.putExtra("mentorId",getIntent().getStringExtra("mentorId"));
+              intent.putExtra("firstTime",getIntent().getBooleanExtra("firstTime",false));
               startActivity(intent);
               // logging the mentor out
             } else if (choice.equals(getString(R.string.logout_label))) {

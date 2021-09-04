@@ -95,9 +95,13 @@ public class GuidelinesForMentors extends AppCompatActivity {
               // code for going to Guidelines page
             } else if (choice.equals(getString(R.string.my_students_label))) {
               Intent i = new Intent(GuidelinesForMentors.this, MyStudents.class);
+                i.putExtra("mentorId",getIntent().getStringExtra("mentorId"));
+                i.putExtra("firstTime",getIntent().getBooleanExtra("firstTime",false));
               startActivity(i);
             } else if (choice.equals(getString(R.string.feedback_label))) {
               Intent i = new Intent(GuidelinesForMentors.this, FeedbackMentors.class);
+                i.putExtra("mentorId",getIntent().getStringExtra("mentorId"));
+                i.putExtra("firstTime",getIntent().getBooleanExtra("firstTime",false));
               startActivity(i);
             } else if (choice.equals(getString(R.string.logout_label))) {
 

@@ -113,9 +113,13 @@ public class FeedbackStudents extends AppCompatActivity {
             String choice = item.toString();
             if (choice.equals(getString(R.string.guidelines_label))) {
               Intent i = new Intent(FeedbackStudents.this, GuidelinesForStudents.class);
+                i.putExtra("studentId",getIntent().getStringExtra("studentId"));
+                i.putExtra("firstTime",getIntent().getBooleanExtra("firstTime",false));
               startActivity(i);
             } else if (choice.equals(getString(R.string.my_mentors_label))) {
               Intent i = new Intent(FeedbackStudents.this, MyMentors.class);
+                i.putExtra("studentId",getIntent().getStringExtra("studentId"));
+                i.putExtra("firstTime",getIntent().getBooleanExtra("firstTime",false));
               startActivity(i);
             } else if (choice.equals(getString(R.string.feedback_label))) {
               // code to shift to Feedback Page
