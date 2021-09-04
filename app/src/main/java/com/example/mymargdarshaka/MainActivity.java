@@ -31,11 +31,12 @@ public class MainActivity extends AppCompatActivity {
 
   Button studentButton, mentorButton;
   ImageButton rightButton, leftButton;
-  SharedPreferences sharedPreferences;
+  SharedPreferences sharedPreferences,pref;
 
   private static final String SHARED_PREF_NAME = "login";
   private static final String TYPE = "userType";
   private static final String USER_ID = "userId";
+  private static final String LANG = "language";
 
   ImageView imageView;
 
@@ -48,7 +49,16 @@ public class MainActivity extends AppCompatActivity {
     //TODO: get the chosen language code from shared preferences
     // and replace "hi" with it
 
-    setLocale(MainActivity.this, "en");
+    sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+
+    pref=getSharedPreferences("lang",MODE_PRIVATE);
+
+    String type = sharedPreferences.getString(TYPE, null);
+    String userId = sharedPreferences.getString(USER_ID, null);
+    String language=pref.getString("language","en");
+    Log.e("LANGUAGE",language);
+
+    setLocale(MainActivity.this, language);
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
@@ -60,13 +70,6 @@ public class MainActivity extends AppCompatActivity {
 
     ChipGroup languageChipGroup = findViewById(R.id.chip_group_language);
     Chip selectedLanguage = findViewById(languageChipGroup.getCheckedChipId());
-    Log.d("INITIAL LANGUAGE",selectedLanguage.getText().toString());
-//    if (selectedLanguage.getText().toString().equals("हिंदी")) {
-//      setLocale(MainActivity.this, "hi");
-//    }
-//    else{
-//      setLocale(MainActivity.this,"en");
-//    }
     languageChipGroup.setOnCheckedChangeListener(
         new ChipGroup.OnCheckedChangeListener() {
           @Override
@@ -76,18 +79,22 @@ public class MainActivity extends AppCompatActivity {
               Chip chip = findViewById(languageChipGroup.getCheckedChipId());
               String selectedLanguage = chip.getText().toString();
 
-              Log.d("afsd", selectedLanguage);
+              SharedPreferences.Editor editor = pref.edit();
 
-              //TODO: save the preferred language code
-              // hi for hindi and en for english
               if (selectedLanguage.equals("हिंदी")) {
                 Log.d("LANGUAGE", "onCheckedChanged: hindi");
                 setLocale(MainActivity.this, "hi");
                 setContentView(R.layout.activity_main);
+                editor.putString("language","hi");
+                editor.apply();
+                Log.e("LANG",pref.getString("language","en"));
               } else if (selectedLanguage.equals("English") || selectedLanguage.equals("अंग्रेज़ी")) {
                 Log.d("LANGUAGE", "onCheckedChanged: english");
                 setLocale(MainActivity.this, "en");
                 setContentView(R.layout.activity_main);
+                editor.putString("language","en");
+                editor.apply();
+                Log.e("LANG",pref.getString("language","en"));
               }
             }
           }
@@ -149,11 +156,6 @@ public class MainActivity extends AppCompatActivity {
             }
           }
         });
-
-    sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
-
-    String type = sharedPreferences.getString(TYPE, null);
-    String userId = sharedPreferences.getString(USER_ID, null);
 
     // code for debugging purpose (do not delete) ------------------------------------------
 
@@ -257,11 +259,8 @@ public class MainActivity extends AppCompatActivity {
     Locale locale = new Locale(langCode);
     Locale.setDefault(locale);
     Resources resources = activity.getResources();
-    Log.d("RESOURCES",String.valueOf(resources.getDisplayMetrics()));
     Configuration config = resources.getConfiguration();
     config.setLocale(locale);
-    Log.d("CONFIGURATIONS",String.valueOf(config));
     resources.updateConfiguration(config, resources.getDisplayMetrics());
-    Log.d("LANGUAGE", "Finished setting language");
   }
 }

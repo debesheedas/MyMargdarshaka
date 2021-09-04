@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,7 +39,7 @@ import java.util.regex.Pattern;
 
 public class MyStudents extends AppCompatActivity {
 
-  SharedPreferences sharedPreferences;
+  SharedPreferences sharedPreferences,pref;
   FirebaseDatabase firebaseDatabase;
   DatabaseReference databaseReference;
 
@@ -58,6 +59,8 @@ public class MyStudents extends AppCompatActivity {
     LinearLayout root = findViewById(R.id.root_linear);
     rootRef = FirebaseDatabase.getInstance().getReference();
     sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+
+    pref=getSharedPreferences("lang",MODE_PRIVATE);
 
     rootRef
         .child("mentors")
@@ -171,6 +174,30 @@ public class MyStudents extends AppCompatActivity {
     navigationView = findViewById(R.id.navigationView);
 
     //TODO @Shreetesh Paste code snippet here
+
+    topAppBar.setOnMenuItemClickListener(new com.google.android.material.appbar.MaterialToolbar.OnMenuItemClickListener() {
+      @Override
+      public boolean onMenuItemClick(MenuItem item) {
+        SharedPreferences.Editor editor = pref.edit();
+        switch(item.getItemId()){
+          case R.id.english:
+            //TODO: here add the language preference as english
+            editor.putString("language","en");
+            editor.apply();
+            Toast.makeText(getApplicationContext(), "Please restart the app for language change to English", Toast.LENGTH_SHORT)
+                    .show();
+            break;
+          case R.id.hindi:
+            //TODO here add the language preference as hindi
+            editor.putString("language","hi");
+            editor.apply();
+            Toast.makeText(getApplicationContext(), "Please restart the app for language change to Hindi", Toast.LENGTH_SHORT)
+                    .show();
+            break;
+        }
+        return true;
+      }
+    });
 
     topAppBar.setNavigationOnClickListener(
         new View.OnClickListener() {

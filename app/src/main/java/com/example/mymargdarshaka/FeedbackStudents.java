@@ -27,7 +27,7 @@ public class FeedbackStudents extends AppCompatActivity {
   private final CollectionReference mColRef =
       FirebaseFirestore.getInstance().collection("students_feedback");
 
-  SharedPreferences sharedPreferences;
+  SharedPreferences sharedPreferences,pref;
   private static final String SHARED_PREF_NAME = "login";
   com.google.android.material.appbar.MaterialToolbar topAppBar;
   androidx.drawerlayout.widget.DrawerLayout drawerLayout;
@@ -70,7 +70,33 @@ public class FeedbackStudents extends AppCompatActivity {
     drawerLayout = findViewById(R.id.drawerLayout);
     navigationView = findViewById(R.id.navigationView);
 
+    pref=getSharedPreferences("lang",MODE_PRIVATE);
+
       //TODO @Shreetesh Paste code snippet here
+
+      topAppBar.setOnMenuItemClickListener(new com.google.android.material.appbar.MaterialToolbar.OnMenuItemClickListener() {
+          @Override
+          public boolean onMenuItemClick(MenuItem item) {
+              SharedPreferences.Editor editor = pref.edit();
+              switch(item.getItemId()){
+                  case R.id.english:
+                      //TODO: here add the language preference as english
+                      editor.putString("language","en");
+                      editor.apply();
+                      Toast.makeText(getApplicationContext(), "Please restart the app for language change to English", Toast.LENGTH_SHORT)
+                              .show();
+                      break;
+                  case R.id.hindi:
+                      //TODO here add the language preference as hindi
+                      editor.putString("language","hi");
+                      editor.apply();
+                      Toast.makeText(getApplicationContext(), "Please restart the app for language change to Hindi", Toast.LENGTH_SHORT)
+                              .show();
+                      break;
+              }
+              return true;
+          }
+      });
 
     topAppBar.setNavigationOnClickListener(
         new View.OnClickListener() {

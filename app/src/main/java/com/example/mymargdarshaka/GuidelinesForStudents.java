@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class GuidelinesForStudents extends AppCompatActivity {
 
   TextView niosLink, resources;
-  SharedPreferences sharedPreferences;
+  SharedPreferences sharedPreferences,pref;
   FirebaseDatabase firebaseDatabase;
   DatabaseReference databaseReference;
 
@@ -35,6 +36,8 @@ public class GuidelinesForStudents extends AppCompatActivity {
     setContentView(R.layout.activity_guidelines_for_students);
     sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
 
+    pref=getSharedPreferences("lang",MODE_PRIVATE);
+
     // hyperlink for NIOS website
     niosLink = (TextView) findViewById(R.id.s_guideline6);
     niosLink.setMovementMethod(LinkMovementMethod.getInstance());
@@ -47,6 +50,30 @@ public class GuidelinesForStudents extends AppCompatActivity {
 
     // Functionality for App Bar with Menu
     //TODO @Shreetesh Paste code snippet here
+
+    topAppBar.setOnMenuItemClickListener(new com.google.android.material.appbar.MaterialToolbar.OnMenuItemClickListener() {
+      @Override
+      public boolean onMenuItemClick(MenuItem item) {
+        SharedPreferences.Editor editor = pref.edit();
+        switch(item.getItemId()){
+          case R.id.english:
+            //TODO: here add the language preference as english
+            editor.putString("language","en");
+            editor.apply();
+            Toast.makeText(getApplicationContext(), "Please restart the app for language change to English", Toast.LENGTH_SHORT)
+                    .show();
+            break;
+          case R.id.hindi:
+            //TODO here add the language preference as hindi
+            editor.putString("language","hi");
+            editor.apply();
+            Toast.makeText(getApplicationContext(), "Please restart the app for language change to Hindi", Toast.LENGTH_SHORT)
+                    .show();
+            break;
+        }
+        return true;
+      }
+    });
 
     topAppBar.setNavigationOnClickListener(
         new View.OnClickListener() {

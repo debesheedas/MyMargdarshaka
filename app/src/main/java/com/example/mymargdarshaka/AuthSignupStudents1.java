@@ -103,6 +103,10 @@ public class AuthSignupStudents1 extends AppCompatActivity {
               }
             });
 
+      text_view_class = findViewById(R.id.text_view_class);
+      text_view_language = findViewById(R.id.text_view_language);
+      text_view_time = findViewById(R.id.text_view_time);
+
     // creating a list of dropdown menu options
     ArrayList<String> classes = new ArrayList<>();
     classes.add("Class 6");
