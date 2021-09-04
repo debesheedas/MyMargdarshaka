@@ -92,9 +92,13 @@ public class GuidelinesForStudents extends AppCompatActivity {
               // code for going to Guidelines page
             } else if (choice.equals(getString(R.string.my_mentors_label))) {
               Intent i = new Intent(GuidelinesForStudents.this, MyMentors.class);
+              i.putExtra("studentId",getIntent().getStringExtra("studentId"));
+              i.putExtra("firstTime",getIntent().getBooleanExtra("firstTime",false));
               startActivity(i);
             } else if (choice.equals(getString(R.string.feedback_label))) {
               Intent i = new Intent(GuidelinesForStudents.this, FeedbackStudents.class);
+              i.putExtra("studentId",getIntent().getStringExtra("studentId"));
+              i.putExtra("firstTime",getIntent().getBooleanExtra("firstTime",false));
               startActivity(i);
             } else if (choice.equals(getString(R.string.logout_label))) {
 

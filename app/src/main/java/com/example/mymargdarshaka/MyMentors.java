@@ -188,13 +188,16 @@ public class MyMentors extends AppCompatActivity {
             String choice = item.toString();
             if (choice.equals(getString(R.string.guidelines_label))) {
               Intent i = new Intent(MyMentors.this, GuidelinesForStudents.class);
+              i.putExtra("studentId",getIntent().getStringExtra("studentId"));
+              i.putExtra("firstTime",getIntent().getBooleanExtra("firstTime",false));
               startActivity(i);
             } else if (choice.equals(getString(R.string.my_mentors_label))) {
               // code to shift to Mentor Details Page
             } else if (choice.equals(getString(R.string.feedback_label))) {
               Intent intent = new Intent(MyMentors.this, FeedbackStudents.class);
+              intent.putExtra("studentId",getIntent().getStringExtra("studentId"));
+              intent.putExtra("firstTime",getIntent().getBooleanExtra("firstTime",false));
               startActivity(intent);
-
               // logging the student out
             } else if (choice.equals(getString(R.string.logout_label))) {
               SharedPreferences.Editor editor = sharedPreferences.edit();
