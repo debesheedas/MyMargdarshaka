@@ -111,15 +111,15 @@ public class FeedbackStudents extends AppCompatActivity {
           @Override
           public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             String choice = item.toString();
-            if (choice.equals("Guidelines")) {
+            if (choice.equals(getString(R.string.guidelines_label))) {
               Intent i = new Intent(FeedbackStudents.this, GuidelinesForStudents.class);
               startActivity(i);
-            } else if (choice.equals("My Mentors")) {
+            } else if (choice.equals(getString(R.string.my_mentors_label))) {
               Intent i = new Intent(FeedbackStudents.this, MyMentors.class);
               startActivity(i);
-            } else if (choice.equals("Feedback")) {
+            } else if (choice.equals(getString(R.string.feedback_label))) {
               // code to shift to Feedback Page
-            } else if (choice.equals("Logout")) {
+            } else if (choice.equals(getString(R.string.logout_label))) {
 
                 // logging the student out
               SharedPreferences.Editor editor = sharedPreferences.edit();

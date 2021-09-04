@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
   Button studentButton, mentorButton;
   ImageButton rightButton, leftButton;
-  SharedPreferences sharedPreferences,pref;
+  SharedPreferences sharedPreferences, pref;
 
   private static final String SHARED_PREF_NAME = "login";
   private static final String TYPE = "userType";
@@ -46,59 +46,81 @@ public class MainActivity extends AppCompatActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    //TODO: get the chosen language code from shared preferences
-    // and replace "hi" with it
 
     sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
 
-    pref=getSharedPreferences("lang",MODE_PRIVATE);
+    pref = getSharedPreferences("lang", MODE_PRIVATE);
 
     String type = sharedPreferences.getString(TYPE, null);
     String userId = sharedPreferences.getString(USER_ID, null);
-    String language=pref.getString("language","en");
-    Log.e("LANGUAGE",language);
+    String language = pref.getString("language", "en");
+    Log.e("LANGUAGE", language);
 
     setLocale(MainActivity.this, language);
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
     rootRef = FirebaseDatabase.getInstance().getReference();
-    studentButton = (Button) findViewById(R.id.studentLoginButton);
-    mentorButton = (Button) findViewById(R.id.mentorLoginButton);
-    rightButton = (ImageButton) findViewById(R.id.rightButton);
-    leftButton = (ImageButton) findViewById(R.id.leftButton);
+    studentButton = findViewById(R.id.studentLoginButton);
+    mentorButton = findViewById(R.id.mentorLoginButton);
+    rightButton = findViewById(R.id.rightButton);
+    leftButton = findViewById(R.id.leftButton);
 
     ChipGroup languageChipGroup = findViewById(R.id.chip_group_language);
-    Chip selectedLanguage = findViewById(languageChipGroup.getCheckedChipId());
+    if (language.equals("hi")) {
+      Log.d("FOO", "Entering here");
+      languageChipGroup.clearCheck();
+      Chip hindi = findViewById(R.id.hindiChip);
+      hindi.setChecked(true);
+    }
+
     languageChipGroup.setOnCheckedChangeListener(
         new ChipGroup.OnCheckedChangeListener() {
           @Override
           public void onCheckedChanged(ChipGroup group, int checkedId) {
-            Log.d("CHECKED ID",String.valueOf(checkedId));
-            if(checkedId!=-1) {
+            Log.d("CHECKED ID", String.valueOf(checkedId));
+            if (checkedId != -1) {
               Chip chip = findViewById(languageChipGroup.getCheckedChipId());
               String selectedLanguage = chip.getText().toString();
 
               SharedPreferences.Editor editor = pref.edit();
 
               if (selectedLanguage.equals("हिंदी")) {
+                languageChipGroup.clearCheck();
                 Log.d("LANGUAGE", "onCheckedChanged: hindi");
                 setLocale(MainActivity.this, "hi");
                 setContentView(R.layout.activity_main);
-                editor.putString("language","hi");
+                editor.putString("language", "hi");
                 editor.apply();
-                Log.e("LANG",pref.getString("language","en"));
-              } else if (selectedLanguage.equals("English") || selectedLanguage.equals("अंग्रेज़ी")) {
+                Log.e("LANG", pref.getString("language", "en"));
+              } else if (selectedLanguage.equals(getString(R.string.english))) {
                 Log.d("LANGUAGE", "onCheckedChanged: english");
                 setLocale(MainActivity.this, "en");
                 setContentView(R.layout.activity_main);
-                editor.putString("language","en");
+                editor.putString("language", "en");
                 editor.apply();
-                Log.e("LANG",pref.getString("language","en"));
+                Log.e("LANG", pref.getString("language", "en"));
               }
             }
+            Intent intent =
+                getBaseContext()
+                    .getPackageManager()
+                    .getLaunchIntentForPackage(getBaseContext().getPackageName());
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
           }
         });
+
+    //    if (language.equals(getString(R.string.hindi))) {
+    //      languageChipGroup.clearCheck();
+    //      Chip hindi = findViewById(R.id.hindiChip);
+    //      hindi.setChecked(true);
+    //    } else {
+    //      languageChipGroup.clearCheck();
+    //      Chip english = findViewById(R.id.englishChip);
+    //      english.setChecked(true);
+    //    }
 
     // carousel of images on mainpage
     imageView = (ImageView) findViewById(R.id.slideView);
@@ -194,14 +216,15 @@ public class MainActivity extends AppCompatActivity {
                       MentorDetails details = child.getValue(MentorDetails.class);
                       // obtaining the number of attempted tests from the database
                       int noTests = details.getNoTests();
-                      if (noTests == -1) {        // if the mentor has passed the test previously
+                      if (noTests == -1) { // if the mentor has passed the test previously
                         Intent i2 = new Intent(MainActivity.this, MyStudents.class);
                         i2.putExtra("mentorId", userId);
                         i2.putExtra("firstTime", false);
                         i2.setFlags(
                             Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(i2);
-                      } else if (noTests >= 5) {    // if the mentor has exceeded the threshold number of attempts
+                      } else if (noTests
+                          >= 5) { // if the mentor has exceeded the threshold number of attempts
                         Toast.makeText(
                                 MainActivity.this, "You are not eligible", Toast.LENGTH_SHORT)
                             .show();
@@ -209,7 +232,7 @@ public class MainActivity extends AppCompatActivity {
                         FirebaseAuth.getInstance().signOut();
                         editor.clear();
                         editor.apply();
-                      } else {        // if the mentor still has a few attempts left
+                      } else { // if the mentor still has a few attempts left
                         rootRef
                             .child("mentors")
                             .child(userId)
@@ -237,6 +260,7 @@ public class MainActivity extends AppCompatActivity {
         new View.OnClickListener() {
           @Override
           public void onClick(View view) {
+            Log.d("BUTTON", "STUDENT");
             Intent i = new Intent(MainActivity.this, AuthLogin.class);
             i.putExtra("userType", "student");
             startActivity(i);
@@ -248,6 +272,7 @@ public class MainActivity extends AppCompatActivity {
         new View.OnClickListener() {
           @Override
           public void onClick(View view) {
+            Log.d("BUTTON", "MENTOR");
             Intent i = new Intent(MainActivity.this, AuthLogin.class);
             i.putExtra("userType", "mentor");
             startActivity(i);

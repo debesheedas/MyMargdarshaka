@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -109,15 +110,15 @@ public class FeedbackMentors extends AppCompatActivity {
           @Override
           public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             String choice = item.toString();
-            if (choice.equals("Guidelines")) {
+            if (choice.equals(getString(R.string.guidelines_label))) {
               Intent i = new Intent(FeedbackMentors.this, GuidelinesForMentors.class);
               startActivity(i);
-            } else if (choice.equals("My Students")) {
+            } else if (choice.equals(getString(R.string.my_students_label))) {
               Intent intent = new Intent(FeedbackMentors.this, MyStudents.class);
               startActivity(intent);
-            } else if (choice.equals("Feedback")) {
+            } else if (choice.equals(getString(R.string.feedback_label))) {
               // code to shift to Feedback Page
-            } else if (choice.equals("Logout")) {
+            } else if (choice.equals(getString(R.string.logout_label))) {
 
                 // logging out the mentor
               SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -129,7 +130,7 @@ public class FeedbackMentors extends AppCompatActivity {
               i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
               startActivity(i);
             }
-            drawerLayout.closeDrawer(Gravity.START, true);
+            drawerLayout.closeDrawer(GravityCompat.START, true);
             return true;
           }
         });

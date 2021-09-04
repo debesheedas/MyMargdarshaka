@@ -88,15 +88,15 @@ public class GuidelinesForStudents extends AppCompatActivity {
           @Override
           public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             String choice = item.toString();
-            if (choice.equals("Guidelines")) {
+            if (choice.equals(getString(R.string.guidelines_label))) {
               // code for going to Guidelines page
-            } else if (choice.equals("My Mentors")) {
+            } else if (choice.equals(getString(R.string.my_mentors_label))) {
               Intent i = new Intent(GuidelinesForStudents.this, MyMentors.class);
               startActivity(i);
-            } else if (choice.equals("Feedback")) {
+            } else if (choice.equals(getString(R.string.feedback_label))) {
               Intent i = new Intent(GuidelinesForStudents.this, FeedbackStudents.class);
               startActivity(i);
-            } else if (choice.equals("Logout")) {
+            } else if (choice.equals(getString(R.string.logout_label))) {
 
               // logging out the student
               SharedPreferences.Editor editor = sharedPreferences.edit();
