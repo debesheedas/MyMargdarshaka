@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
@@ -317,14 +318,30 @@ public class MyMentors extends AppCompatActivity {
         new RelativeLayout.LayoutParams(
             RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
     phoneButtonParams.setMargins(0, 0, 8, 0);
-    phoneButton.setText("PHONE");
+    phoneButton.setText(R.string.PHONE);
+    phoneButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        Uri u = Uri.parse("tel:" + phone);
+        Intent i = new Intent(Intent.ACTION_DIAL, u);
+        startActivity(i);
+      }
+    });
 
     MaterialButton emailButton = new MaterialButton(this, null, R.attr.borderlessButtonStyle);
     RelativeLayout.LayoutParams emailButtonParams =
         new RelativeLayout.LayoutParams(
             RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
     emailButtonParams.setMargins(0, 0, 8, 0);
-    emailButton.setText("EMAIL");
+    emailButton.setText(R.string.EMAIL);
+    emailButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        Uri u = Uri.parse("mailto:" + email);
+        Intent i = new Intent(Intent.ACTION_VIEW, u);
+        startActivity(i);
+      }
+    });
 
     linearLayoutPrimaryChild.addView(nameTextView);
     linearLayoutPrimaryChild.addView(mobileTextView);
