@@ -48,9 +48,7 @@ public class GuidelinesForStudents extends AppCompatActivity {
     drawerLayout = findViewById(R.id.drawerLayout);
     navigationView = findViewById(R.id.navigationView);
 
-    // Functionality for App Bar with Menu
-    //TODO @Shreetesh Paste code snippet here
-
+    //Options for change of language - top right of App Bar
     topAppBar.setOnMenuItemClickListener(new com.google.android.material.appbar.MaterialToolbar.OnMenuItemClickListener() {
       @Override
       public boolean onMenuItemClick(MenuItem item) {
@@ -74,7 +72,7 @@ public class GuidelinesForStudents extends AppCompatActivity {
         return true;
       }
     });
-
+    // Functionality for App Bar with Menu
     topAppBar.setNavigationOnClickListener(
         new View.OnClickListener() {
           @Override

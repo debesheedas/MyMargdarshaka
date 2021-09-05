@@ -60,6 +60,7 @@ public class AuthSignupMentors1 extends AppCompatActivity {
           if (afternoon.isChecked()) timeSlots.add("Afternoon");
           if (evening.isChecked()) timeSlots.add("Evening");
 
+          //regex pattern to check for valid email address
           String regex = "^(.+)@(.+)$";
           Pattern pattern = Pattern.compile(regex);
 

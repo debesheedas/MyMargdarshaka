@@ -147,7 +147,6 @@ public class AuthSignupMentors2 extends AppCompatActivity {
                     teachClasses.add(c);
                     temp = teachSubjects.size();
                 }
-
             }
 
             // if the mentor didn't select any subjects, show a toast
@@ -193,20 +192,8 @@ public class AuthSignupMentors2 extends AppCompatActivity {
         return (int) (dp * scale + 0.5f);
     }
 
-//    private TextView getTextView(String data, int aboveId) {
-//        TextView textView = new TextView(this);
-//        RelativeLayout.LayoutParams params =
-//                new RelativeLayout.LayoutParams(
-//                        RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-//        int margin = dpAsPixels(16);
-//        params.setMargins(margin, margin, 0, margin);
-//        params.addRule(RelativeLayout.BELOW, aboveId);
-//        textView.setTextSize(14);
-//        textView.setLayoutParams(params);
-//        textView.setText(data);
-//        textView.setTextColor(ContextCompat.getColor(this, R.color.mentor_details));
-//        return textView;
-//    }
+    //This method dynamically generates a checkbox UI element with the given specifications
+    //used to display class-wise subject options available to the mentor
     private CheckBox getCheckBox(String subject, String data, int aboveId) {
         CheckBox check = new CheckBox((this));
         RelativeLayout.LayoutParams params =
@@ -223,6 +210,7 @@ public class AuthSignupMentors2 extends AppCompatActivity {
         return check;
     }
 
+    //This method dynamically generates MaterialCardView UI elements
     private MaterialCardView getCard(String subject, ArrayList<String> classes_options, int aboveId) {
         String title = subject.substring(0, 1).toUpperCase() + subject.substring(1);
         MaterialCardView card = new MaterialCardView(this);
@@ -243,6 +231,8 @@ public class AuthSignupMentors2 extends AppCompatActivity {
         linearLayoutCard.setOrientation(LinearLayout.VERTICAL);
         linearLayoutCard.setLayoutParams(linearLayoutCardParams);
 
+        //The title is used for the name of the subject
+        //Each card for a particular subject contains the classes available for it
         TextView titleTextView = new TextView(this);
         RelativeLayout.LayoutParams titleTextViewParams =
                 new RelativeLayout.LayoutParams(

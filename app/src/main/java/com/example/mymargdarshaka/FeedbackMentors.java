@@ -71,22 +71,19 @@ public class FeedbackMentors extends AppCompatActivity {
 
     pref=getSharedPreferences("lang",MODE_PRIVATE);
 
-    //TODO @Shreetesh Paste code snippet here
-
+      //Options for change of language - top right of App Bar
       topAppBar.setOnMenuItemClickListener(new com.google.android.material.appbar.MaterialToolbar.OnMenuItemClickListener() {
           @Override
           public boolean onMenuItemClick(MenuItem item) {
               SharedPreferences.Editor editor = pref.edit();
               switch(item.getItemId()){
                   case R.id.english:
-                      //TODO: here add the language preference as english
                       editor.putString("language","en");
                       editor.apply();
                       Toast.makeText(getApplicationContext(), "Please restart the app for language change to English", Toast.LENGTH_SHORT)
                               .show();
                       break;
                   case R.id.hindi:
-                      //TODO here add the language preference as hindi
                       editor.putString("language","hi");
                       editor.apply();
                       Toast.makeText(getApplicationContext(), "Please restart the app for language change to Hindi", Toast.LENGTH_SHORT)

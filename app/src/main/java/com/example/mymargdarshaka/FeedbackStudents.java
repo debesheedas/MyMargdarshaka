@@ -72,8 +72,7 @@ public class FeedbackStudents extends AppCompatActivity {
 
     pref=getSharedPreferences("lang",MODE_PRIVATE);
 
-      //TODO @Shreetesh Paste code snippet here
-
+      //Options for change of language - top right of App Bar
       topAppBar.setOnMenuItemClickListener(new com.google.android.material.appbar.MaterialToolbar.OnMenuItemClickListener() {
           @Override
           public boolean onMenuItemClick(MenuItem item) {
