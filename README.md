@@ -9,6 +9,7 @@
 ***Effective digital tutelage in 
 the Indian context: Making 
 the right connections***
+![App Icon](images/app_icon.png)
 
 The *My Margdarshaka* Android app based on the novel concept of connecting Indian school students who are unable to attend traditional school due to financial or logistic constraints with mentors who want to give back to society by teaching them. The idea is to mentor these students with the goal of taking the class 10 and 12 certification exams conducted by the National Institute of Open Schooling (NIOS) which is the Government of India’s official examination body. The app focuses on the UN SDG 4 - Quality Education. 
 _________________________________________________________________
@@ -30,7 +31,7 @@ _________________________________________________________________
 ________________________________________________________________
 
 ## User Guide and Features
-On the homepage there is a clickable carousel with slides that explain the main idea behind the app. To login as a student who wants to connect with a mentor, click on the **I AM A STUDENT** button. Similarly for mentors, click on the **I AM A MENTOR** button. Login using mobile number and OTP authentication. 
+The app is available in both English and Hindi. You can switch languages using option in the homepage or in the App Bar. On the homepage there is a clickable carousel with slides that explain the main idea behind the app. To login as a student who wants to connect with a mentor, click on the **I AM A STUDENT** button. Similarly for mentors, click on the **I AM A MENTOR** button. Login using mobile number and OTP authentication. 
 
 ![Screenshot - Mainpage and Login](images/screenshots/login_signup.png)
 
@@ -67,3 +68,13 @@ If built locally, in order to see the authentication in action, please follow th
 * Navigate to [Firebase Project Console Settings](https://console.firebase.google.com/u/1/project/mymargdarshaka/settings/general/android:com.example.mymargdarshaka), scroll down and under **Your apps**, add your SHA1 figerprint.
 
 *(Currently, this can only be performed by authorized users)*
+
+### Image and Art Attributions
+Homepage [Image 1](https://www.gettyimages.in/detail/photo/ideas-royalty-free-image/825412904?adppopup=true)
+[Image 2](https://unsplash.com/photos/2eMemvByB-8?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink)
+[Image 3](https://unsplash.com/photos/fIq0tET6llw?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink)
+[Image 4](https://unsplash.com/photos/6jYoil2GhVk?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink)
+[Image 5](https://unsplash.com/photos/pYWuOMhtc6k?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink)
+[Image 6](https://unsplash.com/photos/Q1p7bh3SHj8?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink)
+
+[Vector Art 1](https://pngtree.com/so/Dotted)
