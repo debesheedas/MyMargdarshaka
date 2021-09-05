@@ -86,7 +86,7 @@
                             android:layout_height="wrap_content"
                             android:background="@color/purple_200"
                             android:padding="20dp"
-                            android:text="Below you'll find the mentors assigned to you! Talk to them and get started with your learning!"
+                            android:text="@string/my_students_message"
                             android:textAlignment="center"
                             android:textColor="@color/white"
                             android:textSize="34sp" />

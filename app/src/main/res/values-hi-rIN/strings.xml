@@ -77,6 +77,7 @@
     <string name="EMAIL">ईमेल</string>
     <string name="PHONE">फ़ोन</string>
     <string name="my_mentors_message">नीचे आपको आपको सौंपे गए सलाहकार मिलेंगे! उनसे बात करें और अपने सीखने की शुरुआत करें!</string>
+    <string name="my_students_message">नीचे, आपको अपने लिए असाइन किए गए छात्र मिलेंगे! उनसे बात करें और अपना शिक्षण शुरू करें</string>
     <string name="resend_otp">ओटीपी पुनः भेजें</string>
     <string name="morning">सुबह</string>
     <string name="afternoon">दोपहर</string>
