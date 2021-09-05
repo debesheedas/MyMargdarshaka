@@ -80,4 +80,7 @@ Homepage [Image 1](https://www.gettyimages.in/detail/photo/ideas-royalty-free-im
 [Image 5](https://unsplash.com/photos/pYWuOMhtc6k?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink)
 [Image 6](https://unsplash.com/photos/Q1p7bh3SHj8?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink)
 
+App Icon
 [Vector Art 1](https://pngtree.com/so/Dotted)
+Torch Icon by Anton Gajdosik from the Noun Project
+Path vector by Allie Tate from the Noun Project
